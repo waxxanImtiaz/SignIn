@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:showAsAction="ifRoom"
+    app:title="Setup"
+    >
+
+    <item
+        android:id="@+id/st_first_name"
+        android:title="First Name"
+        android:visible="true"
+
+        />
+    <item
+        android:id="@+id/st_last_name"
+        android:title="Last Name"
+        android:visible="true"/>
+    <item
+        android:id="@+id/st_company"
+        android:title="Company"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/st_address"
+        android:title="Address"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/st_city"
+        android:title="City"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/st_zip"
+        android:title="Zip Code"
+        android:visible="true"/>
+    <item
+        android:id="@+id/st_phone"
+        android:title="Phone"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/st_here_to_see"
+        android:title="Here To See"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/st_sign_capture"
+        android:title="Signature Capture"
+        android:visible="true"/>
+    <item
+        android:id="@+id/st_photo_capture"
+        android:title="Photo Capture"
+        android:visible="true"/>
+    <item
+        android:id="@+id/st_guide_or_Scort_name"
+        android:title="Guide/Escort Name"
+        android:visible="true"/>
+    <item
+        android:id="@+id/st_badge_returned"
+        android:title="Badge Returned"
+        android:visible="true"/>
+
+    <item
+        android:id="@+id/st_badge_number"
+        android:title="Badge Number"
+        android:visible="true"/>
+
+
+</menu>

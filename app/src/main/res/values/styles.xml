@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<!-- Base application theme. -->
+	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+		<!-- Customize your theme here. -->
+		<item name="colorPrimary">@color/colorPrimary</item>
+		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorAccent">@color/colorAccent</item>
+	</style>
+	<style name="fonts" parent="AppTheme">
+		<item name="android:fontFamily">sans</item>
+	</style>
+
+	<style name="Animations" />
+
+	<!-- PopDownMenu -->
+	<style name="Animations.PopDownMenu" />
+	
+	<style name="Animations.PopDownMenu.Center">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_top</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_bottom</item>
+	</style>
+	
+	<style name="Animations.PopDownMenu.Left">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_topleft_to_bottomright</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_bottomright_to_topleft</item>
+	</style>
+	
+	<style name="Animations.PopDownMenu.Right">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_topright_to_bottomleft</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_bottomleft_to_topright</item>
+	</style>
+	
+	<style name="Animations.PopDownMenu.Reflect">
+		<item name="@android:windowEnterAnimation">@anim/pump_top</item>
+		<item name="@android:windowExitAnimation">@anim/disappear</item>
+	</style>
+	
+	<!-- PopUpMenu -->
+	<style name="Animations.PopUpMenu" />
+	
+	<style name="Animations.PopUpMenu.Center">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_bottom</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_top</item>
+	</style>
+	
+	<style name="Animations.PopUpMenu.Left">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_bottomleft_to_topright</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_topright_to_bottomleft</item>
+	</style>
+	
+	<style name="Animations.PopUpMenu.Right">
+		<item name="@android:windowEnterAnimation">@anim/grow_from_bottomright_to_topleft</item>
+		<item name="@android:windowExitAnimation">@anim/shrink_from_topleft_to_bottomright</item>
+	</style>
+	
+	<style name="Animations.PopUpMenu.Reflect">
+		<item name="@android:windowEnterAnimation">@anim/pump_bottom</item>
+		<item name="@android:windowExitAnimation">@anim/disappear</item>
+	</style>
+
+	<style name="common_popup_heading_styles">
+		<item name="android:typeface">sans</item>
+		<item name="android:layout_centerHorizontal">true</item>
+		<item name="android:gravity">center_horizontal</item>
+		<item name="android:textColor">@color/heading_text_color</item>
+		<item name="android:background">@drawable/title_border</item>
+		<item name="android:layout_marginTop">16dp</item>
+	</style>
+	<style name="setup_style" parent="common_popup_heading_styles">
+		<item name="android:paddingLeft">130dp</item>
+        <item name="android:paddingRight">124dp</item>
+		<item name="android:paddingBottom">16dp</item>
+		<item name="android:paddingTop">14dp</item>
+	</style>
+
+	<style name="report_style" parent="common_popup_heading_styles">
+		<item name="android:paddingLeft">124dp</item>
+		<item name="android:paddingRight">124dp</item>
+		<item name="android:paddingBottom">16dp</item>
+		<item name="android:paddingTop">14dp</item>
+	</style>
+
+	<style name="design_style" parent="common_popup_heading_styles">
+		<item name="android:paddingLeft">117dp</item>
+		<item name="android:paddingRight">117dp</item>
+		<item name="android:paddingBottom">16dp</item>
+		<item name="android:paddingTop">14dp</item>
+	</style>
+	<style name="style_of_downld_drop_down_list" parent="setup_style">
+		<item name="android:textColor">@color/black_color</item>
+		<item name="android:background">@color/color_of_arrow</item>
+	</style>
+	<style name="style_of_item_delete_records" parent="style_of_downld_drop_down_list">
+
+	</style>
+	<style name="style_of_item_print_records" parent="style_of_downld_drop_down_list">
+
+	</style>
+	<style name="style_of_email_report_as_pdf" parent="style_of_downld_drop_down_list">
+	</style>
+	<style name="style_of_email_search_data_as_csv" parent="style_of_downld_drop_down_list">
+
+	</style>
+	<style name="popup_font_color_style" parent="common_popup_heading_styles">
+		<item name="android:paddingTop">10dp</item>
+		<item name="android:paddingRight">80dp</item>
+		<item name="android:paddingBottom">10dp</item>
+
+	</style>
+	<style name="inner_heading_style" parent="common_popup_heading_styles">
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:paddingRight">90dp</item>
+		<item name="android:layout_centerHorizontal">false</item>
+		<item name="android:paddingBottom">15dp</item>
+		<item name="android:paddingTop">7dp</item>
+	</style>
+	<style name="normal_font">
+		<item name="android:textStyle">normal</item>
+	</style>
+
+	<style name="bold_itallic_font">
+		<item name="android:textStyle">bold|italic</item>
+	</style>
+	<style name="setup_full_style_inner_layouts">
+		<item name="android:layout_width">190dp</item>
+		<item name="android:layout_marginTop">15dp</item>
+		<item name="android:layout_marginRight">0dp</item>
+	</style>
+	<style name="setup_full_style_center_fields">
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:textColor">@color/color_of_arrow</item>
+		<item name="android:paddingTop">5dp</item>
+	</style>
+	<style name="setup_full_style_left_fields">
+		<item name="android:layout_marginLeft">5dp</item>
+		<item name="android:paddingTop">5dp</item>
+		<item name="android:paddingBottom">5dp</item>
+		<item name="android:layout_marginRight">20dp</item>
+		<item name="android:textColor">#000</item>
+	</style>
+	<style name="setup_full_style_image_fields">
+		<item name="android:paddingLeft">10dp</item>
+		<item name="android:paddingTop">5dp</item>
+	</style>
+	<style name="horizontal_line">
+		<item name="android:background">@color/color_of_arrow</item>
+	</style>
+	<style name="setup_menu_table">
+		<item name="android:paddingLeft">0dp</item>
+	</style>
+	<style name="setup_table_rows">
+		<item name="android:layout_marginLeft">10dp</item>
+	</style>
+	<style name="sub_heading" parent="setup_full_style_left_fields">
+		<item name="android:textColor">@color/color_of_arrow</item>
+	</style>
+	<style name="visitor_agreement" parent="setup_full_style_left_fields">
+		<item name="android:paddingRight">2dp</item>
+		<item name="android:layout_marginRight">5dp</item>
+	</style>
+</resources>

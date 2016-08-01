@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/vertical_popup_layout"
+    >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/setup"
+        style="@style/setup_style"
+        android:text="@string/setup_heading"
+        />
+    <ViewFlipper
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dropDownFlipper">
+
+        <ScrollView
+            android:id="@+id/top_drop_down_scroller"
+            android:layout_marginTop="64dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup_two"
+            android:fadingEdgeLength="0dip"
+            android:scrollbars="none">
+            <LinearLayout
+                android:id="@+id/top_drop_down_layout"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            </LinearLayout>
+        </ScrollView >
+
+        <ScrollView
+            android:id="@+id/inner_drop_down_scroller"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="64dip"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup_two"
+            android:fadingEdgeLength="0dip"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/inner_drop_down_layout"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            </LinearLayout>
+
+        </ScrollView >
+
+    </ViewFlipper>
+
+</LinearLayout>

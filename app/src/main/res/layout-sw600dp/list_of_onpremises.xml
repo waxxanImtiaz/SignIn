@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:background="#efefef" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:padding="16dp">
+
+    <LinearLayout
+        android:weightSum="4"
+        android:background="#FFF"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/et_onpremises_firstname"
+        android:hint="Search"
+        android:drawableLeft="@drawable/icon_search"
+        android:textSize="20sp"
+        android:background="@drawable/et_search"
+        android:layout_weight="4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/btn_search_onpremises"
+        android:layout_weight="1"
+        android:text="Search"
+        android:textColor="#fff"
+        android:background="@drawable/btn_sign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <ImageButton
+            android:id="@+id/imgbtn_download"
+            android:src="@drawable/icon_download"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            />
+    </LinearLayout>
+
+
+    <ListView
+        android:id="@+id/list_onpremises"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+</LinearLayout>

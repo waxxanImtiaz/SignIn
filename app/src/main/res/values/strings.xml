@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, NewQA!</string>
+    <string name="app_name">SignIn</string>
+    <string name="setup_heading">Setup</string>
+    <string name="design">Design</string>
+    <string name="refresh">Refresh</string>
+    <string name="report">Report</string>
+    <string name="in">IN</string>
+    <string name="on_premesis">ON PREMISES</string>
+    <string name="out">OUT</string>
+    <string name="total_visitors_today">Total Visitors Today</string>
+    <string name="tape_on_numbers">Tap on numbers for corresponding report</string>
+    <string name="default_number_of_visitors">0000</string>
+    <string name="search">Search</string>
+    <string name="delete_records">Delete Records</string>
+    <string name="print_report">Print Report</string>
+    <string name="email_report_as_pdf">Email Report as PDF</string>
+    <string name="email_search_data_as_csv">Email Search Data as CSV</string>
+    <string name="export_search_data_to_contacts">Export Search Data to Contacts</string>
+    <string name="font_color">Font Color</string>
+    <string name="company_hint">company</string>
+</resources>

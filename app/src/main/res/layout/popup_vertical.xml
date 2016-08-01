@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+	>
+
+
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/setup"
+		style="@style/setup_style"
+		android:text="@string/setup_heading"/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		style="@style/report_style"
+		android:id="@+id/report_heading"
+		android:text="@string/report"
+		/>
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		style="@style/design_style"
+		android:id="@+id/design"
+		android:text="@string/design"
+		/>
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/font_sub_menu_heading_layout"
+			style="@style/inner_heading_style"
+			android:background="@drawable/title_border"
+			>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/design"
+			android:layout_toRightOf="@+id/chroven_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/font_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/font_color"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:textColor="#000"
+			android:id="@+id/font_heading_center"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/company_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/company_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/company_chroven_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/company_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="company"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="30dp"
+			android:paddingRight="18dp"
+			android:textColor="#000"
+			android:id="@+id/company_heading_center"
+			/>
+	</LinearLayout>
+
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/photo_capture_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/photo_capture_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/photo_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/photo_capture_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Photo Capture"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="30dp"
+			android:paddingRight="18dp"
+			android:textColor="#000"
+			android:id="@+id/photo_capture_heading_center"
+			/>
+	</LinearLayout>
+	<ViewFlipper
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/dropDownFlipper">
+
+	<ScrollView
+		android:id="@+id/top_drop_down_scroller"
+		android:layout_marginTop="64dip"
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:background="@drawable/popup_two"
+    	android:fadingEdgeLength="0dip"
+			android:scrollbars="none">
+				<LinearLayout
+	    			android:id="@+id/top_drop_down_layout"
+	    			android:orientation="vertical"
+	     		    android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+			    </LinearLayout>
+	</ScrollView >
+
+		<ScrollView
+		android:id="@+id/inner_drop_down_scroller"
+    	android:layout_width="wrap_content"
+			android:layout_marginTop="64dip"
+    	android:layout_height="wrap_content"
+    	android:background="@drawable/popup_two"
+    	android:fadingEdgeLength="0dip"
+			android:scrollbars="none">
+
+				<LinearLayout
+	    			android:id="@+id/inner_drop_down_layout"
+	    			android:orientation="vertical"
+	     		    android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_weight="1">
+			    </LinearLayout>
+
+	</ScrollView >
+
+	</ViewFlipper>
+
+	<ImageView
+		android:id="@+id/arrow_up"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="-2dip"
+		android:src="@drawable/up_arrow" />
+ 	<ImageView
+        android:id="@+id/arrow_down_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+      	android:layout_marginTop="-4dip"
+        android:src="@drawable/arrow_down" />
+<!-- arrow top margin actual = -2 -->
+</RelativeLayout>

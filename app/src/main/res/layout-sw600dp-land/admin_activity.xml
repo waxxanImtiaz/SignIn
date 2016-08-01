@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary">
+
+    <!--button fo design, setup, refresh and reports-->
+    <LinearLayout
+        android:padding="10dp"
+        android:weightSum="4"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_setup"
+            android:text="Setup"
+            android:textSize="22sp"
+            android:textColor="#FFF"
+            android:textAllCaps="false"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/admin_btn_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_design"
+            android:text="Design"
+            android:textSize="22sp"
+            android:textColor="#FFF"
+            android:textAllCaps="false"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/admin_btn_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_refresh"
+            android:text="Refresh"
+            android:textSize="22sp"
+            android:textColor="#FFF"
+            android:textAllCaps="false"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/admin_btn_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_report"
+            android:text="Report"
+            android:textSize="22sp"
+            android:textColor="#FFF"
+            android:textAllCaps="false"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:background="@drawable/admin_btn_bg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:text="Total Visitors Today"
+        android:textSize="40dp"
+        android:textColor="#FFF"
+        android:layout_marginTop="50sp"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Tap on numbers for corresponding report"
+        android:textAllCaps="true"
+        android:textSize="20sp"
+        android:textColor="#FFF"
+        android:gravity="center_horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--layout counters-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_gravity="center_vertical">
+
+        <!--layout for IN counter-->
+        <LinearLayout
+            android:id="@+id/ll_signin"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_counter_signin"
+            android:textSize="65sp"
+            android:textColor="@color/colorAccent"
+            android:text="0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="In"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="#efefef"/>
+
+        </LinearLayout>
+
+        <!--layout for ON-PREMISES counter-->
+        <LinearLayout
+            android:id="@+id/ll_onpremises"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
+            android:layout_alignTop="@+id/ll_signin"
+            android:layout_toRightOf="@+id/ll_signin"
+            android:layout_toEndOf="@+id/ll_signin">
+
+        <TextView
+            android:id="@+id/tv_counter_onpremises"
+            android:textSize="65sp"
+            android:textColor="@color/colorAccent"
+            android:text="0000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="On Premises"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:textColor="#efefef"/>
+
+    </LinearLayout>
+
+        <!--layout for ON-PREMISES counter-->
+        <LinearLayout
+            android:id="@+id/ll_signout"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
+            android:layout_alignTop="@+id/ll_onpremises"
+            android:layout_toRightOf="@+id/ll_onpremises"
+            android:layout_toEndOf="@+id/ll_onpremises">
+
+            <TextView
+                android:id="@+id/tv_counter_signout"
+                android:textSize="65sp"
+                android:textColor="@color/colorAccent"
+                android:text="0000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Out"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textSize="28sp"
+                android:textColor="#efefef"/>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

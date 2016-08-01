@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/sub_menu_layout"
+        style="@style/popup_font_color_style"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chevron_left"
+            android:id="@+id/chroven_left"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/design"
+            android:layout_toRightOf="@+id/chroven_left"
+            android:textColor="#6666FF"
+            android:textSize="20dp"
+            android:id="@+id/txt_design"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/font_color"
+            android:textSize="20dp"
+            android:layout_toEndOf="@+id/txt_design"
+            android:layout_toRightOf="@+id/txt_design"
+            android:layout_marginLeft="30dp"
+            />
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scroller"
+        android:layout_marginTop="64dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup_two"
+        android:fadingEdgeLength="0dip"
+        android:scrollbars="none">
+        <LinearLayout
+            android:id="@+id/tracks"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+        </LinearLayout>
+    </ScrollView >
+
+    <ImageView
+        android:id="@+id/arrow_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-2dp"
+        android:src="@drawable/up_arrow" />
+    <ImageView
+        android:id="@+id/arrow_down_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/scroller"
+        android:layout_marginTop="-4dip"
+        android:src="@drawable/arrow_down" />
+
+</RelativeLayout>

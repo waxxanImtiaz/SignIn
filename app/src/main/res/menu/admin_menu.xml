@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/admin_icon"
+        android:icon="@drawable/icon_admin"
+        android:showAsAction="always"
+        android:title="Admin Panel"
+        tools:ignore="AppCompatResource" />
+</menu>
