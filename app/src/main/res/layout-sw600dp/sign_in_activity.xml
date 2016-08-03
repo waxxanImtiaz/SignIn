@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,6 +22,41 @@
             android:layout_marginBottom="20dp"
             android:id="@+id/tv_date" />
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/ll_image_capture">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_gravity="center"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:contentDescription="Hello"
+            android:layout_marginTop="24dp" />
+        <Button
+            android:id="@+id/btn_image_capture"
+            android:text="Capture Image"
+            android:textColor="#fff"
+            android:textSize="21dp"
+            android:fontFamily="sans-serif-condensed"
+            android:textAllCaps="false"
+            android:background="@drawable/btn_sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp" />
+        </LinearLayout>
+        <!--<ImageButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/imageView"-->
+            <!--android:layout_marginTop="24dp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:src="@drawable/cat"-->
+            <!--android:id="@+id/circleView"-->
+            <!--/>-->
         <EditText
             android:id="@+id/et_firstname"
             android:hint="First Name"
@@ -46,90 +82,90 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_company"-->
-            <!--android:hint="Company"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_company"
+            android:hint="Company"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_address"-->
-            <!--android:hint="Address"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_address"
+            android:hint="Address"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_city"-->
-            <!--android:hint="City"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_city"
+            android:hint="City"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_state"-->
-            <!--android:hint="State"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_state"
+            android:hint="State"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_zipcode"-->
-            <!--android:hint="Zip Code"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_zipcode"
+            android:hint="Zip Code"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_phone"-->
-            <!--android:hint="Phone"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_phone"
+            android:hint="Phone"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_email"-->
-            <!--android:hint="Email"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_email"
+            android:hint="Email"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
 
         <Button

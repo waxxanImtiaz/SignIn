@@ -61,7 +61,6 @@
             android:id="@+id/op_firstname"
             android:layout_row="0"
             android:layout_column="1"
-
             style="@style/setup_full_style_center_fields"
             android:text="Mendatory"
             />
@@ -245,7 +244,7 @@
       <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/arrow_address"
+          android:id="@+id/iv_address"
           android:layout_toEndOf="@+id/op_address"
           android:layout_toRightOf="@id/op_address"
           style="@style/setup_full_style_image_fields"
@@ -298,7 +297,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/arrow_state"
+            android:id="@+id/iv_city"
             style="@style/setup_full_style_image_fields"
             android:layout_toEndOf="@+id/op_city"
             android:layout_toRightOf="@id/op_city"

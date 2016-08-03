@@ -23,13 +23,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        database = new Database(this);
+        database.insertIntoSignInSetupFields();
         goSignIn = (Button) findViewById(R.id.btn_go_signin);
         goSignOut = (Button) findViewById(R.id.btn_goto_signout);
 
         goSignIn.setOnClickListener(this);
         goSignOut.setOnClickListener(this);
-        database = new Database(this);
-        database.insertIntoSignInSetupFields();
+
         heading = (TextView) findViewById(R.id.tv_instruction);
         Typeface mlibelFont = Typeface.createFromAsset(getAssets(), "fonts/libel-suit-rg.ttf");
         heading.setTypeface(mlibelFont);

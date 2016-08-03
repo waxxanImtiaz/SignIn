@@ -23,25 +23,172 @@ public class SubMenuHandler implements View.OnClickListener{
 
         switch (id)
         {
+            //IF COMPANY SUB MENU CLICKED
             case R.id.cb_comany_mendatory:
                 Fields.ch_company_optional.setChecked(false);
                 Fields.ch_company_not_used.setChecked(false);
                 Fields.ch_company_mendatory.setChecked(true);
-                database.updateSignInSetupFields(1,"Mandatory");
+                database.updateSignInSetupFields("company","Mandatory");
                 break;
             case R.id.cb_comany_not_used:
                 Fields.ch_company_optional.setChecked(false);
                 Fields.ch_company_not_used.setChecked(true);
                 Fields.ch_company_mendatory.setChecked(false);
-              database.updateSignInSetupFields(1,"Not Used");
+                database.updateSignInSetupFields("company","Not Used");
                 break;
             case R.id.cb_comany_optional:
                 Fields.ch_company_optional.setChecked(true);
                 Fields.ch_company_not_used.setChecked(false);
                 Fields.ch_company_mendatory.setChecked(false);
-                database.updateSignInSetupFields(1,"Optional");
+                database.updateSignInSetupFields("company","Optional");
                 break;
-
+            //IF PHOTO CAPTURE SUB MENU CLICKED
+            case R.id.cb_photo_capture_mandatory:
+                Fields.cb_photo_capture_mandatory.setChecked(true);
+                Fields.cb_photo_capture_optional.setChecked(false);
+                database.updateSignInSetupFields("photo capture","Mandatory");
+                break;
+            case R.id.cb_photo_capture_optional:
+                Fields.cb_photo_capture_mandatory.setChecked(false);
+                Fields.cb_photo_capture_optional.setChecked(true);
+                database.updateSignInSetupFields("photo capture","Optional");
+                break;
+            case R.id.cb_auto_photo_capture:
+                Fields.cb_auto_photo_capture.setChecked(true);
+                database.updateSignInSetupFields("photo capture","yes");
+                break;
+            case R.id.cb_photo_capture_large:
+                Fields.cb_photo_capture_large.setChecked(true);
+                Fields.cb_photo_capture_small.setChecked(false);
+                Fields.cb_photo_capture_medium.setChecked(false);
+                database.updateSignInSetupFields("photo capture","Large");
+                break;
+            case R.id.cb_photo_capture_medium:
+                Fields.cb_photo_capture_large.setChecked(false);
+                Fields.cb_photo_capture_small.setChecked(false);
+                Fields.cb_photo_capture_medium.setChecked(true);
+                database.updateSignInSetupFields("photo capture","Medium");
+                break;
+            case R.id.cb_photo_capture_small:
+                Fields.cb_photo_capture_large.setChecked(false);
+                Fields.cb_photo_capture_small.setChecked(true);
+                Fields.cb_photo_capture_medium.setChecked(false);
+                database.updateSignInSetupFields("photo capture","Small");
+                break;
+            //IF ADDRESS SUB MENU CLICKED
+            case R.id.cb_address_mendatory:
+                Fields.cb_address_mandatory.setChecked(true);
+                Fields.cb_address_not_used.setChecked(false);
+                Fields.cb_address_optoinal.setChecked(false);
+                database.updateSignInSetupFields("address","Mandatory");
+                break;
+            case R.id.cb_address_optional:
+                Fields.cb_address_mandatory.setChecked(false);
+                Fields.cb_address_not_used.setChecked(false);
+                Fields.cb_address_optoinal.setChecked(true);
+                database.updateSignInSetupFields("address","Optional");
+                break;
+            case R.id.cb_address_not_used:
+                Fields.cb_address_mandatory.setChecked(false);
+                Fields.cb_address_not_used.setChecked(true);
+                Fields.cb_address_optoinal.setChecked(false);
+                database.updateSignInSetupFields("address","Not Used");
+                break;
+            //IF CITY SUB MENU CLICKED
+            case R.id.cb_city_mendatory:
+                Fields.cb_city_mandatory.setChecked(true);
+                Fields.cb_city_not_used.setChecked(false);
+                Fields.cb_city_optional.setChecked(false);
+                database.updateSignInSetupFields("city","Mandatory");
+                break;
+            case R.id.cb_city_optional:
+                Fields.cb_city_mandatory.setChecked(false);
+                Fields.cb_city_not_used.setChecked(false);
+                Fields.cb_city_optional.setChecked(true);
+                database.updateSignInSetupFields("city","Optional");
+                break;
+            case R.id.cb_city_not_used:
+                Fields.cb_city_mandatory.setChecked(false);
+                Fields.cb_city_not_used.setChecked(true);
+                Fields.cb_city_optional.setChecked(false);
+                database.updateSignInSetupFields("city","Not Used");
+                break;
+            //IF STATE SUB MENU CLICKED
+            case R.id.cb_state_mendatory:
+                Fields.cb_state_mandatory.setChecked(true);
+                Fields.cb_state_not_used.setChecked(false);
+                Fields.cb_state_optional.setChecked(false);
+                database.updateSignInSetupFields("city","Mandatory");
+                break;
+            case R.id.cb_state_optional:
+                Fields.cb_state_mandatory.setChecked(false);
+                Fields.cb_state_not_used.setChecked(false);
+                Fields.cb_state_optional.setChecked(true);
+                database.updateSignInSetupFields("city","Optional");
+                break;
+            case R.id.cb_state_not_used:
+                Fields.cb_state_mandatory.setChecked(false);
+                Fields.cb_state_not_used.setChecked(true);
+                Fields.cb_state_optional.setChecked(false);
+                database.updateSignInSetupFields("city","Not Used");
+                break;
+            //IF ZIP CODE SUB MENU CLICKED
+            case R.id.cb_zip_code_mendatory:
+                Fields.cb_zip_code_mandatory.setChecked(true);
+                Fields.cb_zip_code_not_used.setChecked(false);
+                Fields.cb_zip_code_optional.setChecked(false);
+                database.updateSignInSetupFields("zip code","Mandatory");
+                break;
+            case R.id.cb_zip_code_optional:
+                Fields.cb_zip_code_mandatory.setChecked(false);
+                Fields.cb_zip_code_not_used.setChecked(false);
+                Fields.cb_zip_code_optional.setChecked(true);
+                database.updateSignInSetupFields("zip code","Optional");
+                break;
+            case R.id.cb_zip_code_not_used:
+                Fields.cb_zip_code_mandatory.setChecked(false);
+                Fields.cb_zip_code_not_used.setChecked(true);
+                Fields.cb_zip_code_optional.setChecked(false);
+                database.updateSignInSetupFields("zip code","Not Used");
+                break;
+            //IF POHNE SUB MENU CLICKED
+            case R.id.cb_phone_mendatory:
+                Fields.cb_phone_mandatory.setChecked(true);
+                Fields.cb_phone_not_used.setChecked(false);
+                Fields.cb_phone_optional.setChecked(false);
+                database.updateSignInSetupFields("phone","Mandatory");
+                break;
+            case R.id.cb_phone_optional:
+                Fields.cb_phone_mandatory.setChecked(false);
+                Fields.cb_phone_not_used.setChecked(false);
+                Fields.cb_phone_optional.setChecked(true);
+                database.updateSignInSetupFields("phone","Optional");
+                break;
+            case R.id.cb_phone_not_used:
+                Fields.cb_phone_mandatory.setChecked(false);
+                Fields.cb_phone_not_used.setChecked(true);
+                Fields.cb_phone_optional.setChecked(false);
+                database.updateSignInSetupFields("phone","Not Used");
+                break;
+            //IF EMAIL SUB MENU CLICKED
+            case R.id.cb_email_mendatory:
+                Fields.cb_email_mandatory.setChecked(true);
+                Fields.cb_email_not_used.setChecked(false);
+                Fields.cb_email_optional.setChecked(false);
+                database.updateSignInSetupFields("email","Mandatory");
+                break;
+            case R.id.cb_email_optional:
+                Fields.cb_email_mandatory.setChecked(false);
+                Fields.cb_email_not_used.setChecked(false);
+                Fields.cb_email_optional.setChecked(true);
+                database.updateSignInSetupFields("email","Optional");
+                break;
+            case R.id.cb_email_not_used:
+                Fields.cb_email_mandatory.setChecked(false);
+                Fields.cb_email_not_used.setChecked(true);
+                Fields.cb_email_optional.setChecked(false);
+                database.updateSignInSetupFields("email","Not Used");
+                break;
         }
     }
 

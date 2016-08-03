@@ -36,8 +36,6 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     private int mOrientation;
     private int rootWidth=0;
     private View container;
-    private boolean isCompanyLoaded;
-    private boolean isPhotoCaptureLoaded;
     private QuickAction.OnDismissListener mDismissListener;
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
@@ -54,9 +52,21 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     private TextView report;
     private TextView design;
     private ImageView company_chroven_left;
+    private ImageView address_chroven_left;
+    private TextView address_heading_left;
     private TextView company_heading_left;
     private ImageView photo_capture_chroven_left;
     private TextView photo_capture_heading_left;
+    private ImageView city_chroven_left;
+    private TextView city_heading_left;
+    private ImageView state_chroven_left;
+    private TextView state_heading_left;
+    private ImageView zip_code_chroven_left;
+    private TextView zip_code_heading_left;
+    private ImageView phone_chroven_left;
+    private TextView phone_heading_left;
+    private ImageView email_chroven_left;
+    private TextView email_heading_left;
     //HEADING INDICATOR
     private int heading_id;
 
@@ -64,6 +74,17 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     private LinearLayout font_sub_menu_heading_layout;
     private LinearLayout company_sub_menu_heading_layout;
     private LinearLayout photo_capture_sub_menu_heading_layout;
+    private LinearLayout address_sub_menu_heading_layout;
+    private LinearLayout city_sub_menu_heading_layout;
+    private LinearLayout state_sub_menu_heading_layout;
+    private LinearLayout zip_sub_menu_heading_layout;
+    private LinearLayout phone_sub_menu_heading_layout;
+    private LinearLayout email_sub_menu_heading_layout;
+    //RESTORE CURRENT STATE
+    private RestoreCurrentStateOfApplication currentSate;
+    private RestoreCurrentStateOfApplication setupMenuCurrentSate;
+
+
 
 
     public DropDownMenuHandler(Context context, int orientation,int heading_id) {
@@ -100,27 +121,60 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }else if(layout == R.layout.setup_menu_layout_vertical && mOrientation == VERTICAL )
         {
             container = mInflater.inflate(R.layout.setup_menu_layout_vertical , null);
+            //setupMenuCurrentSate = new RestoreCurrentStateOfApplication(mContext,container);
 
             Fields.iv_company = (ImageView)container.findViewById(R.id.iv_company);
             Fields.tv_company = (TextView)container.findViewById(R.id.tv_company);
-            Fields.iv_company.setOnClickListener(this);
-            Fields.tv_company.setOnClickListener(this);
-
+            Fields.op_company = (TextView)container.findViewById(R.id.op_company);
+            Fields.op_photo_capture = (TextView)container.findViewById(R.id.op_photo_capture);
+            Fields.tv_address = (TextView)container.findViewById(R.id.tv_address);
+            Fields.iv_address = (ImageView)container.findViewById(R.id.iv_address);
+            Fields.iv_city = (ImageView)container.findViewById(R.id.iv_city);
+            Fields.tv_city = (TextView)container.findViewById(R.id.tv_city);
             Fields.iv_photo_capture = (ImageView)container.findViewById(R.id.iv_photo_capture);
             Fields.tv_photo_capture = (TextView)container.findViewById(R.id.tv_photo_capture);
+            Fields.iv_state = (ImageView)container.findViewById(R.id.iv_state);
+            Fields.tv_state = (TextView)container.findViewById(R.id.tv_state);
+            Fields.iv_zip = (ImageView)container.findViewById(R.id.iv_zip_code);
+            Fields.tv_zip_code = (TextView)container.findViewById(R.id.tv_zip_code);
+            Fields.iv_phone = (ImageView)container.findViewById(R.id.iv_phone);
+            Fields.tv_phone = (TextView)container.findViewById(R.id.tv_phone);
+            Fields.iv_email = (ImageView)container.findViewById(R.id.iv_email);
+            Fields.tv_email = (TextView)container.findViewById(R.id.tv_email);
+
+            LoadOptionFields loadOptionFields = new LoadOptionFields(mContext,container);
+            loadOptionFields.startLoading();
+
+            Fields.iv_company.setOnClickListener(this);
+            Fields.tv_company.setOnClickListener(this);
+            Fields.tv_address.setOnClickListener(this);
+            Fields.iv_address.setOnClickListener(this);
+            Fields.tv_city.setOnClickListener(this);
+            Fields.iv_city.setOnClickListener(this);
+            Fields.tv_state.setOnClickListener(this);
+            Fields.iv_state.setOnClickListener(this);
+            Fields.tv_zip_code.setOnClickListener(this);
+            Fields.iv_zip.setOnClickListener(this);
+            Fields.tv_phone.setOnClickListener(this);
+            Fields.iv_phone.setOnClickListener(this);
+            Fields.tv_email.setOnClickListener(this);
+            Fields.iv_email.setOnClickListener(this);
             Fields.iv_photo_capture.setOnClickListener(this);
             Fields.tv_photo_capture.setOnClickListener(this);
 
 
         }
         else if(layout == R.layout.company_sub_menu) {
+
             container = mInflater.inflate(R.layout.company_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
+
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
 
             Fields.ch_company_mendatory = (CheckBox)container.findViewById(R.id.cb_comany_mendatory);
             Fields.ch_company_not_used = (CheckBox)container.findViewById(R.id.cb_comany_not_used);
             Fields.ch_company_optional = (CheckBox)container.findViewById(R.id.cb_comany_optional);
-
+            currentSate.loadCompanySubMenu();
             Fields.ch_company_not_used.setOnClickListener(handler);
             Fields.ch_company_mendatory.setOnClickListener(handler);
             Fields.ch_company_optional.setOnClickListener(handler);
@@ -129,6 +183,9 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         {
             container = mInflater.inflate(R.layout.photo_capture_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
+
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+
             Fields.cb_photo_capture_mandatory = (CheckBox)container.findViewById(R.id.cb_photo_capture_mandatory);
             Fields.cb_photo_capture_optional = (CheckBox)container.findViewById(R.id.cb_photo_capture_optional);
             Fields.cb_auto_photo_capture = (CheckBox)container.findViewById(R.id.cb_auto_photo_capture);
@@ -136,12 +193,114 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             Fields.cb_photo_capture_medium = (CheckBox)container.findViewById(R.id.cb_photo_capture_medium);
             Fields.cb_photo_capture_small = (CheckBox)container.findViewById(R.id.cb_photo_capture_small);
 
+            currentSate.loadPhotoCaptureSubMenuState();
             Fields.cb_photo_capture_optional.setOnClickListener(handler);
             Fields.cb_photo_capture_large.setOnClickListener(handler);
             Fields.cb_photo_capture_small.setOnClickListener(handler);
             Fields.cb_photo_capture_medium.setOnClickListener(handler);
             Fields.cb_photo_capture_optional.setOnClickListener(handler);
             Fields.cb_photo_capture_mandatory.setOnClickListener(handler);
+        }
+        else if(layout == R.layout.address_sub_menu)
+        {
+            container = mInflater.inflate(R.layout.address_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+            Fields.cb_address_mandatory = (CheckBox)container.findViewById(R.id.cb_address_mendatory);
+            Fields.cb_address_not_used = (CheckBox)container.findViewById(R.id.cb_address_not_used);
+            Fields.cb_address_optoinal = (CheckBox)container.findViewById(R.id.cb_address_optional);
+
+            currentSate.loadAddressSubMenuState();
+            Fields.cb_address_optoinal.setOnClickListener(handler);
+            Fields.cb_address_not_used.setOnClickListener(handler);
+            Fields.cb_address_mandatory.setOnClickListener(handler);
+
+        }
+        else if(layout == R.layout.city_sub_menu)
+        {
+            container = mInflater.inflate(R.layout.city_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+
+            Fields.cb_city_mandatory = (CheckBox)container.findViewById(R.id.cb_city_mendatory);
+            Fields.cb_city_not_used = (CheckBox)container.findViewById(R.id.cb_city_not_used);
+            Fields.cb_city_optional = (CheckBox)container.findViewById(R.id.cb_city_optional);
+
+
+            currentSate.loadCitySubMenuState();
+            Fields.cb_city_optional.setOnClickListener(handler);
+            Fields.cb_city_not_used.setOnClickListener(handler);
+            Fields.cb_city_mandatory.setOnClickListener(handler);
+
+        }
+        else if(layout == R.layout.state_sub_menu)
+        {
+            container = mInflater.inflate(R.layout.state_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+
+            Fields.cb_state_mandatory = (CheckBox)container.findViewById(R.id.cb_state_mendatory);
+            Fields.cb_state_not_used = (CheckBox)container.findViewById(R.id.cb_state_not_used);
+            Fields.cb_state_optional = (CheckBox)container.findViewById(R.id.cb_state_optional);
+
+
+            currentSate.loadStateSubMenuState();
+            Fields.cb_state_optional.setOnClickListener(handler);
+            Fields.cb_state_not_used.setOnClickListener(handler);
+            Fields.cb_state_mandatory.setOnClickListener(handler);
+
+        }
+        else if(layout == R.layout.zip_code_sub_menu)
+        {
+            container = mInflater.inflate(R.layout.zip_code_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+
+            Fields.cb_zip_code_mandatory = (CheckBox)container.findViewById(R.id.cb_zip_code_mendatory);
+            Fields.cb_zip_code_not_used = (CheckBox)container.findViewById(R.id.cb_zip_code_not_used);
+            Fields.cb_zip_code_optional = (CheckBox)container.findViewById(R.id.cb_zip_code_optional);
+
+
+            currentSate.loadZipCodeSubMenuState();
+            Fields.cb_zip_code_optional.setOnClickListener(handler);
+            Fields.cb_zip_code_not_used.setOnClickListener(handler);
+            Fields.cb_zip_code_mandatory.setOnClickListener(handler);
+
+        }
+        else if(layout == R.layout.phone_sub_menu)
+        {
+            container = mInflater.inflate(R.layout.phone_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+
+            Fields.cb_phone_mandatory = (CheckBox)container.findViewById(R.id.cb_phone_mendatory);
+            Fields.cb_phone_not_used = (CheckBox)container.findViewById(R.id.cb_phone_not_used);
+            Fields.cb_phone_optional = (CheckBox)container.findViewById(R.id.cb_phone_optional);
+
+
+            currentSate.loadPhoneSubMenuState();
+            Fields.cb_phone_optional.setOnClickListener(handler);
+            Fields.cb_phone_not_used.setOnClickListener(handler);
+            Fields.cb_phone_mandatory.setOnClickListener(handler);
+
+        }
+        else if(layout == R.layout.email_sub_menu)
+        {
+            container = mInflater.inflate(R.layout.email_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+
+            Fields.cb_email_mandatory = (CheckBox)container.findViewById(R.id.cb_email_mendatory);
+            Fields.cb_email_not_used = (CheckBox)container.findViewById(R.id.cb_email_not_used);
+            Fields.cb_email_optional = (CheckBox)container.findViewById(R.id.cb_email_optional);
+
+
+            currentSate.loadEmailSubMenuState();
+            Fields.cb_email_optional.setOnClickListener(handler);
+            Fields.cb_email_not_used.setOnClickListener(handler);
+            Fields.cb_email_mandatory.setOnClickListener(handler);
+
         }
         else
             container = mInflater.inflate(R.layout.popup_vertical , null);
@@ -180,7 +339,45 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         font_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.font_sub_menu_heading_layout);
         company_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.company_sub_menu_heading_layout);
         photo_capture_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.photo_capture_sub_menu_heading_layout);
+        address_sub_menu_heading_layout  = (LinearLayout)mRootView.findViewById(R.id.address_sub_menu_heading_layout);
+        company_chroven_left = (ImageView)mRootView.findViewById(R.id.company_chroven_left);
+        company_heading_left = (TextView)mRootView.findViewById(R.id.company_heading_left);
+        city_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.city_sub_menu_heading_layout);
+        state_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.state_sub_menu_heading_layout);
+        zip_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.zip_sub_menu_heading_layout);
+        phone_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.phone_sub_menu_heading_layout);
+        email_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.email_sub_menu_heading_layout);
 
+        photo_capture_chroven_left = (ImageView)mRootView.findViewById(R.id.photo_capture_chroven_left);
+        photo_capture_heading_left = (TextView)mRootView.findViewById(R.id.photo_capture_heading_left);
+        address_chroven_left = (ImageView)mRootView.findViewById(R.id.address_chroven_left);
+        address_heading_left = (TextView)mRootView.findViewById(R.id.address_heading_left);
+        city_chroven_left = (ImageView)mRootView.findViewById(R.id.city_chroven_left);
+        city_heading_left = (TextView)mRootView.findViewById(R.id.city_heading_left);
+        state_chroven_left = (ImageView)mRootView.findViewById(R.id.state_chroven_left);
+        state_heading_left = (TextView)mRootView.findViewById(R.id.state_heading_left);
+        zip_code_chroven_left = (ImageView)mRootView.findViewById(R.id.zip_chroven_left);
+        zip_code_heading_left = (TextView)mRootView.findViewById(R.id.zip_heading_left);
+        phone_chroven_left = (ImageView)mRootView.findViewById(R.id.phone_chroven_left);
+        phone_heading_left = (TextView)mRootView.findViewById(R.id.phone_heading_left);
+        email_chroven_left = (ImageView)mRootView.findViewById(R.id.email_chroven_left);
+        email_heading_left = (TextView)mRootView.findViewById(R.id.email_heading_left);
+
+
+        address_heading_left.setOnClickListener(this);
+        address_chroven_left.setOnClickListener(this);
+        city_chroven_left.setOnClickListener(this);
+        city_heading_left.setOnClickListener(this);
+        state_chroven_left.setOnClickListener(this);
+        state_heading_left.setOnClickListener(this);
+        zip_code_chroven_left.setOnClickListener(this);
+        zip_code_heading_left.setOnClickListener(this);
+        phone_chroven_left.setOnClickListener(this);
+        phone_heading_left.setOnClickListener(this);
+        photo_capture_chroven_left.setOnClickListener(this);
+        photo_capture_heading_left.setOnClickListener(this);
+        email_chroven_left.setOnClickListener(this);
+        email_heading_left.setOnClickListener(this);
         switch (getHeading_id())
         {
             case R.id.setup:
@@ -189,7 +386,13 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
-                if(setup != null)
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+//                if(setup != null)
                     setup.setVisibility(View.VISIBLE);
                 break;
             case R.id.report_heading:
@@ -198,6 +401,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
                 break;
             case R.id.design:
                 setup.setVisibility(View.GONE);
@@ -205,6 +414,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
                 break;
         }
         setContentView(mRootView);
@@ -218,57 +433,93 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         {
             case R.id.iv_company:
             case R.id.tv_company:
-                Toast.makeText(mContext.getApplicationContext(), "company clicked", Toast.LENGTH_SHORT).show();
-                if(!isCompanyLoaded)
-                {
                     load("company");
-                    flipper.showPrevious();
-                }
-                else {
-                    setSubMenuHeadings(R.id.company_sub_menu_heading_layout);
-                    flipper.showPrevious();
-                }
+//                    setupMenuCurrentSate.loadSetupCurrentState();
+                    flipper.showNext();
                 break;
             case R.id.company_chroven_left:
             case R.id.company_heading_left:
                 setSubMenuHeadings(R.id.setup);
-                flipper.showNext();
+               // setupMenuCurrentSate.loadSetupCurrentState();
+                flipper.showPrevious();
 
+                break;
             case R.id.iv_photo_capture:
-                Toast.makeText(mContext.getApplicationContext(), "Photo Capture", Toast.LENGTH_SHORT).show();
-                if(!isPhotoCaptureLoaded)
-                {
+            case R.id.tv_photo_capture:
                     load("photo capture");
-                    flipper.showPrevious();
-                }
-                else {
-                    setSubMenuHeadings(R.id.company_sub_menu_heading_layout);
-                    flipper.showPrevious();
-                }
+                    flipper.showNext();
                 break;
             case R.id.photo_capture_heading_left:
             case R.id.photo_capture_chroven_left:
                 setSubMenuHeadings(R.id.setup);
+                flipper.showPrevious();
+                break;
+            case R.id.tv_address:
+            case R.id.iv_address:
+                load("address");
                 flipper.showNext();
-        }
+                break;
+            case R.id.address_chroven_left:
+            case R.id.address_heading_left:
+                setSubMenuHeadings(R.id.setup);
+                flipper.showPrevious();;
+                break;
+            case R.id.tv_city:
+            case R.id.iv_city:
+                load("city");
+                flipper.showNext();
+                break;
+            case R.id.city_chroven_left:
+            case R.id.city_heading_left:
+                setSubMenuHeadings(R.id.setup);
+                flipper.showPrevious();;
+                break;
+            case R.id.tv_state:
+            case R.id.iv_state:
+                load("state");
+                flipper.showNext();
+                break;
+            case R.id.state_chroven_left:
+            case R.id.state_heading_left:
+                setSubMenuHeadings(R.id.setup);
+                flipper.showPrevious();;
+                break;
+            case R.id.tv_zip_code:
+            case R.id.iv_zip_code:
+                load("zip code");
+                flipper.showNext();
+                break;
+            case R.id.zip_chroven_left:
+            case R.id.zip_heading_left:
+                setSubMenuHeadings(R.id.setup);
+                flipper.showPrevious();;
+                break;
+            case R.id.tv_phone:
+            case R.id.iv_phone:
+                load("phone");
+                flipper.showNext();
+                break;
+            case R.id.phone_chroven_left:
+            case R.id.phone_heading_left:
+                setSubMenuHeadings(R.id.setup);
+                flipper.showPrevious();;
+                break;
+            case R.id.tv_email:
+            case R.id.iv_email:
+                load("email");
+                flipper.showNext();
+                break;
+            case R.id.email_chroven_left:
+            case R.id.email_heading_left:
+                setSubMenuHeadings(R.id.setup);
+                flipper.showPrevious();;
+                break;
+        }//end of switch
     }//end of onClick method
 
 
     public void setSubMenuHeadings(int id)
     {
-
-        company_chroven_left = (ImageView)mRootView.findViewById(R.id.company_chroven_left);
-        company_heading_left = (TextView)mRootView.findViewById(R.id.company_heading_left);
-
-        company_chroven_left.setOnClickListener(this);
-        company_heading_left.setOnClickListener(this);
-
-        photo_capture_chroven_left = (ImageView)mRootView.findViewById(R.id.photo_capture_chroven_left);
-        photo_capture_heading_left = (TextView)mRootView.findViewById(R.id.photo_capture_heading_left);
-
-        photo_capture_chroven_left.setOnClickListener(this);
-        photo_capture_heading_left.setOnClickListener(this);
-
         switch (id)
         {
             case R.id.setup:
@@ -276,26 +527,56 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 report.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 setup.setVisibility(View.VISIBLE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
                 break;
             case R.id.report_heading:
                 design.setVisibility(View.GONE);
                 setup.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                report.setVisibility(View.VISIBLE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
                 break;
             case R.id.design:
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
+                design.setVisibility(View.VISIBLE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
                 break;
             case R.id.company_sub_menu_heading_layout:
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
             break;
             case R.id.photo_capture_sub_menu_heading_layout:
                 setup.setVisibility(View.GONE);
@@ -304,29 +585,174 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+            case R.id.address_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+            case R.id.city_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+            case R.id.state_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+            case R.id.zip_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+            case R.id.phone_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+            case R.id.email_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 break;
 
-    }
+        }
         setContentView(mRootView);
     }
     public void load(String head){
         if(head.equals("company"))
         {
 
+
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
             setSubMenuHeadings(R.id.company_sub_menu_heading_layout);
             addActionItem(R.layout.company_sub_menu);
-            isCompanyLoaded = true;
+
+            company_chroven_left.setOnClickListener(this);
+            company_heading_left.setOnClickListener(this);
+            //isCompanyLoaded = true;
         }
         else if(head.equals("photo capture")){
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
             setSubMenuHeadings(R.id.photo_capture_sub_menu_heading_layout);
             addActionItem(R.layout.photo_capture_sub_menu);
-            isPhotoCaptureLoaded = true;
+            //isPhotoCaptureLoaded = true;
+        }
+        else if(head.equals("address"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
+            setSubMenuHeadings(R.id.address_sub_menu_heading_layout);
+            addActionItem(R.layout.address_sub_menu);
+        }
+        else if(head.equals("city"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
+            setSubMenuHeadings(R.id.city_sub_menu_heading_layout);
+            addActionItem(R.layout.city_sub_menu);
+        }
+        else if(head.equals("state"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
+            setSubMenuHeadings(R.id.state_sub_menu_heading_layout);
+            addActionItem(R.layout.state_sub_menu);
+        }
+        else if(head.equals("zip code"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
+            setSubMenuHeadings(R.id.zip_sub_menu_heading_layout);
+            addActionItem(R.layout.zip_code_sub_menu);
+        }else if(head.equals("phone"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
+            setSubMenuHeadings(R.id.phone_sub_menu_heading_layout);
+            addActionItem(R.layout.phone_sub_menu);
+        }
+        else if(head.equals("email"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(mTrack.getChildCount()>0)
+                mTrack.removeAllViews();
+            setSubMenuHeadings(R.id.email_sub_menu_heading_layout);
+            addActionItem(R.layout.email_sub_menu);
         }
         else{
-            isCompanyLoaded = false;
-            isPhotoCaptureLoaded = false;
+            //isCompanyLoaded = false;
+            //isPhotoCaptureLoaded = false;
         }
 
          //isCompanyLoaded = false;

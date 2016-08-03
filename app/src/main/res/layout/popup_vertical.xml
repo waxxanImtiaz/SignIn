@@ -138,15 +138,299 @@
 			android:layout_toEndOf="@+id/txt_design"
 			android:layout_toRightOf="@+id/txt_design"
 			android:layout_marginLeft="25dp"
-			android:paddingLeft="30dp"
-			android:paddingRight="18dp"
+			android:paddingLeft="10dp"
+			android:paddingRight="5dp"
 			android:textColor="#000"
 			android:id="@+id/photo_capture_heading_center"
 			/>
 	</LinearLayout>
+
+
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/address_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/address_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/photo_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/address_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Address"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="27dp"
+			android:paddingRight="27dp"
+			android:textColor="#000"
+			android:id="@+id/addresss_heading_center"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/city_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/city_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/photo_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/city_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="City"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="41dp"
+			android:paddingRight="41dp"
+			android:textColor="#000"
+			android:id="@+id/city_heading_center"
+			/>
+	</LinearLayout>
+
+
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/state_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/state_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/photo_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/state_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="State"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="36dp"
+			android:paddingRight="37dp"
+			android:textColor="#000"
+			android:id="@+id/state_heading_center"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/zip_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/zip_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/photo_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/zip_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Zip Code"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="25dp"
+			android:paddingRight="26dp"
+			android:textColor="#000"
+			android:id="@+id/zip_heading_center"
+			/>
+	</LinearLayout>
+
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/phone_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/phone_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/photo_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/phone_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Phone"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="30dp"
+			android:paddingRight="29dp"
+			android:textColor="#000"
+			android:id="@+id/phone_heading_center"
+			/>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/email_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/email_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/photo_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/email_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Email"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="30dp"
+			android:paddingLeft="35dp"
+			android:paddingRight="32dp"
+			android:textColor="#000"
+			android:id="@+id/email_heading_center"
+			/>
+	</LinearLayout>
+	<!--<LinearLayout-->
+		<!--android:layout_width="wrap_content"-->
+		<!--android:layout_height="wrap_content"-->
+		<!--android:id="@+id/visitor_sign_sub_menu_heading_layout"-->
+		<!--style="@style/inner_heading_style"-->
+		<!--android:background="@drawable/title_border"-->
+		<!--&gt;-->
+		<!--<ImageView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:src="@drawable/chevron_left"-->
+			<!--android:id="@+id/visitor_sign_chroven_left"-->
+			<!--android:layout_marginTop="5dp"-->
+			<!--/>-->
+
+		<!--<TextView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:text="Setup"-->
+			<!--android:layout_toRightOf="@+id/company_chroven_left"-->
+			<!--android:textColor="#6666FF"-->
+			<!--android:layout_marginTop="7dp"-->
+			<!--android:id="@+id/visitor_sign_heading_left"-->
+			<!--/>-->
+
+		<!--<TextView-->
+			<!--android:layout_width="wrap_content"-->
+			<!--android:layout_height="wrap_content"-->
+			<!--android:text="company"-->
+			<!--android:layout_marginTop="7dp"-->
+			<!--android:layout_toEndOf="@+id/txt_design"-->
+			<!--android:layout_toRightOf="@+id/txt_design"-->
+			<!--android:layout_marginLeft="25dp"-->
+			<!--android:paddingLeft="30dp"-->
+			<!--android:paddingRight="18dp"-->
+			<!--android:textColor="#000"-->
+			<!--android:id="@+id/visitor_sign_heading_center"-->
+			<!--/>-->
+	<!--</LinearLayout>-->
 	<ViewFlipper
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
+		android:isScrollContainer="true"
 		android:id="@+id/dropDownFlipper">
 
 	<ScrollView
@@ -170,6 +454,7 @@
 		android:id="@+id/inner_drop_down_scroller"
     	android:layout_width="wrap_content"
 			android:layout_marginTop="64dip"
+
     	android:layout_height="wrap_content"
     	android:background="@drawable/popup_two"
     	android:fadingEdgeLength="0dip"

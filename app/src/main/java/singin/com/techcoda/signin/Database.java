@@ -37,6 +37,8 @@ public class Database {
         contentValues.put(DatabaseHandler.COL_LAST_NAME, lastName);
 
         long rows = db.insert(DatabaseHandler.TABLE_VISITOR, null, contentValues);
+
+
         return rows;
     }
 
@@ -77,27 +79,60 @@ public class Database {
 
         long rows = 0;
 
-        contentValues.put(DatabaseHandler.COL_FIELD_ID, 1);
-        contentValues.put(DatabaseHandler.COL_FIRST_NAME, "Not Used");
+        //compnay row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "company");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+        //address row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "address");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
 
-
-        contentValues.put(DatabaseHandler.COL_FIELD_ID, 2);
-        contentValues.put(DatabaseHandler.COL_FIRST_NAME, "Not Used");
+        //city row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "city");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //state row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "state");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //zip code row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "zip code");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //phone row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "phone");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //email row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "email");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //here to see row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "here to see");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //signature capture row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "signature capture");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //photo capture row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "photo capture");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Mandatory");
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
 
-        contentValues.put(DatabaseHandler.COL_FIELD_ID, 3);
-        contentValues.put(DatabaseHandler.COL_FIRST_NAME, "Not Used");
+        //automatic photo capture row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "automatic photo capture");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "yes");
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
 
-        contentValues.put(DatabaseHandler.COL_FIELD_ID, 4);
-        contentValues.put(DatabaseHandler.COL_FIRST_NAME, "Not Used");
+        //Photo size in email row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "photo size in email");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "small");
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
 
-        contentValues.put(DatabaseHandler.COL_FIELD_ID, 5);
-        contentValues.put(DatabaseHandler.COL_FIRST_NAME, "Not Used");
-        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
-        Toast.makeText(context.getApplicationContext(),rows+" effected",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context.getApplicationContext(),rows+" rows effected",Toast.LENGTH_LONG).show();
         return rows;
     }
 
@@ -207,7 +242,19 @@ public class Database {
         }
         return id;
     }
+    //get signIn fields enable or not
+    public String isFieldEnabled(String id){
 
+        String[] selectionArgs = { id };
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        String query = "SELECT " + DatabaseHandler.COL_FIELD_OPTION + " FROM " + DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS+ " WHERE " + DatabaseHandler.COL_FIELD_ID + "=?";
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        if(cursor.moveToNext()){
+            return cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_FIELD_OPTION));
+        }
+
+        return null;
+    }
 
     //this method shows all the visitors of current date, those who sign in today will
     // be shown by this mehtod
@@ -244,17 +291,16 @@ public class Database {
     }
 
 
-    public int updateSignInSetupFields(int id,String option){
+    public long updateSignInSetupFields(String id,String option){
+
+        String whereClause = DatabaseHandler.COL_FIELD_ID + "=?";
+        String[] selectionArgs = { id };
 
         SQLiteDatabase db = dbh.getWritableDatabase();
-        String where = DatabaseHandler.COL_FIELD_ID+"=?";
-        String[] whereArgs = new String[] {String.valueOf(id)};
         ContentValues contentValues = new ContentValues();
-        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, option);
-        int rows = db.update(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, contentValues, DatabaseHandler.COL_FIELD_ID+" = ?", new String[] { String.valueOf(id)});
-         rows = rows + db.update(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, contentValues, DatabaseHandler.COL_FIELD_ID+" = ?", new String[] { String.valueOf(2)});
 
-        Toast.makeText(context.getApplicationContext(), rows+" effected option="+option, Toast.LENGTH_SHORT).show();
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, option);
+        long rows = db.update(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, contentValues, whereClause, selectionArgs);
         return rows;
     }
     //Sign Out visitor: update TABLE SIGNIN where status will be premises to gone
@@ -413,14 +459,14 @@ public class Database {
         public static final String CREATE_TABLE_ADMIN = "CREATE TABLE " + TABLE_ADMIN + "(" + COL_ADMIN_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_NAME + " VARCHAR(255), " + COL_EMAIL + " VARCHAR(255), " + COL_PASSWORD + " VARCHAR(255));";
         public static final String CREATE_TABLE_VISITOR = "CREATE TABLE " + TABLE_VISITOR + "(" + COL_VISITOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_FIRST_NAME + " VARCHAR(255), " + COL_LAST_NAME + " VARCHAR(255));";
         public static final String CREATE_TABLE_SIGNIN = "CREATE TABLE " + TABLE_SIGN_IN + "(" + COL_SIGN_IN + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_VISITOR_ID + " INTEGER, " + COL_IN + " VARCHAR(50), " + COL_OUT + " VARCHAR(50), " + COL_STATUS + " VARCHAR(50), " + COL_DATE + " VARCHAR(50));";
-        public static final String CREATE_TABLE_FIELD_SETUP="CREATE TABLE "+TABLE_SINGN_IN_SETUP_FIELDS + " ("+COL_FIELD_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ COL_FIELD_OPTION+" VARCHAR(30));";
+        public static final String CREATE_TABLE_FIELD_SETUP="CREATE TABLE "+TABLE_SINGN_IN_SETUP_FIELDS + " ("+COL_FIELD_ID+" VARCHAR(100),"+ COL_FIELD_OPTION+" VARCHAR(30));";
 
         //DROP TABLE
         public static final String DROP_TABLE_COMPANY = "DROP TABLE IF EXISTS " + TABLE_COMPANY;
         public static final String DROP_TABLE_ADMIN = "DROP TABLE IF EXISTS " + TABLE_ADMIN;
         public static final String DROP_TABLE_VISITOR = "DROP TABLE IF EXISTS " + TABLE_VISITOR;
         public static final String DROP_TABLE_SIGNIN = "DROP TABLE IF EXISTS " + TABLE_SIGN_IN;
-
+        public  static final String DROP_TABLE_SIGNIN_SETUP_FIELDS = "DROP TABLE IF EXISTS "+TABLE_SINGN_IN_SETUP_FIELDS;
 
        Context context;
 
@@ -436,7 +482,7 @@ public class Database {
             db.execSQL(CREATE_TABLE_VISITOR);
             db.execSQL(CREATE_TABLE_SIGNIN);
             db.execSQL(CREATE_TABLE_FIELD_SETUP);
-
+           // insertIntoSignInSetupFields();
         }
 
         @Override
@@ -446,6 +492,7 @@ public class Database {
             db.execSQL(DROP_TABLE_ADMIN);
             db.execSQL(DROP_TABLE_VISITOR);
             db.execSQL(DROP_TABLE_SIGNIN);
+            db.execSQL(DROP_TABLE_SIGNIN_SETUP_FIELDS);
             onCreate(db);
         }
     }//end of DatabaseHandler
