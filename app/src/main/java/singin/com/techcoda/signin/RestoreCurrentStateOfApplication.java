@@ -217,4 +217,26 @@ public class RestoreCurrentStateOfApplication {
             Fields.cb_email_optional.setChecked(true);
         }
     }//end of loadEmailSubMenuState method..
+    // CHECK AND LOAD STATE OF SIGNATURE CAPTURE OPTIONS MENU LIST..
+    public void loadSignatureCaptureSubMenuState(){
+        String signature_captureOptions = database.isFieldEnabled("signature capture");
+        if(signature_captureOptions.equals("Mandatory"))
+        {
+            Fields.cb_signature_capture_mandatory.setChecked(true);
+            Fields.cb_signature_capture_not_used.setChecked(false);
+            Fields.cb_signature_capture_optional.setChecked(false);
+        }
+        else if(signature_captureOptions.equals("Not Used"))
+        {
+            Fields.cb_signature_capture_mandatory.setChecked(false);
+            Fields.cb_signature_capture_not_used.setChecked(true);
+            Fields.cb_signature_capture_optional.setChecked(false);
+        }
+        else if(signature_captureOptions.equals("Optional"))
+        {
+            Fields.cb_signature_capture_mandatory.setChecked(false);
+            Fields.cb_signature_capture_not_used.setChecked(false);
+            Fields.cb_signature_capture_optional.setChecked(true);
+        }
+    }
 }

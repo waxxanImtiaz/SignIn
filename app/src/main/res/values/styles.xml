@@ -152,6 +152,8 @@
 	</style>
 	<style name="setup_table_rows">
 		<item name="android:layout_marginLeft">10dp</item>
+		<item name="android:paddingBottom">3dp</item>
+		<item name="android:paddingTop">3dp</item>
 	</style>
 	<style name="sub_heading" parent="setup_full_style_left_fields">
 		<item name="android:textColor">@color/color_of_arrow</item>

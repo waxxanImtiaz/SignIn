@@ -146,7 +146,84 @@
 	</LinearLayout>
 
 
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/visitor_agreement_text_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/visitor_agreement_text_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
 
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/visitor_agreement_text_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/visitor_agreement_text_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Visitor Agreement Text"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="8dp"
+			android:paddingRight="9dp"
+			android:textColor="#000"
+			android:id="@+id/visitor_agreement_text_heading_center"
+			/>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/signature_capture_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/signature_capture_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/signature_capture_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/signature_capture_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Signature Capture"
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="9dp"
+			android:paddingRight="4dp"
+			android:textColor="#000"
+			android:id="@+id/signature_capture_heading_center"
+			/>
+	</LinearLayout>
 	<LinearLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
@@ -343,7 +420,7 @@
 			android:layout_toEndOf="@+id/txt_design"
 			android:layout_toRightOf="@+id/txt_design"
 			android:layout_marginLeft="25dp"
-			android:paddingLeft="30dp"
+			android:paddingLeft="36dp"
 			android:paddingRight="29dp"
 			android:textColor="#000"
 			android:id="@+id/phone_heading_center"
@@ -427,11 +504,11 @@
 			<!--android:id="@+id/visitor_sign_heading_center"-->
 			<!--/>-->
 	<!--</LinearLayout>-->
-	<ViewFlipper
+	<RelativeLayout
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:isScrollContainer="true"
-		android:id="@+id/dropDownFlipper">
+		android:id="@+id/dropDownChangerOne">
 
 	<ScrollView
 		android:id="@+id/top_drop_down_scroller"
@@ -449,12 +526,17 @@
 					android:layout_weight="1">
 			    </LinearLayout>
 	</ScrollView >
+	</RelativeLayout>
+	<RelativeLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:isScrollContainer="true"
+		android:id="@+id/dropDownChangerTwo">
 
 		<ScrollView
 		android:id="@+id/inner_drop_down_scroller"
     	android:layout_width="wrap_content"
 			android:layout_marginTop="64dip"
-
     	android:layout_height="wrap_content"
     	android:background="@drawable/popup_two"
     	android:fadingEdgeLength="0dip"
@@ -470,7 +552,7 @@
 
 	</ScrollView >
 
-	</ViewFlipper>
+	</RelativeLayout>
 
 	<ImageView
 		android:id="@+id/arrow_up"

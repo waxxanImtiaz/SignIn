@@ -13,10 +13,25 @@
     style="@style/setup_menu_table"
     android:id="@+id/tl_setup_menu"
     android:stretchColumns="*"
-    android:background="#ffffff"
-    >
-
-
+    android:background="#ffffff">
+    <!--HORIZONTAL LINE-->
+    <TableRow
+        style="@style/setup_table_rows"
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+    <!--End-->
     <!--SPACE-->
     <TableRow
         android:layout_height="20dp"
@@ -118,11 +133,10 @@
             android:src="@drawable/chevron_right"
             />
     </TableRow>
-
     <!--HORIZONTAL LINE-->
     <TableRow
-        android:layout_height="20dp"
         style="@style/setup_table_rows"
+        android:layout_height="20dp"
         android:layout_width="200dp">
         <View android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -137,9 +151,10 @@
     </TableRow>
     <!--END OF HORIZONTAL LINE-->
     <TableRow
-        android:id="@+id/tableRow3"
+        android:id="@+id/row_company"
         android:layout_height="20dp"
         style="@style/setup_table_rows"
+
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -219,7 +234,9 @@
     </TableRow>
     <!--END OF HORIZONTAL LINE-->
   <TableRow
-      style="@style/setup_table_rows">
+      style="@style/setup_table_rows"
+      android:id="@+id/row_address"
+      >
 
       <TextView
           android:layout_width="wrap_content"
@@ -273,6 +290,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_city"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -326,6 +344,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_state"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -375,6 +394,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_zip_code"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -446,6 +466,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_phone"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -491,6 +512,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_email"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -562,6 +584,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_here_to_see"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -633,6 +656,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_signature_capture"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -679,6 +703,7 @@
     <TableRow
         style="@style/setup_table_rows"
         android:layout_height="20dp"
+        android:id="@+id/row_photo_capture"
         android:layout_width="200dp">
         <TextView
             android:layout_width="wrap_content"
@@ -1396,163 +1421,171 @@
             style="@style/horizontal_line"/>
     </TableRow>
     <!--END OF HORIZONTAL LINE-->
+    <!--SPACE-->
+    <TableRow
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="20dp"
+            />
+    </TableRow>
+    <!--END OF SPACE-->
+
+    <TableRow
+        android:layout_height="20dp"
+        style="@style/setup_table_rows"
+        android:layout_width="200dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VISITOR AGREEMENT"
+            style="@style/sub_heading"
+            />
+    </TableRow>
+
+
+    <!--HORIZONTAL LINE-->
+    <TableRow
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+    <!-- Row 1 with single column -->
+
+    <TableRow
+        style="@style/setup_table_rows"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp">
+        <TextView
+            android:id="@+id/tv_show_visitor_agreement_upon_signin"
+            android:layout_row="1"
+            android:layout_column="0"
+            style="@style/setup_full_style_left_fields"
+            android:text="Sign In Agreement"
+            />
+
+        <CheckBox
+            android:id="@+id/cb_show_visitor_agreement_upon_signin"
+            android:layout_row="0"
+            android:layout_column="2"
+            style="@style/setup_full_style_image_fields"
+
+            />
+    </TableRow>
+    <!--HORIZONTAL LINE-->
+    <TableRow
+        style="@style/setup_table_rows"
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+
+    <TableRow
+        style="@style/setup_table_rows"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp">
+        <TextView
+            android:id="@+id/tv_show_visitor_agreement_upon_signout"
+            android:layout_row="1"
+            android:layout_column="0"
+            style="@style/setup_full_style_left_fields"
+            android:text="Sign Out Agreement"
+            />
+
+        <CheckBox
+            android:id="@+id/cb_show_visitor_agreement_upon_signout"
+            android:layout_row="0"
+            android:layout_column="2"
+            style="@style/setup_full_style_image_fields"
+
+            />
+    </TableRow>
+
+    <!--HORIZONTAL LINE-->
+    <TableRow
+        style="@style/setup_table_rows"
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+
+    <TableRow
+        style="@style/setup_table_rows"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp">
+        <TextView
+            android:id="@+id/tv_visitor_agreement_text"
+            android:layout_row="1"
+            android:layout_column="0"
+            style="@style/setup_full_style_left_fields"
+            android:text="Visitor Agreement Text"
+            />
+
+        <ImageView
+            android:id="@+id/iv_visitor_agrement_text"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:src="@drawable/chevron_right"
+            style="@style/setup_full_style_image_fields"
+            />
+    </TableRow>
+
+    <!--HORIZONTAL LINE-->
+    <TableRow
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+
+    <!--SPACE-->
+    <TableRow
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="35dp"
+            />
+    </TableRow>
+    <!--END OF SPACE-->
 </TableLayout>
 
-    <TableLayout
-        android:layout_width="290dp"
-        android:layout_height="wrap_content"
-        >
-        <!--SPACE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="20dp"
-                />
-        </TableRow>
-        <!--END OF SPACE-->
-
-        <TableRow
-            android:layout_height="20dp"
-            style="@style/setup_table_rows"
-            android:layout_width="200dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="VISITOR AGREEMENT"
-                style="@style/sub_heading"
-                />
-        </TableRow>
-        <!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE-->
-
-        <TableRow
-            style="@style/setup_table_rows">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Visitor Agreement Upon Sign in"
-                style="@style/visitor_agreement"
-                android:id="@+id/tv_show_visitor_agreement_upon_signin"
-                />
-            <CheckBox
-
-                />
-        </TableRow>
-
-        <!--HORIZONTAL LINE-->
-        <TableRow
-            style="@style/setup_table_rows"
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE-->
-
-        <TableRow
-            style="@style/setup_table_rows">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Show Visitor Agreement Upon Sign Out"
-                style="@style/visitor_agreement"
-                android:id="@+id/tv_show_visitor_agreement_upon_signout"
-                />
-            <CheckBox
-
-                />
-        </TableRow>
-        <!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="214dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="214dp"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE-->
-
-
-        <!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE-->
-        <!-- Row 1 with single column -->
-
-        <TableRow
-            style="@style/setup_table_rows">
-            <TextView
-                android:id="@+id/tv_visitor_agreement_text"
-                style="@style/visitor_agreement"
-                android:text="Visitor Agreement Text"
-                />
-
-            <ImageView
-                android:id="@+id/iv_visitor_agreementt_text"
-                style="@style/setup_full_style_image_fields"
-                android:paddingLeft="5dp"
-                android:src="@drawable/chevron_right"
-                />
-        </TableRow>
-        <!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE-->
-    </TableLayout>
 </LinearLayout>

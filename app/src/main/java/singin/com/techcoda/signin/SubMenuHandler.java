@@ -189,6 +189,25 @@ public class SubMenuHandler implements View.OnClickListener{
                 Fields.cb_email_optional.setChecked(false);
                 database.updateSignInSetupFields("email","Not Used");
                 break;
+            //IF SIGNATURE CAPTURE SUB MENU CLICKED
+            case R.id.cb_signature_capture_mendatory:
+                Fields.cb_signature_capture_mandatory.setChecked(true);
+                Fields.cb_signature_capture_not_used.setChecked(false);
+                Fields.cb_signature_capture_optional.setChecked(false);
+                database.updateSignInSetupFields("signature capture","Mandatory");
+                break;
+            case R.id.cb_signature_capture_not_used:
+                Fields.cb_signature_capture_optional.setChecked(false);
+                Fields.cb_signature_capture_not_used.setChecked(true);
+                Fields.cb_signature_capture_mandatory.setChecked(false);
+                database.updateSignInSetupFields("signature capture","Optional");
+                break;
+            case R.id.cb_signature_capture_optional:
+                Fields.cb_signature_capture_mandatory.setChecked(false);
+                Fields.cb_signature_capture_not_used.setChecked(false);
+                Fields.cb_signature_capture_optional.setChecked(true);
+                database.updateSignInSetupFields("signatue capture","Not Used");
+                break;
         }
     }
 
