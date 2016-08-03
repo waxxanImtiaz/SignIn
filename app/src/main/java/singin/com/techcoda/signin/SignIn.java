@@ -1,12 +1,16 @@
 package singin.com.techcoda.signin;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,7 +45,8 @@ public class SignIn extends Activity implements View.OnClickListener {
     Button btn_image_capture;
     ImageView iv_picture;
     Database database;
-
+    private static String message;
+    private boolean isEmailVisible;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,8 +92,9 @@ public class SignIn extends Activity implements View.OnClickListener {
         switch (view.getId()){
             case R.id.btn_signin:
                 insertVisitor();
-                Intent i = new Intent(SignIn.this,AdminPanel.class);
-                startActivity(i);
+                checkForInput(view);
+                sendEmail();
+
                 break;
             case R.id.btn_image_capture:
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -131,10 +137,13 @@ public class SignIn extends Activity implements View.OnClickListener {
         //CHECK FOR COMPANY
         if(option.equals("Not Used"))
         {
+
            company.setVisibility(View.GONE);
         }
-        else
+        else {
             company.setVisibility(View.VISIBLE);
+
+        }
 
 
         //CHECK FOR ADDRESS
@@ -193,4 +202,92 @@ public class SignIn extends Activity implements View.OnClickListener {
         if(!option.equals("Not Used"))
             imageCaptureLayout.setVisibility(View.VISIBLE);
     }//END OF CHECKFORFIELDS METHOD
+
+    //CHECK FOR INPUT
+    public void checkForInput(View view){
+        String option = database.isFieldEnabled("company");
+
+        if(option.equals("Mandatory"))
+        {
+            if(company.getText().equals("")){
+                message = "Company";
+                open(view);
+            }
+        }
+        option = database.isFieldEnabled("address");
+
+        if(option.equals("Mandatory"))
+        {
+            if(company.getText().equals("")){
+                message = "Address";
+                open(view);
+            }
+        }
+        option = database.isFieldEnabled("email");
+
+        if(option.equals("Mandatory"))
+        {
+            isEmailVisible = true;
+            if(company.getText().equals("")){
+                message = "Email";
+                open(view);
+            }
+        }
+
+
+    }
+
+    public void open(View view){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(message+" field is empty");
+
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                finish();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }//end of open button
+    //SEND EMAIL
+    public void sendEmail(){
+        boolean isEmailSend = false;
+        if(isEmailVisible) {
+            Toast.makeText(SignIn.this, "\"Send email\"", Toast.LENGTH_SHORT).show();
+            Intent email = new Intent(Intent.ACTION_SEND);
+            email.putExtra(Intent.EXTRA_EMAIL, new String[]{"wassanimtiaz@outlook.com"});
+            email.putExtra(Intent.EXTRA_SUBJECT, "I am sign in app user");
+            email.putExtra(Intent.EXTRA_TEXT, this.email.getText().toString());
+
+            //need this to prompts email client only
+            email.setType("message/rfc822");
+
+            startActivity(Intent.createChooser(email, "Choose an Email client :"));
+            isEmailSend = true;
+        }//end of if
+        if(isEmailSend) {
+            Intent i = new Intent(SignIn.this, AdminPanel.class);
+            startActivity(i);
+        }
+//        String[] TO = {"waxxan.imtiaz.123@gmail.com"};
+//        String[] CC = {"wassanimtiaz@outlook.com"};
+//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+//
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.setType("text/plain");
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
+//        emailIntent.putExtra(Intent.EXTRA_CC, CC);
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
+//
+//        try {
+//            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
+//            finish();
+//            Toast.makeText(SignIn.this, "\"Finished sending email...\"", Toast.LENGTH_SHORT).show();
+//        }
+//        catch (android.content.ActivityNotFoundException ex) {
+//            Toast.makeText(SignIn.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
+//        }
+    }//end of send email method
 }
