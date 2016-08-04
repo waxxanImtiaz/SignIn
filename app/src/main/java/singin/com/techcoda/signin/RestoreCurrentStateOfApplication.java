@@ -238,5 +238,28 @@ public class RestoreCurrentStateOfApplication {
             Fields.cb_signature_capture_not_used.setChecked(false);
             Fields.cb_signature_capture_optional.setChecked(true);
         }
+    }//end of loadSignatureCaptureSubMenuState method
+
+    public void loadHereToSeeSubMenu(){
+        String here_to_seeOptions = database.isFieldEnabled("here to see");
+        if(here_to_seeOptions.equals("Mandatory"))
+        {
+            Fields.cb_here_to_see_mandatory.setChecked(true);
+            Fields.cb_here_to_see_not_used.setChecked(false);
+            Fields.cb_here_to_see_optional.setChecked(false);
+        }
+        else if(here_to_seeOptions.equals("Not Used"))
+        {
+            Fields.cb_here_to_see_mandatory.setChecked(false);
+            Fields.cb_here_to_see_not_used.setChecked(true);
+            Fields.cb_here_to_see_optional.setChecked(false);
+        }
+        else if(here_to_seeOptions.equals("Optional"))
+        {
+            Fields.cb_here_to_see_mandatory.setChecked(false);
+            Fields.cb_here_to_see_not_used.setChecked(false);
+            Fields.cb_here_to_see_optional.setChecked(true);
+        }
     }
 }
+

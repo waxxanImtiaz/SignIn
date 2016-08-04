@@ -19,6 +19,7 @@ public class LoadOptionFields {
     private TextView op_photoCapture;
     private TextView op_zipCode;
     private TextView op_address;
+    private TextView op_here_to_see;
     private TextView op_signatureCapture;
     private Database database;
     public LoadOptionFields(Context mContext,View container)
@@ -37,6 +38,7 @@ public class LoadOptionFields {
         op_email = (TextView)container.findViewById(R.id.op_email);
         op_comapany = (TextView)container.findViewById(R.id.op_company);
         op_phone = (TextView)container.findViewById(R.id.op_phone);
+        op_here_to_see = (TextView)container.findViewById(R.id.op_here_to_see);
         op_signatureCapture =(TextView)container.findViewById(R.id.op_signature_capture);
 
 
@@ -49,6 +51,7 @@ public class LoadOptionFields {
         op_photoCapture.setText(database.isFieldEnabled("photo capture"));
         op_email.setText(database.isFieldEnabled("email"));
         op_zipCode.setText(database.isFieldEnabled("zip code"));
+        op_here_to_see.setText(database.isFieldEnabled("here to see"));
         op_signatureCapture.setText(database.isFieldEnabled("signature capture"));
     }
 

@@ -90,6 +90,14 @@ public class Fields {
     public static EditText et_visitor_agreement_text;
     public static Button bt_agree;
     public static Button bt_not_agree;
+
+    //FIELDS OF HERE TO SEE
+    public static CheckBox cb_here_to_see_mandatory;
+    public static CheckBox cb_here_to_see_not_used;
+    public static CheckBox cb_here_to_see_optional;
+    public static TextView tv_here_to_see;
+    public static ImageView iv_here_to_see;
+
     //ROWS OF SETUP TABLE
 
     public static TableRow row_company;
@@ -124,6 +132,9 @@ public class Fields {
         Fields.op_photo_capture = (TextView)container.findViewById(R.id.op_photo_capture);
         Fields.tv_address = (TextView)container.findViewById(R.id.tv_address);
         Fields.iv_address = (ImageView)container.findViewById(R.id.iv_address);
+        Fields.tv_here_to_see = (TextView)container.findViewById(R.id.tv_here_to_see);
+        Fields.iv_here_to_see = (ImageView)container.findViewById(R.id.iv_here_to_see);
+
 
         Fields.iv_signature_capture = (ImageView)container.findViewById(R.id.iv_signature_capture);
         Fields.tv_signature_capture = (TextView)container.findViewById(R.id.tv_signature_capture);

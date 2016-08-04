@@ -91,10 +91,11 @@ public class SignIn extends Activity implements View.OnClickListener {
 
         switch (view.getId()){
             case R.id.btn_signin:
-                insertVisitor();
-                checkForInput(view);
-                sendEmail();
-
+                if(checkForInput(view)) {
+                    insertVisitor();
+                    Intent i = new Intent(SignIn.this, AdminPanel.class);
+                    startActivity(i);
+                }
                 break;
             case R.id.btn_image_capture:
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
@@ -204,38 +205,52 @@ public class SignIn extends Activity implements View.OnClickListener {
     }//END OF CHECKFORFIELDS METHOD
 
     //CHECK FOR INPUT
-    public void checkForInput(View view){
+    public boolean checkForInput(View view){
         String option = database.isFieldEnabled("company");
-
+        //
+        boolean isCompanyEmpty = true;
+        boolean isAddressEmpty = true;
+        boolean isEmailEmpty = true;
+        boolean isPhoneEmpty = true;
+        boolean isStateEmpty = true;
+        boolean isZipCodeEmpty = true;
+        //
         if(option.equals("Mandatory"))
         {
-            if(company.getText().equals("")){
+            message = "Company";
+
+            if(company.getText().toString().isEmpty()){
                 message = "Company";
                 open(view);
+                //isCompanyEmpty = false;
+                return false;
             }
         }
         option = database.isFieldEnabled("address");
-
         if(option.equals("Mandatory"))
         {
-            if(company.getText().equals("")){
+            if(address.getText().toString().isEmpty()){
                 message = "Address";
                 open(view);
+//                isAddressEmpty = false;
+                return false;
             }
+
         }
         option = database.isFieldEnabled("email");
 
-        if(option.equals("Mandatory"))
+        if(email.getText().toString().isEmpty())
         {
             isEmailVisible = true;
             if(company.getText().equals("")){
                 message = "Email";
                 open(view);
+//                isEmailEmpty = false;
+                return false;
             }
         }
-
-
-    }
+        return true;
+    }//end of method checkForFields
 
     public void open(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -244,7 +259,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                finish();
+               finish();
             }
         });
         AlertDialog alertDialog = alertDialogBuilder.create();
@@ -267,8 +282,7 @@ public class SignIn extends Activity implements View.OnClickListener {
             isEmailSend = true;
         }//end of if
         if(isEmailSend) {
-            Intent i = new Intent(SignIn.this, AdminPanel.class);
-            startActivity(i);
+
         }
 //        String[] TO = {"waxxan.imtiaz.123@gmail.com"};
 //        String[] CC = {"wassanimtiaz@outlook.com"};

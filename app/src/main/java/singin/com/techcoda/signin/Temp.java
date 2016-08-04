@@ -1,7 +1,6 @@
 package singin.com.techcoda.signin;
 
 
-public class Temp{
-
+public class Temp {
 
 }
