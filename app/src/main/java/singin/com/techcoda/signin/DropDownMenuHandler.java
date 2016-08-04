@@ -2,8 +2,6 @@ package singin.com.techcoda.signin;
 
 import android.content.Context;
 import android.graphics.Rect;
-import android.icu.text.DateFormat;
-import android.media.Image;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,26 +14,22 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ViewFlipper;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by android on 7/29/2016.
  */
 public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnDismissListener,View.OnClickListener {
 
-    private View mRootView;
+    public View mRootView;
     private ImageView mArrowUp;
     private ImageView mArrowDown;
     private LayoutInflater mInflater;
     private ViewGroup mTrack;
     private ViewGroup mTrackTwo;
     private ViewGroup mTrackThree;
-    private ScrollView mScroller;
+    public ScrollView mScroller;
     private boolean mDidAction;
-    private int mAnimStyle;
+    public int mAnimStyle;
     private int mOrientation;
     private int rootWidth=0;
     private View container;
@@ -46,8 +40,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     private static final int ANIM_GROW_FROM_LEFT = 1;
     private static final int ANIM_GROW_FROM_RIGHT = 2;
     private static final int ANIM_GROW_FROM_CENTER = 3;
-    private static final int ANIM_REFLECT = 4;
-    private static final int ANIM_AUTO = 5;
+    public static final int ANIM_REFLECT = 4;
+    public static final int ANIM_AUTO = 5;
     private SubMenuHandler handler;
    // private ViewFlipper flipper;
     //TOP DROP DOWN MENU HEADING
@@ -108,18 +102,16 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
 
         setHeading_id(heading_id);
         mOrientation = orientation;
-        mInflater 	 = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        setmInflater((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
         if (mOrientation == HORIZONTAL) {
             setRootViewId(R.layout.popup_horizontal);
         } else {
             setRootViewId(R.layout.popup_vertical);
         }
-
-
     }//end of constructor
 
     public void setRootViewId(int id) {
-        mRootView	= (ViewGroup) mInflater.inflate(id, null);
+        mRootView	= (ViewGroup) getmInflater().inflate(id, null);
        //mRootViewTwo = (ViewGroup)mInflater.inflate(id,null);
         mArrowDown 	= (ImageView) mRootView.findViewById(R.id.arrow_down_two);
         mArrowUp 	= (ImageView) mRootView.findViewById(R.id.arrow_up);
@@ -133,10 +125,10 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
 
         if( mOrientation == HORIZONTAL)
         {
-            container = mInflater.inflate(R.layout.action_item_horizontal, null);
+            container = getmInflater().inflate(R.layout.action_item_horizontal, null);
         }else if(layout == R.layout.setup_menu_layout_vertical && mOrientation == VERTICAL )
         {
-            container = mInflater.inflate(R.layout.setup_menu_layout_vertical , null);
+            container = getmInflater().inflate(R.layout.setup_menu_layout_vertical , null);
             //setupMenuCurrentSate = new RestoreCurrentStateOfApplication(mContext,container);
             if(mTrackThree != null)
              mTrackThree.setVisibility(View.GONE);
@@ -171,7 +163,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.company_sub_menu) {
 
-            container = mInflater.inflate(R.layout.company_sub_menu, null);
+            container = getmInflater().inflate(R.layout.company_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
 
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
@@ -186,7 +178,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.photo_capture_sub_menu)
         {
-            container = mInflater.inflate(R.layout.photo_capture_sub_menu, null);
+            container = getmInflater().inflate(R.layout.photo_capture_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
 
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
@@ -208,7 +200,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.address_sub_menu)
         {
-            container = mInflater.inflate(R.layout.address_sub_menu, null);
+            container = getmInflater().inflate(R.layout.address_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
 
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
@@ -224,7 +216,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.city_sub_menu)
         {
-            container = mInflater.inflate(R.layout.city_sub_menu, null);
+            container = getmInflater().inflate(R.layout.city_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
 
@@ -241,7 +233,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.state_sub_menu)
         {
-            container = mInflater.inflate(R.layout.state_sub_menu, null);
+            container = getmInflater().inflate(R.layout.state_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
 
@@ -258,7 +250,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.zip_code_sub_menu)
         {
-            container = mInflater.inflate(R.layout.zip_code_sub_menu, null);
+            container = getmInflater().inflate(R.layout.zip_code_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
 
@@ -275,7 +267,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.phone_sub_menu)
         {
-            container = mInflater.inflate(R.layout.phone_sub_menu, null);
+            container = getmInflater().inflate(R.layout.phone_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
 
@@ -292,7 +284,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.email_sub_menu)
         {
-            container = mInflater.inflate(R.layout.email_sub_menu, null);
+            container = getmInflater().inflate(R.layout.email_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
 
@@ -308,7 +300,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
 
         } else if(layout == R.layout.signature_capture_sub_menu)
         {
-            container = mInflater.inflate(R.layout.signature_capture_sub_menu, null);
+            container = getmInflater().inflate(R.layout.signature_capture_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
 
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
@@ -323,7 +315,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.visitor_agreement_text_sub_menu)
         {
-            container = mInflater.inflate(R.layout.visitor_agreement_text_sub_menu, null);
+            container = getmInflater().inflate(R.layout.visitor_agreement_text_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
 
 //            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
@@ -339,7 +331,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(layout == R.layout.here_to_see_sub_menu) {
 
-            container = mInflater.inflate(R.layout.here_to_see_sub_menu, null);
+            container = getmInflater().inflate(R.layout.here_to_see_sub_menu, null);
             handler = new SubMenuHandler(mContext,container);
 
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
@@ -352,19 +344,19 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             Fields.cb_here_to_see_mandatory.setOnClickListener(handler);
             Fields.cb_here_to_see_optional.setOnClickListener(handler);
         }else
-            container = mInflater.inflate(R.layout.popup_vertical , null);
+            container = getmInflater().inflate(R.layout.popup_vertical , null);
 
 
 
         container.setFocusable(true);
         container.setClickable(true);
-        mTrack.addView(container);
+        getmTrack().addView(container);
     }
     public void setView(int scroller,int scrollerLayout)
     {
 
         //if(sub == 0)
-          mTrack 		= (ViewGroup) mRootView.findViewById(scrollerLayout);
+          setmTrack((ViewGroup) mRootView.findViewById(scrollerLayout));
           mTrackTwo = (ViewGroup)mRootView.findViewById(R.id.dropDownChangerOne);
           mTrackThree = (ViewGroup)mRootView.findViewById(R.id.dropDownChangerTwo);
 
@@ -372,10 +364,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         //mTrackTwo 		= (ViewGroup) mRootView.findViewById(scrollerLayout);
 
         mScroller	= (ScrollView) mRootView.findViewById(scroller);
-
         mAnimStyle 	= ANIM_AUTO;
-
-
        // mChildPos 	= 0;
     }
 
@@ -920,8 +909,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
 
 
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.company_sub_menu_heading_layout);
             addActionItem(R.layout.company_sub_menu);
 
@@ -931,8 +920,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         }
         else if(head.equals("photo capture")){
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.photo_capture_sub_menu_heading_layout);
             addActionItem(R.layout.photo_capture_sub_menu);
             //isPhotoCaptureLoaded = true;
@@ -940,69 +929,69 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         else if(head.equals("address"))
         {
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.address_sub_menu_heading_layout);
             addActionItem(R.layout.address_sub_menu);
         }
         else if(head.equals("city"))
         {
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.city_sub_menu_heading_layout);
             addActionItem(R.layout.city_sub_menu);
         }
         else if(head.equals("state"))
         {
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.state_sub_menu_heading_layout);
             addActionItem(R.layout.state_sub_menu);
         }
         else if(head.equals("zip code"))
         {
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.zip_sub_menu_heading_layout);
             addActionItem(R.layout.zip_code_sub_menu);
         }else if(head.equals("phone"))
         {
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.phone_sub_menu_heading_layout);
             addActionItem(R.layout.phone_sub_menu);
         }
         else if(head.equals("email"))
         {
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.email_sub_menu_heading_layout);
             addActionItem(R.layout.email_sub_menu);
         }
         else if(head.equals("signature capture")){
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.signature_capture_sub_menu_heading_layout);
             addActionItem(R.layout.signature_capture_sub_menu);
             //isPhotoCaptureLoaded = true;
         }
         else if(head.equals("visitor agreement text")){
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.visitor_agreement_text_sub_menu_heading_layout);
             addActionItem(R.layout.visitor_agreement_text_sub_menu);
         }
         else if(head.equals("here to see")){
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
-            if(mTrack.getChildCount()>0)
-                mTrack.removeAllViews();
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
             setSubMenuHeadings(R.id.here_to_see_sub_menu_heading_layout);
             addActionItem(R.layout.here_to_see_sub_menu);
         }
@@ -1017,7 +1006,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
      * @param onTop flag to indicate where the popup should be displayed. Set TRUE if displayed on top of anchor view
      * 		  and vice versa
      */
-    private void setAnimationStyle(int screenWidth, int requestedX, boolean onTop) {
+    public void setAnimationStyle(int screenWidth, int requestedX, boolean onTop) {
         int arrowPos = requestedX - mArrowUp.getMeasuredWidth()/2;
 
         switch (mAnimStyle) {
@@ -1056,7 +1045,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
      * @param whichArrow arrow type resource id
      * @param requestedX distance from left screen
      */
-    private void showArrow(int whichArrow, int requestedX) {
+    public void showArrow(int whichArrow, int requestedX) {
         final View showArrow = (whichArrow == R.id.arrow_up) ? mArrowUp : mArrowDown;
         final View hideArrow = (whichArrow == R.id.arrow_up) ? mArrowDown : mArrowUp;
 
@@ -1066,7 +1055,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
 
         ViewGroup.MarginLayoutParams param = (ViewGroup.MarginLayoutParams)showArrow.getLayoutParams();
 
-        param.leftMargin = requestedX - arrowWidth / 2;
+        param.leftMargin = requestedX - arrowWidth /2;
 
         hideArrow.setVisibility(View.INVISIBLE);
     }
@@ -1168,5 +1157,21 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
 
     public void setHeading_id(int heading_id) {
         this.heading_id = heading_id;
+    }
+
+    public ViewGroup getmTrack() {
+        return mTrack;
+    }
+
+    public void setmTrack(ViewGroup mTrack) {
+        this.mTrack = mTrack;
+    }
+
+    public LayoutInflater getmInflater() {
+        return mInflater;
+    }
+
+    public void setmInflater(LayoutInflater mInflater) {
+        this.mInflater = mInflater;
     }
 }

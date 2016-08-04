@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -27,21 +28,27 @@ import java.util.Set;
 public class AdminPanel extends Activity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
     Database database;
+    private LinearLayout rlBackground;
     LinearLayout ll_in, ll_onpremises, ll_out;
     TextView counterSignIn, counterSignOut, counterOnPremises;
     ImageButton mDownloadImageButton;
     Button mDesignButton;
     Button mSetupButton;
     Button mReportButton;
-
+    private LinearLayout countersButtonClicked;
+    PopupWindowHandler handler;
     private DropDownMenus mDropDownMenu;
+    String flag;
+    Dialog onPremsisDialog;
+    Dialog onSignInDialog;
+    Dialog onSignOutDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_activity);
 
         database = new Database(this);
-
+        handler = new PopupWindowHandler(getApplicationContext());
         ll_in = (LinearLayout) findViewById(R.id.ll_signin);
         ll_onpremises = (LinearLayout) findViewById(R.id.ll_onpremises);
         ll_out = (LinearLayout) findViewById(R.id.ll_signout);
@@ -51,7 +58,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         mDropDownMenu.setReportMenu();
        // mDropDownMenu.setSetupMenu();
         mDropDownMenu.setDesignMenu();
-
+        initComponenets();
         mSetupButton = (Button)findViewById(R.id.btn_setup);
         mReportButton = (Button)findViewById(R.id.btn_report);
         mDesignButton = (Button)findViewById(R.id.btn_design);
@@ -73,6 +80,20 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     }
 
 
+    public void checkButtonClickAndDismiss(){
+
+            if(flag != null && flag.equals( "onpremises") )
+            {
+                onPremsisDialog.dismiss();
+            }else if(flag != null && flag.equals( "signin") )
+            {
+                onSignInDialog.dismiss();
+            }else if(flag != null && flag.equals( "signout"))
+            {
+                onSignOutDialog.dismiss();
+            }
+        statusButtonClicked();
+    }
     public void getAllCountersData(){
 
         int in, out, onPremises;
@@ -89,41 +110,40 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
 
     @Override
     public void onClick(View v) {
-
-//        Intent intent;
-
         switch(v.getId()) {
 
             case R.id.ll_signin:
+                setCountersButtonClicked(ll_in);
+                flag = "signin";
                 showDialogBoxSignIn();
                 break;
 
             case R.id.ll_onpremises:
+                setCountersButtonClicked(ll_onpremises);
                 showDialogBoxOnPremises();
+                flag = "onpremises";
+                setCountersButtonClicked(ll_onpremises);
                 break;
 
             case R.id.ll_signout:
+                setCountersButtonClicked(ll_out);
+                flag = "signout";
                 showDialogBoxSignOut();
                 break;
-            case R.id.imgbtn_download:
-                Toast.makeText(AdminPanel.this, "Image button is clicked clicked outside", Toast.LENGTH_SHORT).show();
+            case R.id.download_btn_image:
+                checkButtonClickAndDismiss();
                 break;
             case R.id.btn_report:
                 mDropDownMenu.report_button_clicked(v);
                 break;
             case R.id.btn_setup:
                 mDropDownMenu.setup_button_clicked(v);
-               // Toast.makeText(AdminPanel.this, "Setup button clicked", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.btn_design:
                 mDropDownMenu.design_button_clicked(v);
                 break;
-//            case R.id.imgbtn_download:
-//                Toast.makeText(AdminPanel.this, "Search button is clicked outside", Toast.LENGTH_SHORT).show();
-//                 break;
-
         }
-    }
+    }//End of onClick method
 
     //Credentials for Dialog box
     ListView list;
@@ -134,26 +154,17 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
 
     public void showDialogBoxOnPremises(){
 
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.list_of_onpremises);
-        dialog.setCancelable(true);
+        onPremsisDialog = new Dialog(this);
+        onPremsisDialog.setContentView(R.layout.list_of_onpremises);
+        onPremsisDialog.setCancelable(true);
 
-        firstName = (EditText) dialog.findViewById(R.id.et_onpremises_firstname);
-        list = (ListView) dialog.findViewById(R.id.list_onpremises);
-        search = (Button) dialog.findViewById(R.id.btn_search_onpremises);
-        mDownloadImageButton = (ImageButton)findViewById(R.id.imgbtn_download);
+        firstName = (EditText) onPremsisDialog.findViewById(R.id.et_onpremises_firstname);
+        list = (ListView) onPremsisDialog.findViewById(R.id.list_onpremises);
+        search = (Button) onPremsisDialog.findViewById(R.id.btn_search_onpremises);
+        mDownloadImageButton = (ImageButton)onPremsisDialog.findViewById(R.id.download_btn_image);
 
-      //  mDownloadImageButton.setOnClickListener(this);
-//        mDownloadImageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(AdminPanel.this, "Image button is clicked clicked in onpremsis", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        mDownloadImageButton.setOnClickListener(this);
         getAllVisitorOnPremises();//getting all visitors list - ON PREMISES
-
-
-
 
         search.setOnClickListener(
                 new View.OnClickListener() {
@@ -163,8 +174,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 getAllVisitorOnPremisesByName();//getting all by name - ON PREMISES
             }
         });
-
-        dialog.show();
+        onPremsisDialog.show();
 
     }
 
@@ -190,35 +200,28 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     //SIGN IN LIST
     public void showDialogBoxSignIn(){
 
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.list_of_onpremises);
-        dialog.setCancelable(true);
+        onSignInDialog = new Dialog(this);
+        onSignInDialog.setContentView(R.layout.list_of_onpremises);
+        onSignInDialog.setCancelable(true);
 
-        firstName = (EditText) dialog.findViewById(R.id.et_onpremises_firstname);
-        list = (ListView) dialog.findViewById(R.id.list_onpremises);
-        search = (Button) dialog.findViewById(R.id.btn_search_onpremises);
-        mDownloadImageButton = (ImageButton)findViewById(R.id.imgbtn_download);
+        firstName = (EditText) onSignInDialog.findViewById(R.id.et_onpremises_firstname);
+        list = (ListView) onSignInDialog.findViewById(R.id.list_onpremises);
+        search = (Button) onSignInDialog.findViewById(R.id.btn_search_onpremises);
+        mDownloadImageButton = (ImageButton)onSignInDialog.findViewById(R.id.download_btn_image);
 
-
-        Toast.makeText(AdminPanel.this, "Image button is clicked clicked in signin", Toast.LENGTH_SHORT).show();
-
-//        mDownloadImageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(AdminPanel.this, "Image button is clicked clicked in signin", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-        getAllVisitorSignIn();//getting all visitors in list
-
+        getAllVisitorSignIn();
+        mDownloadImageButton.setOnClickListener(this);//getting all visitors in list
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(AdminPanel.this, "Search button is clicked clicked in signin", Toast.LENGTH_SHORT).show();
+
                 getAllVisitorSignInByName();//getting sign in visitors by name
             }
         });
 
 
-        dialog.show();
+        onSignInDialog.show();
     }
 
     public void getAllVisitorSignIn(){
@@ -242,25 +245,19 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     //SIGN OUT LIST
     public void showDialogBoxSignOut(){
 
-        Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.list_of_onpremises);
-        dialog.setCancelable(true);
+        onSignOutDialog = new Dialog(this);
+        onSignOutDialog.setContentView(R.layout.list_of_onpremises);
+        onSignOutDialog.setCancelable(true);
 
-        firstName = (EditText) dialog.findViewById(R.id.et_onpremises_firstname);
-        list = (ListView) dialog.findViewById(R.id.list_onpremises);
-        search = (Button) dialog.findViewById(R.id.btn_search_onpremises);
-        mDownloadImageButton = (ImageButton)findViewById(R.id.imgbtn_download);
+        firstName = (EditText) onSignOutDialog.findViewById(R.id.et_onpremises_firstname);
+        list = (ListView) onSignOutDialog.findViewById(R.id.list_onpremises);
+        search = (Button) onSignOutDialog.findViewById(R.id.btn_search_onpremises);
+        mDownloadImageButton = (ImageButton)onSignOutDialog.findViewById(R.id.download_btn_image);
 
-        Toast.makeText(AdminPanel.this, "Image button is clicked on signout", Toast.LENGTH_SHORT).show();
 
-//        mDownloadImageButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(AdminPanel.this, "Image button is clicked on signout", Toast.LENGTH_SHORT).show();
-//            }
-//        });
         getAllVisitorsSignOutByName();//getting all visitors list - SIGN OUT
 
+        mDownloadImageButton.setOnClickListener(this);
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,7 +266,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         });
 
 
-        dialog.show();
+        onSignOutDialog.show();
     }//end of showDialogBoxSignOut method..
 
     public void getAllVisitorsSignOutByName(){
@@ -291,5 +288,89 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         Toast.makeText(this, "Pos: " + position, Toast.LENGTH_SHORT).show();
+    }
+
+    //INITIALIZE COMPONENTS
+    private void initComponenets(){
+        rlBackground = (LinearLayout) findViewById(R.id.signin_activity);
+
+        rlBackground.setOnTouchListener(new View.OnTouchListener()
+        {
+            @Override
+            public boolean onTouch(View v, MotionEvent event)
+            {
+                int[] location = new int[2];
+                location[0] = (int) event.getX();
+                location[1] = (int) event.getY();
+                location[1] = location[1] + getActionBarHeight() + getStatusBarHeight();
+                Toast.makeText(AdminPanel.this, "x:" + location[0] + " y:" + location[1], Toast.LENGTH_SHORT).show();
+
+//                View easyView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_tip_list_view, null);
+
+                new EasyDialog(AdminPanel.this)
+//                        .setLayout(easyView)
+                        .setLayoutResourceId(R.layout.counters_popup)
+                        //.setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_black))
+                        .setLocation(location)
+                        .setGravity(EasyDialog.GRAVITY_TOP)
+                        .setTouchOutsideDismiss(true)
+                        .setMatchParent(false)
+                        .setMarginLeftAndRight(24, 24)
+                        //.setOutsideColor(AdminPanel.this.getResources().getColor(R.color.outside_color_gray))
+                        .show();
+
+//                ListView listView = (ListView) easyView.findViewById(R.id.lvList);
+//                List<String> items = new ArrayList<String>();
+//                for(int i = 0; i < 20; i++)
+//                {
+
+//                    items.add(""+i);
+//                }
+//                ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, items);
+//                listView.setAdapter(itemsAdapter);
+
+                return false;
+            }
+        });
+    }
+
+    private void statusButtonClicked(){
+        new EasyDialog(AdminPanel.this)
+                .setLayoutResourceId(R.layout.counters_popup)
+//                .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
+                .setLocationByAttachedView(getCountersButtonClicked())
+                .setAnimationTranslationShow(EasyDialog.DIRECTION_Y, 1000, -800, 100, -50, 50, 0)
+                .setAnimationTranslationDismiss(EasyDialog.DIRECTION_Y, 500, 0, -800)
+                .setGravity(EasyDialog.GRAVITY_TOP)
+                .setTouchOutsideDismiss(true)
+                .setMatchParent(false)
+                .setMarginLeftAndRight(24, 24)
+//                .setOutsideColor(AdminPanel.this.getResources().getColor(R.color.color_of_arrow))
+                .show();
+    }
+
+    private int getStatusBarHeight()
+    {
+        int result = 0;
+        int resourceId = this.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0)
+        {
+            result = this.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
+
+    private int getActionBarHeight()
+    {
+
+        return this.getStatusBarHeight();
+    }
+
+    public LinearLayout getCountersButtonClicked() {
+        return countersButtonClicked;
+    }
+
+    public void setCountersButtonClicked(LinearLayout countersButtonClicked) {
+        this.countersButtonClicked = countersButtonClicked;
     }
 }//end of class
