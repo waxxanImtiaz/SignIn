@@ -264,7 +264,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-    }//end of open button
+    }
     //SEND EMAIL
     public void sendEmail(){
         boolean isEmailSend = false;

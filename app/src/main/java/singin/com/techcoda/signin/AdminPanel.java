@@ -1,7 +1,9 @@
 package singin.com.techcoda.signin;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -312,7 +314,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         if (getCountersButtonClicked() == ll_onpremises )
         {
                   dialog =  new EasyDialog(AdminPanel.this);
-                dialog.setLayoutResourceId(R.layout.counters_popup)
+                 dialog.setLayoutResourceId(R.layout.counters_popup)
 //                .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
                 .setLocationByAttachedView(getCountersButtonClicked())
                 .setAnimationTranslationShow(EasyDialog.DIRECTION_Y, 1000, -800, 100, -50, 50, 0)
@@ -322,41 +324,58 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 .setMatchParent(false)
                 .setMarginLeftAndRight(24, 24)
                 .show();
-           // pdfCreater.createPDF();
-         // View v =  dialog.getAttachedView();
-           Fields.btn_export = (Button) dialog.contentView.findViewById(R.id.btn_export);
-            Fields.btn_export.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //Create pdf
-                    Toast.makeText(getApplicationContext(),"Export button is clicked",Toast.LENGTH_LONG).show();
-                }
-            });
+            Fields.initializeImageButtonPopupMenu(dialog.contentView, getApplicationContext(), "onpremises", name);
 
+            if (Fields.reportDropDownHandler.isPdfCreated())
+            {
+                showDialog("onpremises.pdf file is created at "+Fields.reportDropDownHandler.getPath());
+            }
+            else
+            {
+                showDialog("failed to create pdf file");
+            }
         }
-        else if(getCountersButtonClicked() == ll_out)
-             new EasyDialog(AdminPanel.this)
-                .setLayoutResourceId(R.layout.counters_popup)
-               // .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
-                .setLocationByAttachedView(getCountersButtonClicked())
-                .setGravity(EasyDialog.GRAVITY_LEFT)
-                .setAnimationAlphaShow(300, 0.0f, 1.0f)
-                .setAnimationAlphaDismiss(300, 1.0f, 0.0f)
-                .setTouchOutsideDismiss(true)
-                .setMatchParent(false).show();
+        else if(getCountersButtonClicked() == ll_out) {
+            dialog =  new EasyDialog(AdminPanel.this);
+            dialog.setLayoutResourceId(R.layout.counters_popup)
+                    // .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
+                    .setLocationByAttachedView(getCountersButtonClicked())
+                    .setGravity(EasyDialog.GRAVITY_LEFT)
+                    .setAnimationAlphaShow(300, 0.0f, 1.0f)
+                    .setAnimationAlphaDismiss(300, 1.0f, 0.0f)
+                    .setTouchOutsideDismiss(true)
+                    .setMatchParent(false).show();
+            Fields.initializeImageButtonPopupMenu(dialog.contentView, getApplicationContext(), "signout", name);
+
+            if (Fields.reportDropDownHandler.isPdfCreated())
+            {
+                showDialog("signout.pdf file is created at "+Fields.reportDropDownHandler.getPath());
+            }
+            else
+            {
+                showDialog("failed to create pdf file");
+            }
+        }
         else
         {
-            new EasyDialog(AdminPanel.this)
-                    .setLayoutResourceId(R.layout.counters_popup)
-                    //.setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_purple))
+            dialog =  new EasyDialog(AdminPanel.this);
+            dialog.setLayoutResourceId(R.layout.counters_popup)
                     .setLocationByAttachedView(ll_in)
                     .setGravity(EasyDialog.GRAVITY_RIGHT)
                     .setAnimationAlphaShow(300, 0.0f, 1.0f)
                     .setAnimationAlphaDismiss(300, 1.0f, 0.0f)
                     .setTouchOutsideDismiss(true)
                     .setMatchParent(false)
-              //      .setOutsideColor(AdminPanel.this.getResources().getColor(R.color.outside_color_gray))
                     .show();
+            Fields.initializeImageButtonPopupMenu(dialog.contentView, getApplicationContext(), "signin", name);
+            if (Fields.reportDropDownHandler.isPdfCreated())
+            {
+                showDialog("signin.pdf file is created at "+Fields.reportDropDownHandler.getPath());
+            }
+            else
+            {
+                showDialog("failed to create pdf file");
+            }
         }
 
     }
@@ -384,5 +403,17 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
 
     public void setCountersButtonClicked(LinearLayout countersButtonClicked) {
         this.countersButtonClicked = countersButtonClicked;
+    }
+    public void showDialog(String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+        alertDialogBuilder.setMessage(message);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+//                        finish();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 }//end of class

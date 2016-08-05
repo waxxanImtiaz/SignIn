@@ -4,6 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -12,9 +15,13 @@ import com.lowagie.text.HeaderFooter;
 import com.lowagie.text.Image;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfTable;
 import com.lowagie.text.pdf.PdfWriter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Environment;
 import android.app.Activity;
@@ -33,65 +40,79 @@ import android.widget.Toast;
 public class PdfCreater {
 
     private Context mContext;
+    public String path;
     public PdfCreater(Context context){
         this.mContext = context;
     }
-    public void createPDF()
+    public boolean createPDF(List<List<String>> visitors,String fileName,String status)
     {
         Document doc = new Document();
-
-
         try {
-            String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/droidText";
+            path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/SignInAppReports";
 
-            File dir = new File(path);
+            final File dir = new File(path);
             if(!dir.exists())
                 dir.mkdirs();
-
-            Log.d("PDFCreator", "PDF Path: " + path);
-
-
-            File file = new File(dir, "sample.pdf");
+            File file = new File(dir, fileName+".pdf");
             FileOutputStream fOut = new FileOutputStream(file);
 
             PdfWriter.getInstance(doc, fOut);
 
             //open the document
             doc.open();
-
-
-            Paragraph p1 = new Paragraph("Hi! I am generating my first PDF using DroidText");
-            Font paraFont= new Font(Font.COURIER);
+            doc.addCreationDate();
+            Paragraph p1 = new Paragraph("Total visitors "+status);
+            Font paraFont= new Font(new Font(300));
+            //paraFont.setSize(200);
+            paraFont.setColor(new harmony.java.awt.Color(Color.CYAN));
             p1.setAlignment(Paragraph.ALIGN_CENTER);
             p1.setFont(paraFont);
-
-            //add paragraph to document
+            p1.setFont(paraFont);
             doc.add(p1);
 
-            Paragraph p2 = new Paragraph("This is an example of a simple paragraph");
-            Font paraFont2= new Font(Font.COURIER,14.0f,Color.GREEN);
-            p2.setAlignment(Paragraph.ALIGN_CENTER);
-            p2.setFont(paraFont2);
+            //SPACE ONE
+            p1 = new Paragraph("\t\t\t");
+            doc.add(p1);
+            //SPACE TWO
+            p1 = new Paragraph("\t\t\t");
+            //SPACE THREE
+            doc.add(p1);
+            p1 = new Paragraph("\t\t\t");
+            doc.add(p1);
 
-            doc.add(p2);
+            PdfPTable table = new PdfPTable((visitors.size()));
 
-            ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            Bitmap bitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.ic_launcher);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100 , stream);
-            Image myImg = Image.getInstance(stream.toByteArray());
-            myImg.setAlignment(Image.MIDDLE);
+            table.addCell("ID");
+            table.addCell("First Name");
+            table.addCell("Last Name");
+            table.completeRow();
+            table.setFooterRows(50);
 
-            //add image to document
-            doc.add(myImg);
+            try {
+                List<String> id = visitors.get(0);
+                List<String> first = visitors.get(1);
+                List<String> last = visitors.get(2);
 
-            //set footer
-            Phrase footerText = new Phrase("This is an example of a footer");
-            HeaderFooter pdfFooter = new HeaderFooter(footerText, false);
-            doc.setFooter(pdfFooter);
+                int index = 0;
 
+                while (index < id.size()) {
+                    table.addCell(id.get(index));
+                    table.addCell(first.get(index));
+                    table.addCell(last.get(index));
+                    index++;
+                }//end of while loop
 
-
-            Toast.makeText(mContext.getApplicationContext(),"Document is created",Toast.LENGTH_LONG).show();
+//            set footer
+                Phrase footerText = new Phrase("Total visitors " + status + " document");
+                HeaderFooter pdfFooter = new HeaderFooter(footerText, false);
+                doc.setFooter(pdfFooter);
+                doc.add(table);
+                doc.addCreationDate();
+                return true;
+            }catch (NullPointerException e)
+            {
+                Toast.makeText(mContext.getApplicationContext(),"No any visitor is "+status,Toast.LENGTH_LONG).show();
+            }
         } catch (DocumentException de) {
             Toast.makeText(mContext.getApplicationContext(),"DocumentException:"+de,Toast.LENGTH_LONG).show();
         } catch (IOException e) {
@@ -102,7 +123,6 @@ public class PdfCreater {
         {
             doc.close();
         }
-
-    }
-
-}
+        return false;
+    }//end of method
+}//end of class

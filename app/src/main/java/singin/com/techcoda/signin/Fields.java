@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.List;
+
 /**
  * Created by android on 7/27/2016.
  */
@@ -129,7 +131,7 @@ public class Fields {
     public static Button btn_export;
     public static Button btn_email_search_data_csv;
 
-
+    public static ReportDropDownHandler reportDropDownHandler;
     //initialize setupFields
     public static void initilizeSetupFilds(View container,DropDownMenuHandler handler)
     {
@@ -234,9 +236,19 @@ public class Fields {
         row_custom_field_five.setOnClickListener(handler);
         row_visitor_agreement_text.setOnClickListener(handler);
     }//end of initializeSetupFields method
-    public static void initializeImageButtonPopupMenu()
+    public static void initializeImageButtonPopupMenu(View container,Context context,String status,List<List<String>> name)
     {
+        btn_export = (Button) container.findViewById(R.id.btn_export);
+        btn_email_report_pdf = (Button)container.findViewById(R.id.btn_email_report_pdf);
+        btn_email_search_data_csv = (Button)container.findViewById(R.id.btn_email_search_data_csv);
+        btn_print_reports = (Button)container.findViewById(R.id.btn_print_reports);
 
+        reportDropDownHandler = new ReportDropDownHandler(context,status,name);
+
+        btn_email_report_pdf.setOnClickListener(reportDropDownHandler);
+        btn_print_reports.setOnClickListener(reportDropDownHandler);
+        btn_email_search_data_csv.setOnClickListener(reportDropDownHandler);
+        btn_export.setOnClickListener(reportDropDownHandler);
     }
 }
 
