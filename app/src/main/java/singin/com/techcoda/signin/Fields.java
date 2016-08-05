@@ -120,10 +120,11 @@ public class Fields {
     public static TableRow row_custom_field_two;
     public static TableRow row_custom_field_three;
     public static TableRow row_custom_field_four;
+    public static TableRow row_custom_field_five;
     public static TableRow row_visitor_agreement_text;
 
     //initialize setupFields
-    public static void initilizeSetupFilds(View container)
+    public static void initilizeSetupFilds(View container,DropDownMenuHandler handler)
     {
         Fields.iv_company = (ImageView)container.findViewById(R.id.iv_company);
         Fields.tv_company = (TextView)container.findViewById(R.id.tv_company);
@@ -152,29 +153,80 @@ public class Fields {
         Fields.tv_email = (TextView)container.findViewById(R.id.tv_email);
         tv_visitor_agreement_text = (TextView)container.findViewById(R.id.tv_visitor_agreement_text);
         iv_visitor_agreement_text = (ImageView)container.findViewById(R.id.iv_visitor_agrement_text);
+
         //INITIALIZE ROWS
-//        row_company = (TableRow)container.findViewById(R.id.row_company);
-//        row_city = (TableRow)container.findViewById(R.id.row_city);
-//        row_address = (TableRow)container.findViewById(R.id.row_address);
-//        row_email = (TableRow)container.findViewById(R.id.row_email);
-//        row_state = (TableRow)container.findViewById(R.id.row_state);
-//        row_zip_code = (TableRow)container.findViewById(R.id.row_zip_code);
-//        row_phone = (TableRow)container.findViewById(R.id.row_phone);
-//        row_here_to_see = (TableRow)container.findViewById(R.id.row_here_to_see);
-//        row_signature_capture = (TableRow)container.findViewById(R.id.row_signature_capture);
-//        row_photo_capture = (TableRow)container.findViewById(R.id.row_photo_capture);
-//        TableRow row_guide_escort = (TableRow)container.findViewById(R.id.row_g);
-//        TableRow row_badge_number = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_vehicle_make_model = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_vehicle_color = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_vehicle_license_plate = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_comments = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_custom_field_one = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_custom_field_two = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_custom_field_three = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_custom_field_four = (TableRow)container.findViewById(R.id.row_company));
-//        TableRow row_visitor_agreement_text = (TableRow)container.findViewById(R.id.row_company));
-    }
+        row_company = (TableRow)container.findViewById(R.id.row_company);
+        row_city = (TableRow)container.findViewById(R.id.row_city);
+        row_address = (TableRow)container.findViewById(R.id.row_address);
+        row_email = (TableRow)container.findViewById(R.id.row_email);
+        row_state = (TableRow)container.findViewById(R.id.row_state);
+        row_zip_code = (TableRow)container.findViewById(R.id.row_zip_code);
+        row_phone = (TableRow)container.findViewById(R.id.row_phone);
+        row_here_to_see = (TableRow)container.findViewById(R.id.row_here_to_see);
+        row_signature_capture = (TableRow)container.findViewById(R.id.row_signature_capture);
+        row_photo_capture = (TableRow)container.findViewById(R.id.row_photo_capture);
+        row_guide_escort = (TableRow)container.findViewById(R.id.row_guide_escrot);
+        row_badge_number = (TableRow)container.findViewById(R.id.row_badge_number);
+        row_vehicle_make_model = (TableRow)container.findViewById(R.id.row_vehicle_make_model);
+        row_vehicle_color = (TableRow)container.findViewById(R.id.row_vehicle_color);
+        row_vehicle_license_plate = (TableRow)container.findViewById(R.id.row_vehicle_license_plate);
+        row_comments = (TableRow)container.findViewById(R.id.row_comments);
+        row_custom_field_one = (TableRow)container.findViewById(R.id.row_custom_field_one);
+        row_custom_field_two = (TableRow)container.findViewById(R.id.row_custom_field_two);
+        row_custom_field_three = (TableRow)container.findViewById(R.id.row_custom_field_three);
+        row_custom_field_four = (TableRow)container.findViewById(R.id.row_custom_field_four);
+        row_custom_field_five = (TableRow)container.findViewById(R.id.row_custom_field_five);
+        row_visitor_agreement_text = (TableRow)container.findViewById(R.id.row_visitor_agreement_text);
+
+
+        //HANDLE EVENTS
+        Fields.iv_company.setOnClickListener(handler);
+        Fields.tv_company.setOnClickListener(handler);
+        Fields.tv_address.setOnClickListener(handler);
+        Fields.iv_address.setOnClickListener(handler);
+        Fields.tv_city.setOnClickListener(handler);
+        Fields.iv_city.setOnClickListener(handler);
+        Fields.tv_state.setOnClickListener(handler);
+        Fields.iv_state.setOnClickListener(handler);
+        Fields.tv_zip_code.setOnClickListener(handler);
+        Fields.iv_zip.setOnClickListener(handler);
+        Fields.tv_phone.setOnClickListener(handler);
+        Fields.iv_phone.setOnClickListener(handler);
+        Fields.tv_email.setOnClickListener(handler);
+        Fields.iv_email.setOnClickListener(handler);
+        Fields.iv_photo_capture.setOnClickListener(handler);
+        Fields.tv_photo_capture.setOnClickListener(handler);
+        Fields.iv_signature_capture.setOnClickListener(handler);
+        Fields.tv_signature_capture.setOnClickListener(handler);
+        Fields.iv_visitor_agreement_text.setOnClickListener(handler);
+        Fields.tv_visitor_agreement_text.setOnClickListener(handler);
+        Fields.tv_here_to_see.setOnClickListener(handler);
+        Fields.iv_here_to_see.setOnClickListener(handler);
+
+        //ROW EVENTS
+        row_company.setOnClickListener(handler);
+        row_city.setOnClickListener(handler);
+        row_address.setOnClickListener(handler);
+        row_email.setOnClickListener(handler);
+        row_state.setOnClickListener(handler);
+        row_zip_code.setOnClickListener(handler);
+        row_phone.setOnClickListener(handler);
+        row_here_to_see.setOnClickListener(handler);
+        row_signature_capture.setOnClickListener(handler);
+        row_photo_capture.setOnClickListener(handler);
+        row_guide_escort.setOnClickListener(handler);
+        row_badge_number.setOnClickListener(handler);
+        row_vehicle_make_model.setOnClickListener(handler);
+        row_vehicle_color.setOnClickListener(handler);
+        row_vehicle_license_plate.setOnClickListener(handler);
+        row_comments.setOnClickListener(handler);
+        row_custom_field_one.setOnClickListener(handler);
+        row_custom_field_two.setOnClickListener(handler);
+        row_custom_field_three.setOnClickListener(handler);
+        row_custom_field_four.setOnClickListener(handler);
+        row_custom_field_five.setOnClickListener(handler);
+        row_visitor_agreement_text.setOnClickListener(handler);
+    }//end of initializeSetupFields method
 }
 
 //FONT FAMILIES

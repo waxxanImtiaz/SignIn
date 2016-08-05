@@ -133,33 +133,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             if(mTrackThree != null)
              mTrackThree.setVisibility(View.GONE);
 
-            Fields.initilizeSetupFilds(container);
+            Fields.initilizeSetupFilds(container,this);
 
             LoadOptionFields loadOptionFields = new LoadOptionFields(mContext,container);
             loadOptionFields.startLoading();
 
-            Fields.iv_company.setOnClickListener(this);
-            Fields.tv_company.setOnClickListener(this);
-            Fields.tv_address.setOnClickListener(this);
-            Fields.iv_address.setOnClickListener(this);
-            Fields.tv_city.setOnClickListener(this);
-            Fields.iv_city.setOnClickListener(this);
-            Fields.tv_state.setOnClickListener(this);
-            Fields.iv_state.setOnClickListener(this);
-            Fields.tv_zip_code.setOnClickListener(this);
-            Fields.iv_zip.setOnClickListener(this);
-            Fields.tv_phone.setOnClickListener(this);
-            Fields.iv_phone.setOnClickListener(this);
-            Fields.tv_email.setOnClickListener(this);
-            Fields.iv_email.setOnClickListener(this);
-            Fields.iv_photo_capture.setOnClickListener(this);
-            Fields.tv_photo_capture.setOnClickListener(this);
-            Fields.iv_signature_capture.setOnClickListener(this);
-            Fields.tv_signature_capture.setOnClickListener(this);
-            Fields.iv_visitor_agreement_text.setOnClickListener(this);
-            Fields.tv_visitor_agreement_text.setOnClickListener(this);
-            Fields.tv_here_to_see.setOnClickListener(this);
-            Fields.iv_here_to_see.setOnClickListener(this);
+
         }
         else if(layout == R.layout.company_sub_menu) {
 
@@ -496,6 +475,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         int id = view.getId();
         switch (id)
         {
+            case R.id.row_company:
             case R.id.tv_company:
             case R.id.iv_company:
                     load("company");
@@ -507,15 +487,13 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             case R.id.company_chroven_left:
             case R.id.company_heading_left:
                 setSubMenuHeadings(R.id.setup);
-
-//                flipper.showPrevious();
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
                 break;
+            case R.id.row_photo_capture:
             case R.id.tv_photo_capture:
             case R.id.iv_photo_capture:
                     load("photo capture");
-//                    flipper.showNext();
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
@@ -524,12 +502,11 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();
                 break;
+            case R.id.row_address:
             case R.id.tv_address:
             case R.id.iv_address:
                 load("address");
-//                flipper.showNext();
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
@@ -538,12 +515,10 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();;
                 break;
             case R.id.iv_city:
             case R.id.tv_city:
                 load("city");
-//                flipper.showNext();
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
@@ -552,68 +527,63 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();;
                 break;
+            case R.id.row_state:
             case R.id.iv_state:
             case R.id.tv_state:
                 load("state");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
-//                flipper.showNext();
                 break;
             case R.id.state_chroven_left:
             case R.id.state_heading_left:
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();;
                 break;
+            case R.id.row_zip_code:
             case R.id.tv_zip_code:
             case R.id.iv_zip_code:
                 load("zip code");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
-//                flipper.showNext();
                 break;
             case R.id.zip_chroven_left:
             case R.id.zip_heading_left:
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();;
                 break;
+            case R.id.row_phone:
             case R.id.iv_phone:
             case R.id.tv_phone:
                 load("phone");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
-//                flipper.showNext();
                 break;
             case R.id.phone_chroven_left:
             case R.id.phone_heading_left:
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();;
                 break;
+            case R.id.row_email:
             case R.id.iv_email:
             case R.id.tv_email:
                 load("email");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
-//                flipper.showNext();
                 break;
             case R.id.email_chroven_left:
             case R.id.email_heading_left:
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();;
                 break;
+            case R.id.row_signature_capture:
             case R.id.iv_signature_capture:
             case R.id.tv_signature_capture:
                 load("signature capture");
-//                    flipper.showNext();
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
@@ -622,12 +592,11 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();
                 break;
+            case R.id.row_visitor_agreement_text:
             case R.id.iv_visitor_agrement_text:
             case R.id.tv_visitor_agreement_text:
                 load("visitor agreement text");
-//                    flipper.showNext();
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
@@ -636,12 +605,11 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();
                 break;
+            case R.id.row_here_to_see:
             case R.id.iv_here_to_see:
             case R.id.tv_here_to_see:
                 load("here to see");
-//                    flipper.showNext();
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
@@ -650,7 +618,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-//                flipper.showPrevious();
+
                 break;
         }//end of switch
     }//end of onClick method

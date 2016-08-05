@@ -42,11 +42,13 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     Dialog onPremsisDialog;
     Dialog onSignInDialog;
     Dialog onSignOutDialog;
+    PdfCreater pdfCreater;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.admin_activity);
 
+        pdfCreater = new PdfCreater(this);
         database = new Database(this);
         handler = new PopupWindowHandler(getApplicationContext());
         ll_in = (LinearLayout) findViewById(R.id.ll_signin);
@@ -303,39 +305,15 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 location[0] = (int) event.getX();
                 location[1] = (int) event.getY();
                 location[1] = location[1] + getActionBarHeight() + getStatusBarHeight();
-                Toast.makeText(AdminPanel.this, "x:" + location[0] + " y:" + location[1], Toast.LENGTH_SHORT).show();
-
-//                View easyView = MainActivity.this.getLayoutInflater().inflate(R.layout.layout_tip_list_view, null);
-
-                new EasyDialog(AdminPanel.this)
-//                        .setLayout(easyView)
-                        .setLayoutResourceId(R.layout.counters_popup)
-                        //.setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_black))
-                        .setLocation(location)
-                        .setGravity(EasyDialog.GRAVITY_TOP)
-                        .setTouchOutsideDismiss(true)
-                        .setMatchParent(false)
-                        .setMarginLeftAndRight(24, 24)
-                        //.setOutsideColor(AdminPanel.this.getResources().getColor(R.color.outside_color_gray))
-                        .show();
-
-//                ListView listView = (ListView) easyView.findViewById(R.id.lvList);
-//                List<String> items = new ArrayList<String>();
-//                for(int i = 0; i < 20; i++)
-//                {
-
-//                    items.add(""+i);
-//                }
-//                ArrayAdapter<String> itemsAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, items);
-//                listView.setAdapter(itemsAdapter);
-
                 return false;
             }
         });
     }
 
     private void statusButtonClicked(){
-        new EasyDialog(AdminPanel.this)
+        if (getCountersButtonClicked() == ll_onpremises )
+        {
+                    new EasyDialog(AdminPanel.this)
                 .setLayoutResourceId(R.layout.counters_popup)
 //                .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
                 .setLocationByAttachedView(getCountersButtonClicked())
@@ -345,8 +323,34 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 .setTouchOutsideDismiss(true)
                 .setMatchParent(false)
                 .setMarginLeftAndRight(24, 24)
-//                .setOutsideColor(AdminPanel.this.getResources().getColor(R.color.color_of_arrow))
                 .show();
+
+        }
+        else if(getCountersButtonClicked() == ll_out)
+             new EasyDialog(AdminPanel.this)
+                .setLayoutResourceId(R.layout.counters_popup)
+               // .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
+                .setLocationByAttachedView(getCountersButtonClicked())
+                .setGravity(EasyDialog.GRAVITY_LEFT)
+                .setAnimationAlphaShow(300, 0.0f, 1.0f)
+                .setAnimationAlphaDismiss(300, 1.0f, 0.0f)
+                .setTouchOutsideDismiss(true)
+                .setMatchParent(false).show();
+        else
+        {
+            new EasyDialog(AdminPanel.this)
+                    .setLayoutResourceId(R.layout.counters_popup)
+                    //.setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_purple))
+                    .setLocationByAttachedView(ll_in)
+                    .setGravity(EasyDialog.GRAVITY_RIGHT)
+                    .setAnimationAlphaShow(300, 0.0f, 1.0f)
+                    .setAnimationAlphaDismiss(300, 1.0f, 0.0f)
+                    .setTouchOutsideDismiss(true)
+                    .setMatchParent(false)
+              //      .setOutsideColor(AdminPanel.this.getResources().getColor(R.color.outside_color_gray))
+                    .show();
+        }
+
     }
 
     private int getStatusBarHeight()

@@ -260,9 +260,7 @@ public class EasyDialog
         return this;
     }
 
-    /**
-     * 设置触摸对话框外面，对话框是否消失
-     */
+
     public EasyDialog setTouchOutsideDismiss(boolean touchOutsideDismiss)
     {
         this.touchOutsideDismiss = touchOutsideDismiss;
@@ -277,9 +275,7 @@ public class EasyDialog
         return this;
     }
 
-    /**
-     * 设置提醒框外部区域的颜色
-     */
+
     public EasyDialog setOutsideColor(int color)
     {
         rlOutsideBackground.setBackgroundColor(color);
@@ -288,12 +284,6 @@ public class EasyDialog
 
     private int backgroundColor;
 
-    /**
-     * 设置对话框的颜色
-     * 三角形的图片是layer-list里面嵌套一个RotateDrawable，在设置颜色的时候需要特别处理
-     * http://stackoverflow.com/questions/24492000/set-color-of-triangle-on-run-time
-     * http://stackoverflow.com/questions/16636412/change-shape-solid-color-at-runtime-inside-drawable-xml-used-as-background
-     */
     public EasyDialog setBackgroundColor(int color)
     {
         backgroundColor = color;
@@ -314,16 +304,14 @@ public class EasyDialog
         return this;
     }
 
-    /**
-     * 显示提示框
-     */
+
     public EasyDialog show()
     {
         if (dialog != null)
         {
             if (contentView == null)
             {
-                throw new RuntimeException("您是否未调用setLayout()或者setLayoutResourceId()方法来设置要显示的内容呢？");
+                throw new RuntimeException("setLayout() setLayoutResourceId() ");
             }
             if(llContent.getChildCount() > 0)
             {
@@ -336,43 +324,25 @@ public class EasyDialog
         return this;
     }
 
-    /**
-     * 显示对话框的View的parent，如果想自己写动画，可以获取这个实例来写动画
-     */
+
     public View getTipViewInstance()
     {
         return rlOutsideBackground.findViewById(R.id.rlParentForAnimate);
     }
 
-    /**
-     * 横向
-     */
+
     public static final int DIRECTION_X = 0;
-    /**
-     * 纵向
-     */
+
     public static final int DIRECTION_Y = 1;
 
 
-    /**
-     * 水平动画
-     *
-     * @param direction 动画的方向
-     * @param duration  动画执行的时间长度
-     * @param values    动画移动的位置
-     */
+
     public EasyDialog setAnimationTranslationShow(int direction, int duration, float... values)
     {
         return setAnimationTranslation(true, direction, duration, values);
     }
 
-    /**
-     * 水平动画
-     *
-     * @param direction 动画的方向
-     * @param duration  动画执行的时间长度
-     * @param values    动画移动的位置
-     */
+
     public EasyDialog setAnimationTranslationDismiss(int direction, int duration, float... values)
     {
         return setAnimationTranslation(false, direction, duration, values);
@@ -406,23 +376,13 @@ public class EasyDialog
         return this;
     }
 
-    /**
-     * 对话框出现时候的渐变动画
-     *
-     * @param duration 动画执行的时间长度
-     * @param values   动画移动的位置
-     */
+
     public EasyDialog setAnimationAlphaShow(int duration, float... values)
     {
         return setAnimationAlpha(true, duration, values);
     }
 
-    /**
-     * 对话框消失时候的渐变动画
-     *
-     * @param duration 动画执行的时间长度
-     * @param values   动画移动的位置
-     */
+
     public EasyDialog setAnimationAlphaDismiss(int duration, float... values)
     {
         return setAnimationAlpha(false, duration, values);
@@ -454,7 +414,7 @@ public class EasyDialog
             animatorSetForDialogShow.playTogether(objectAnimatorsForDialogShow);
             animatorSetForDialogShow.start();
         }
-        //TODO 缩放的动画效果不好，不能从控件所在的位置开始缩放
+
 //        ObjectAnimator.ofFloat(rlOutsideBackground.findViewById(R.id.rlParentForAnimate), "scaleX", 0.3f, 1.0f).setDuration(500).start();
 //        ObjectAnimator.ofFloat(rlOutsideBackground.findViewById(R.id.rlParentForAnimate), "scaleY", 0.3f, 1.0f).setDuration(500).start();
     }
@@ -481,7 +441,6 @@ public class EasyDialog
                 @Override
                 public void onAnimationEnd(Animator animation)
                 {
-                    //这里有可能会有bug，当Dialog所依赖的Activity关闭的时候，如果这个时候，用户关闭对话框，由于对话框的动画关闭需要时间，当动画执行完毕后，对话框所依赖的Activity已经被销毁了，执行dismiss()就会报错
                     if (context != null && context instanceof Activity)
                     {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1)
@@ -527,9 +486,7 @@ public class EasyDialog
         }
     }
 
-    /**
-     * 关闭提示框
-     */
+
     public void dismiss()
     {
         if (dialog != null && dialog.isShowing())
@@ -538,10 +495,7 @@ public class EasyDialog
         }
     }
 
-    /**
-     * 根据x，y，重新设置控件的位置
-     * 因为setX setY为0的时候，都是在状态栏以下的，所以app不是全屏的话，需要扣掉状态栏的高度
-     */
+
     private void relocation(int[] location)
     {
         float statusBarHeight = isFullScreen() ? 0.0f : getStatusBarHeight();
@@ -618,9 +572,6 @@ public class EasyDialog
         }
     }
 
-    /**
-     * 获取屏幕的宽度
-     */
     private int getScreenWidth()
     {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
@@ -657,9 +608,7 @@ public class EasyDialog
         return flag;
     }
 
-    /**
-     * 设置是否可以按返回按钮取消
-     */
+
     public EasyDialog setCancelable(boolean cancelable)
     {
         dialog.setCancelable(cancelable);
