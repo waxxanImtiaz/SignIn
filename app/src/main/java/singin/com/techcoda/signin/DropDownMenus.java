@@ -30,14 +30,11 @@ public class DropDownMenus {
     {
         this.mContext = mContext;
         setupMenu = new DropDownMenuHandler(mContext,DropDownMenuHandler.VERTICAL,R.id.setup);
-
         setupMenu.setView(Fields.scrollers[0],Fields.scrollerLayouts[0]);
         setupMenu.setMenuHeadings();
         setupMenu.addActionItem(R.layout.setup_menu_layout_vertical);
     }
     public void setup_button_clicked(View view) {
-
-
         //setupQuickAction.setSubMenuView(view);
         setupMenu.show(view);
 
@@ -45,13 +42,13 @@ public class DropDownMenus {
 
     public void report_button_clicked(View view)
     {
-        reportQuickAction.setSubMenuView(view);
-        reportQuickAction.show(view);
+//        reportQuickAction.setSubMenuView(view);
+//        reportQuickAction.show(view);
     }
     public void design_button_clicked(View view)
     {
-        designQuickAction.setSubMenuView(view);
-        designQuickAction.show(view);
+//        designQuickAction.setSubMenuView(view);
+//        designQuickAction.show(view);
     }
 
     public void addItemsToSetupMenu(){

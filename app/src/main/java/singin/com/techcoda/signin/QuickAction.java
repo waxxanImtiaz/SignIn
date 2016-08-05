@@ -166,7 +166,7 @@ public class QuickAction extends PopupWindows implements OnDismissListener,OnCli
 		mArrowDown 	= (ImageView) mRootView.findViewById(R.id.arrow_down_two);
 		mArrowUp 	= (ImageView) mRootView.findViewById(R.id.arrow_up);
 
-		filiper = (ViewFlipper)mRootView.findViewById(R.id.dropDownFlipper);
+		//filiper = (ViewFlipper)mRootView.findViewById(R.id.dropDownFlipper);
 		//This was previously defined on show() method, moved here to prevent force close that occured
 		//when tapping fastly on a view to show quickaction dialog.
 

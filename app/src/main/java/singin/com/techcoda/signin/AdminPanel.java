@@ -221,8 +221,6 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 getAllVisitorSignInByName();//getting sign in visitors by name
             }
         });
-
-
         onSignInDialog.show();
     }
 
@@ -255,7 +253,6 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         list = (ListView) onSignOutDialog.findViewById(R.id.list_onpremises);
         search = (Button) onSignOutDialog.findViewById(R.id.btn_search_onpremises);
         mDownloadImageButton = (ImageButton)onSignOutDialog.findViewById(R.id.download_btn_image);
-
 
         getAllVisitorsSignOutByName();//getting all visitors list - SIGN OUT
 
@@ -311,10 +308,11 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     }
 
     private void statusButtonClicked(){
+        EasyDialog dialog;
         if (getCountersButtonClicked() == ll_onpremises )
         {
-                    new EasyDialog(AdminPanel.this)
-                .setLayoutResourceId(R.layout.counters_popup)
+                  dialog =  new EasyDialog(AdminPanel.this);
+                dialog.setLayoutResourceId(R.layout.counters_popup)
 //                .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
                 .setLocationByAttachedView(getCountersButtonClicked())
                 .setAnimationTranslationShow(EasyDialog.DIRECTION_Y, 1000, -800, 100, -50, 50, 0)
@@ -324,6 +322,16 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 .setMatchParent(false)
                 .setMarginLeftAndRight(24, 24)
                 .show();
+           // pdfCreater.createPDF();
+         // View v =  dialog.getAttachedView();
+           Fields.btn_export = (Button) dialog.contentView.findViewById(R.id.btn_export);
+            Fields.btn_export.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //Create pdf
+                    Toast.makeText(getApplicationContext(),"Export button is clicked",Toast.LENGTH_LONG).show();
+                }
+            });
 
         }
         else if(getCountersButtonClicked() == ll_out)

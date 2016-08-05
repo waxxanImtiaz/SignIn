@@ -49,7 +49,7 @@ public class EasyDialog
 
     private int gravity;
 
-    private View contentView;
+    public View contentView;
 
     private ImageView ivTriangle;
 

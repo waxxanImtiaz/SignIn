@@ -1,5 +1,6 @@
 package singin.com.techcoda.signin;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -122,6 +123,12 @@ public class Fields {
     public static TableRow row_custom_field_four;
     public static TableRow row_custom_field_five;
     public static TableRow row_visitor_agreement_text;
+    public static Button btn_email_report_pdf;
+    public static Button tn_delete_records;
+    public static Button btn_print_reports;
+    public static Button btn_export;
+    public static Button btn_email_search_data_csv;
+
 
     //initialize setupFields
     public static void initilizeSetupFilds(View container,DropDownMenuHandler handler)
@@ -227,6 +234,10 @@ public class Fields {
         row_custom_field_five.setOnClickListener(handler);
         row_visitor_agreement_text.setOnClickListener(handler);
     }//end of initializeSetupFields method
+    public static void initializeImageButtonPopupMenu()
+    {
+
+    }
 }
 
 //FONT FAMILIES
