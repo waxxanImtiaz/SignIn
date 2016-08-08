@@ -236,19 +236,19 @@ public class Fields {
         row_custom_field_five.setOnClickListener(handler);
         row_visitor_agreement_text.setOnClickListener(handler);
     }//end of initializeSetupFields method
-    public static void initializeImageButtonPopupMenu(View container,Context context,String status,List<List<String>> name)
+    public static void initializeImageButtonPopupMenu(View container)
     {
         btn_export = (Button) container.findViewById(R.id.btn_export);
         btn_email_report_pdf = (Button)container.findViewById(R.id.btn_email_report_pdf);
         btn_email_search_data_csv = (Button)container.findViewById(R.id.btn_email_search_data_csv);
         btn_print_reports = (Button)container.findViewById(R.id.btn_print_reports);
 
-        reportDropDownHandler = new ReportDropDownHandler(context,status,name);
-
-        btn_email_report_pdf.setOnClickListener(reportDropDownHandler);
-        btn_print_reports.setOnClickListener(reportDropDownHandler);
-        btn_email_search_data_csv.setOnClickListener(reportDropDownHandler);
-        btn_export.setOnClickListener(reportDropDownHandler);
+//        reportDropDownHandler = new ReportDropDownHandler(context,status,name);
+//
+//        btn_email_report_pdf.setOnClickListener();
+//        btn_print_reports.setOnClickListener(reportDropDownHandler);
+//        btn_email_search_data_csv.setOnClickListener(reportDropDownHandler);
+//        btn_export.setOnClickListener(reportDropDownHandler);
     }
 }
 

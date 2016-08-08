@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -19,6 +21,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +48,9 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     Dialog onSignInDialog;
     Dialog onSignOutDialog;
     PdfCreater pdfCreater;
+    String status;
+    File file;
+    private boolean isPrintReportClicked;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,7 +152,27 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
             case R.id.btn_design:
                 mDropDownMenu.design_button_clicked(v);
                 break;
-        }
+
+            case R.id.btn_delete_records:
+                    isPrintReportClicked = false;
+                    break;
+            case R.id.btn_print_reports:
+
+//                   pdfCreater.createPDF(name,status,status);
+//                file = new File(pdfCreater.path+"/"+status+".pdf");
+//                Uri uri = Uri.fromFile(file);
+//                Intent i =new Intent(Intent.ACTION_VIEW);
+//                i.setDataAndType(uri,"application/pdf");
+//                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//                this.startActivity(i);
+//                isPrintReportClicked = true;
+//                    file.delete();
+              //  showDialog(status+".pdf file is created at "+pdfCreater.path);
+                //showDialog(status+".pdf file is created at "+pdfCreater.path);
+                    break;
+
+
+            }
     }//End of onClick method
 
     //Credentials for Dialog box
@@ -313,6 +339,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         EasyDialog dialog;
         if (getCountersButtonClicked() == ll_onpremises )
         {
+            status = "onpremises";
                   dialog =  new EasyDialog(AdminPanel.this);
                  dialog.setLayoutResourceId(R.layout.counters_popup)
 //                .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
@@ -324,18 +351,12 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 .setMatchParent(false)
                 .setMarginLeftAndRight(24, 24)
                 .show();
-            Fields.initializeImageButtonPopupMenu(dialog.contentView, getApplicationContext(), "onpremises", name);
+                Fields.initializeImageButtonPopupMenu(dialog.contentView);
+                initializeHandler();
 
-            if (Fields.reportDropDownHandler.isPdfCreated())
-            {
-                showDialog("onpremises.pdf file is created at "+Fields.reportDropDownHandler.getPath());
-            }
-            else
-            {
-                showDialog("failed to create pdf file");
-            }
         }
         else if(getCountersButtonClicked() == ll_out) {
+            status = "signout";
             dialog =  new EasyDialog(AdminPanel.this);
             dialog.setLayoutResourceId(R.layout.counters_popup)
                     // .setBackgroundColor(AdminPanel.this.getResources().getColor(R.color.background_color_blue))
@@ -345,19 +366,12 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                     .setAnimationAlphaDismiss(300, 1.0f, 0.0f)
                     .setTouchOutsideDismiss(true)
                     .setMatchParent(false).show();
-            Fields.initializeImageButtonPopupMenu(dialog.contentView, getApplicationContext(), "signout", name);
-
-            if (Fields.reportDropDownHandler.isPdfCreated())
-            {
-                showDialog("signout.pdf file is created at "+Fields.reportDropDownHandler.getPath());
-            }
-            else
-            {
-                showDialog("failed to create pdf file");
-            }
+            Fields.initializeImageButtonPopupMenu(dialog.contentView);
+            initializeHandler();
         }
         else
         {
+            status = "signin";
             dialog =  new EasyDialog(AdminPanel.this);
             dialog.setLayoutResourceId(R.layout.counters_popup)
                     .setLocationByAttachedView(ll_in)
@@ -367,19 +381,25 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                     .setTouchOutsideDismiss(true)
                     .setMatchParent(false)
                     .show();
-            Fields.initializeImageButtonPopupMenu(dialog.contentView, getApplicationContext(), "signin", name);
-            if (Fields.reportDropDownHandler.isPdfCreated())
-            {
-                showDialog("signin.pdf file is created at "+Fields.reportDropDownHandler.getPath());
-            }
-            else
-            {
-                showDialog("failed to create pdf file");
-            }
+            Fields.initializeImageButtonPopupMenu(dialog.contentView);
+            initializeHandler();
+//            if (Fields.reportDropDownHandler.isPdfCreated())
+//            {
+//                showDialog("signin.pdf file is created at "+Fields.reportDropDownHandler.getPath());
+//            }
+//
         }
 
     }
 
+    private void initializeHandler(){
+
+        Fields.btn_email_report_pdf.setOnClickListener(this);
+        Fields.btn_print_reports.setOnClickListener(this);
+        Fields.btn_email_search_data_csv.setOnClickListener(this);
+        Fields.btn_export.setOnClickListener(this);
+
+    }
     private int getStatusBarHeight()
     {
         int result = 0;
@@ -405,8 +425,10 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         this.countersButtonClicked = countersButtonClicked;
     }
     public void showDialog(String message){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage(message);
+
+//        alertDialogBuilder.setItems(path);
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
@@ -415,5 +437,14 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+    @Override
+    public void onBackPressed(){
+        if(file != null && file.exists() && isPrintReportClicked)
+        {
+         file.delete();
+        }
+
+        super.onBackPressed();
     }
 }//end of class

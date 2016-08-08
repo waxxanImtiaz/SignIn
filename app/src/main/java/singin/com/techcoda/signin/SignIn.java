@@ -207,14 +207,17 @@ public class SignIn extends Activity implements View.OnClickListener {
     //CHECK FOR INPUT
     public boolean checkForInput(View view){
         String option = database.isFieldEnabled("company");
-        //
-        boolean isCompanyEmpty = true;
-        boolean isAddressEmpty = true;
-        boolean isEmailEmpty = true;
-        boolean isPhoneEmpty = true;
-        boolean isStateEmpty = true;
-        boolean isZipCodeEmpty = true;
-        //
+
+        if(firstName.getText().toString().isEmpty()){
+            message = "First Name";
+            open(view);
+            return false;
+        }
+        if(lastName.getText().toString().isEmpty()){
+            message = "Last Name";
+            open(view);
+            return false;
+        }
         if(option.equals("Mandatory"))
         {
             message = "Company";
@@ -222,7 +225,6 @@ public class SignIn extends Activity implements View.OnClickListener {
             if(company.getText().toString().isEmpty()){
                 message = "Company";
                 open(view);
-                //isCompanyEmpty = false;
                 return false;
             }
         }
@@ -232,7 +234,6 @@ public class SignIn extends Activity implements View.OnClickListener {
             if(address.getText().toString().isEmpty()){
                 message = "Address";
                 open(view);
-//                isAddressEmpty = false;
                 return false;
             }
 
@@ -245,7 +246,6 @@ public class SignIn extends Activity implements View.OnClickListener {
             if(company.getText().equals("")){
                 message = "Email";
                 open(view);
-//                isEmailEmpty = false;
                 return false;
             }
         }
@@ -259,7 +259,8 @@ public class SignIn extends Activity implements View.OnClickListener {
         alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-               finish();
+              //
+                // finish();
             }
         });
         AlertDialog alertDialog = alertDialogBuilder.create();
