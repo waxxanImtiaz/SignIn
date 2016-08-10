@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:scrollX="@dimen/activity_horizontal_margin"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ll_data"
+        android:orientation="vertical"
+        >
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            style="@style/setup_menu_table"
+            android:id="@+id/tl_report_table"
+
+            android:stretchColumns="*"
+            android:background="#ffffff">
+
+            <!--SPACE-->
+            <TableRow
+                android:layout_height="20dp"
+                android:layout_width="200dp">
+                <View android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+            </TableRow>
+            <!--END OF SPACE-->
+
+
+            <!-- Row 1 with single column -->
+
+            <TableRow
+                style="@style/setup_table_rows"
+                android:id="@+id/row_heading_report"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp">
+                <TextView
+                    android:id="@+id/tv_id_report"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_left_fields"
+                    android:text="ID"
+                    />
+                <TextView
+                    android:id="@+id/tv_firstname_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="First Name"
+                    />
+                <TextView
+                android:id="@+id/tv_lastname_report"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:textColor="#000"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                style="@style/setup_full_style_center_fields"
+                android:text="Last Name"
+                />
+                <TextView
+                    android:id="@+id/tv_company_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="Company"
+                    />
+                <TextView
+                    android:id="@+id/tv_address_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="Address"
+                    />
+                <TextView
+                    android:id="@+id/tv_city_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="City"
+                    />
+                <TextView
+                    android:id="@+id/tv_zip_code_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="Zip Code"
+                    />
+                <TextView
+                    android:id="@+id/tv_visitor_agreement_text_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="Visitor Agreement Text"
+                    />
+            </TableRow>
+
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</HorizontalScrollView>

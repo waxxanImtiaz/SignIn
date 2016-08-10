@@ -21,6 +21,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jamil.signinapp.PrintReport;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -50,6 +52,8 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     PdfCreater pdfCreater;
     String status;
     File file;
+    Intent i;
+    String state;
     private boolean isPrintReportClicked;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         counterSignOut = (TextView) findViewById(R.id.tv_counter_signout);
         counterOnPremises = (TextView) findViewById(R.id.tv_counter_onpremises);
 
+        i = new Intent(this, PrintReport.class);
         Toast.makeText(AdminPanel.this, "onCreate Method is called", Toast.LENGTH_SHORT).show();
         getAllCountersData();
     }
@@ -125,6 +130,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
             case R.id.ll_signin:
                 setCountersButtonClicked(ll_in);
                 flag = "signin";
+                state = "in";
                 showDialogBoxSignIn();
                 break;
 
@@ -132,12 +138,14 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 setCountersButtonClicked(ll_onpremises);
                 showDialogBoxOnPremises();
                 flag = "onpremises";
+                state = "premises";
                 setCountersButtonClicked(ll_onpremises);
                 break;
 
             case R.id.ll_signout:
                 setCountersButtonClicked(ll_out);
                 flag = "signout";
+                state = "gone";
                 showDialogBoxSignOut();
                 break;
             case R.id.download_btn_image:
@@ -157,6 +165,8 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                     isPrintReportClicked = false;
                     break;
             case R.id.btn_print_reports:
+                i.putExtra("clickedOn",state);
+                startActivity(i);
 
 //                   pdfCreater.createPDF(name,status,status);
 //                file = new File(pdfCreater.path+"/"+status+".pdf");

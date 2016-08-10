@@ -208,6 +208,25 @@ public class SubMenuHandler implements View.OnClickListener{
                 Fields.cb_signature_capture_optional.setChecked(true);
                 database.updateSignInSetupFields("signatue capture","Not Used");
                 break;
+            //IF HERE TO SEE SUB MENU CLICKED
+            case R.id.cb_here_to_see_mendatory:
+                Fields.cb_here_to_see_mandatory.setChecked(true);
+                Fields.cb_here_to_see_not_used.setChecked(false);
+                Fields.cb_here_to_see_optional.setChecked(false);
+                database.updateSignInSetupFields("here to see","Mandatory");
+                break;
+            case R.id.cb_here_to_see_not_used:
+                Fields.cb_here_to_see_mandatory.setChecked(false);
+                Fields.cb_here_to_see_not_used.setChecked(true);
+                Fields.cb_here_to_see_optional.setChecked(false);
+                database.updateSignInSetupFields("here to see","Optional");
+                break;
+            case R.id.cb_here_to_see_optional:
+                Fields.cb_here_to_see_mandatory.setChecked(false);
+                Fields.cb_here_to_see_not_used.setChecked(false);
+                Fields.cb_here_to_see_optional.setChecked(true);
+                database.updateSignInSetupFields("here to see","Not Used");
+                break;
         }
     }
 

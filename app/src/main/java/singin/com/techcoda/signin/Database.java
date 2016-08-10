@@ -5,8 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.sql.Blob;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -27,18 +33,86 @@ public class Database {
     }
 
     //INSERT SING IN VISITOR
-    public long insertVisitor(String companyID, String firstName, String lastName){
+//    public long insertVisitor(String companyID, String firstName, String lastName){
+    public long insertVisitor(List<String> siginIn, byte[] b){
 
         SQLiteDatabase db = dbh.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(DatabaseHandler.COL_COMPANY_ID, companyID);
-        contentValues.put(DatabaseHandler.COL_FIRST_NAME, firstName);
-        contentValues.put(DatabaseHandler.COL_LAST_NAME, lastName);
+        contentValues.put(DatabaseHandler.COL_COMPANY_ID, siginIn.get(0));
+        contentValues.put(DatabaseHandler.COL_FIRST_NAME, siginIn.get(1));
+        contentValues.put(DatabaseHandler.COL_LAST_NAME, siginIn.get(2));
+
+
+        String temp = null;
+
+        temp = siginIn.get(3);
+        contentValues.put(DatabaseHandler.COL_COMPANY, temp+"");
+
+        temp = siginIn.get(4);
+        if(temp != null)
+            contentValues.put(DatabaseHandler.COL_ADDRESS, temp+"");
+
+        temp = siginIn.get(5);
+        if(temp != null)
+            contentValues.put(DatabaseHandler.COL_CITY, temp+"");
+
+        temp = siginIn.get(6);
+        if(temp != null)
+            contentValues.put(DatabaseHandler.COL_EMAIL, temp+"");
+        temp = siginIn.get(7);
+        if(temp != null)
+            contentValues.put(DatabaseHandler.COL_STATE, temp+"");
+
+        temp = siginIn.get(8);
+        if(temp != null)
+            contentValues.put(DatabaseHandler.COL_ZIPCODE, temp+"");
+
+
+        temp = siginIn.get(9);
+        if(temp != null)
+            contentValues.put(DatabaseHandler.COL_PHONE, temp+"");
+
+        temp = siginIn.get(10);
+        if(temp != null)
+            contentValues.put(DatabaseHandler.COL_HERE_TO_SEE, temp+"");
+        temp = siginIn.get(11);
+        contentValues.put(DatabaseHandler.COL_SIGNATRUE_CAPTURE, temp+"");
+
+        contentValues.put(DatabaseHandler.COL_PHOTO_CAPTURE , b);
+        temp = siginIn.get(12);
+        contentValues.put(DatabaseHandler.COL_GUIDE_NAME, temp+"");
+
+        temp = siginIn.get(13);
+        contentValues.put(DatabaseHandler.COL_BADGE_NUMBER, temp+"");
+
+        temp = siginIn.get(14);
+        contentValues.put(DatabaseHandler.COL_BADGE_RETURNED, temp+"");
+
+
+        temp = siginIn.get(15);
+        contentValues.put(DatabaseHandler.COL_VEHICLE_MAKE_MODEL, temp+"");
+
+        temp = siginIn.get(16);
+        contentValues.put(DatabaseHandler.COL_VEHICLE_COLOR, temp+"");
+
+        temp = siginIn.get(17);
+        contentValues.put(DatabaseHandler.COL_VEHICLE_LISENCE_PLATE, temp+"");
+
+        temp = siginIn.get(18);
+        contentValues.put(DatabaseHandler.COL_COMMENTS, temp+"");
+
+        temp = siginIn.get(19);
+        contentValues.put(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN, temp+"");
+
+
+        temp = siginIn.get(20);
+        contentValues.put(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNOUT, temp+"");
+
+        temp = siginIn.get(21);
+        contentValues.put(DatabaseHandler.COL_VISITOR_AGREEMENT_TEXT, temp+"");
 
         long rows = db.insert(DatabaseHandler.TABLE_VISITOR, null, contentValues);
-
-
         return rows;
     }
 
@@ -326,11 +400,126 @@ public class Database {
     //getting all current date visitors
     //this method shows all the visitors of current date, those who sign in today will
     // be shown by this mehtod
-    public List<List<String>> getAllVisitorsList(){
+    public List<List<String>> getAllVisitorsListUsingStatus(String action){
         List<List<String>> name = new ArrayList<>();
+
         List<String> id = new ArrayList<>();
         List<String> first = new ArrayList<>();
         List<String> last = new ArrayList<>();
+        List<String> company = new ArrayList<>();
+        List<String> email = new ArrayList<>();
+        List<String> state = new ArrayList<>();
+        List<String> city = new ArrayList<>();
+        List<String> guideName = new ArrayList<>();
+        List<String> address = new ArrayList<>();
+        List<String> hereToSee = new ArrayList<>();
+        List<String> zipCode = new ArrayList<>();
+        List<String> phone = new ArrayList<>();
+        List<String> signatureCapture = new ArrayList<>();
+        List<String> badgeReturned = new ArrayList<>();
+        List<String> badgeNumber = new ArrayList<>();
+        List<String> vehicleMakeModel = new ArrayList<>();
+        List<String> vehicleColor = new ArrayList<>();
+        List<String> vehicleLisencePlate = new ArrayList<>();
+        List<String> comments = new ArrayList<>();
+        List<String> visitorSignInAgreement = new ArrayList<>();
+        List<String> visitorSignOutAgreement = new ArrayList<>();
+        List<String> visitorAgreementText = new ArrayList<>();
+
+
+        String date = new SimpleDateFormat("dd MM yyyy").format(new Date()); //get current system date
+        List<String> listID = getVisitorsIDByStatusAndDate(action , date); //get id's from sign in table where status= premises and date= current date
+
+        SQLiteDatabase db = dbh.getWritableDatabase(); //open datebase
+
+        //run loop to get everytime data by id which is stored in listID
+        for(int i=0; i<listID.size(); i++){
+
+            String[] selectionArgs = { listID.get(i) };
+            String query = "SELECT " + DatabaseHandler.COL_FIRST_NAME + ", " + DatabaseHandler.COL_LAST_NAME+ ", "+ DatabaseHandler.COL_COMPANY+ ", " + DatabaseHandler.COL_EMAIL+ ", " + DatabaseHandler.COL_ADDRESS+ ", " + DatabaseHandler.COL_PHONE+ ", " + DatabaseHandler.COL_STATE+ ", " + DatabaseHandler.COL_HERE_TO_SEE+ ", " + DatabaseHandler.COL_ZIPCODE+ ", " + DatabaseHandler.COL_CITY+ ", " + DatabaseHandler.COL_SIGNATRUE_CAPTURE+ ", " + DatabaseHandler.COL_VEHICLE_LISENCE_PLATE+ ", " + DatabaseHandler.COL_VEHICLE_COLOR+ ", " + DatabaseHandler.COL_VEHICLE_MAKE_MODEL+ ", " + DatabaseHandler.COL_BADGE_RETURNED+ ", " + DatabaseHandler.COL_BADGE_NUMBER+ ", " + DatabaseHandler.COL_COMMENTS+ ", " + DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNOUT+ ", " + DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN+ ", " + DatabaseHandler.COL_VISITOR_AGREEMENT_TEXT +", " + DatabaseHandler.COL_CITY +", " + DatabaseHandler.COL_GUIDE_NAME + " FROM " + DatabaseHandler.TABLE_VISITOR + " WHERE " + DatabaseHandler.COL_VISITOR_ID + "=?";
+            Cursor cursor = db.rawQuery(query, selectionArgs);
+            if(cursor.moveToNext()){
+                id.add(listID.get(i));
+                first.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_FIRST_NAME)));
+                last.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_LAST_NAME)));
+                company.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_COMPANY)));
+                email.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_EMAIL)));
+                state.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_STATE)));
+                address.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_ADDRESS)));
+                hereToSee.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_HERE_TO_SEE)));
+                zipCode.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_ZIPCODE)));
+                phone.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_PHONE)));
+                signatureCapture.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SIGNATRUE_CAPTURE)));
+                badgeReturned.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_BADGE_RETURNED)));
+                badgeNumber.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_BADGE_NUMBER)));
+                vehicleMakeModel.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VEHICLE_MAKE_MODEL)));
+                vehicleColor.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VEHICLE_COLOR)));
+                vehicleLisencePlate.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VEHICLE_LISENCE_PLATE)));
+                comments.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_COMMENTS)));
+                visitorAgreementText.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VISITOR_AGREEMENT_TEXT)));
+                visitorSignInAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN)));
+                visitorSignOutAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNOUT)));
+                city.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_CITY)));
+                guideName.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_GUIDE_NAME)));
+
+
+            }
+
+        }//end of for loop
+
+
+        name.add(id);
+        name.add(first);
+        name.add(last);
+        name.add(company);
+        name.add(email);
+        name.add(state);
+        name.add(address);
+        name.add(hereToSee);
+        name.add(zipCode);
+        name.add(phone);
+        name.add(signatureCapture);
+        name.add(badgeReturned);
+        name.add(badgeNumber);
+        name.add(vehicleMakeModel);
+        name.add(vehicleColor);
+        name.add(vehicleLisencePlate);
+        name.add(comments);
+        name.add(visitorAgreementText);
+        name.add(visitorSignInAgreement);
+        name.add(visitorSignOutAgreement);
+        name.add(city);
+        name.add(guideName);
+        return name;
+    }
+
+
+    public List<List<String>> getAllVisitorsList(){
+
+        List<List<String>> name = new ArrayList<>();
+
+        List<String> id = new ArrayList<>();
+        List<String> first = new ArrayList<>();
+        List<String> last = new ArrayList<>();
+        List<String> company = new ArrayList<>();
+        List<String> address = new ArrayList<>();
+        List<String> city = new ArrayList<>();
+        List<String> state = new ArrayList<>();
+        List<String> phone = new ArrayList<>();
+        List<String> zipCode = new ArrayList<>();
+        List<String> email = new ArrayList<>();
+        List<String> hereToSee = new ArrayList<>();
+        List<String> signatureCapture = new ArrayList<>();
+        List<String> badgeReturn = new ArrayList<>();
+        List<String> guideName = new ArrayList<>();
+        List<String> badgeNumber = new ArrayList<>();
+        List<String> vehicleMakeModel = new ArrayList<>();
+        List<String> vehicleColor = new ArrayList<>();
+        List<String> vehicleLisencePlate = new ArrayList<>();
+        List<String> visitorSignInAgreement = new ArrayList<>();
+        List<String> visitorSignOutAgreement = new ArrayList<>();
+        List<String> visitorAgreementText = new ArrayList<>();
+        List<String> comments = new ArrayList<>();
 
         String date = new SimpleDateFormat("dd MM yyyy").format(new Date()); //get current system date
         List<String> listID = getVisitorsIDByDate( date ); //get id's from sign in table where status= premises and date= current date
@@ -341,12 +530,42 @@ public class Database {
         for(int i=0; i<listID.size(); i++){
 
             String[] selectionArgs = { listID.get(i) };
-            String query = "SELECT " + DatabaseHandler.COL_FIRST_NAME + ", " + DatabaseHandler.COL_LAST_NAME + " FROM " + DatabaseHandler.TABLE_VISITOR + " WHERE " + DatabaseHandler.COL_VISITOR_ID + "=?";
+            String query = "SELECT " + DatabaseHandler.COL_FIRST_NAME + ", " + DatabaseHandler.COL_LAST_NAME
+                    +","+DatabaseHandler.COL_ADDRESS+","+DatabaseHandler.COL_EMAIL+","+DatabaseHandler.COL_CITY
+                    +","+DatabaseHandler.COL_COMMENTS+","+DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN+","+
+                    DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNOUT+","+DatabaseHandler.COL_VISITOR_AGREEMENT_TEXT+","+DatabaseHandler.COL_ZIPCODE
+                    +","+DatabaseHandler.COL_STATE+","+DatabaseHandler.COL_PHONE+","+DatabaseHandler.COL_COMPANY+","+DatabaseHandler.COL_HERE_TO_SEE
+                    +","+DatabaseHandler.COL_VEHICLE_COLOR+","+DatabaseHandler.COL_VEHICLE_MAKE_MODEL+ "," +
+                    DatabaseHandler.COL_VEHICLE_LISENCE_PLATE+","+DatabaseHandler.COL_BADGE_NUMBER+","+DatabaseHandler.COL_BADGE_RETURNED
+                    +","+DatabaseHandler.COL_GUIDE_NAME+","+DatabaseHandler.COL_SIGNATRUE_CAPTURE+" FROM " + DatabaseHandler.TABLE_VISITOR + " WHERE " + DatabaseHandler.COL_VISITOR_ID + "=?";
+
+
             Cursor cursor = db.rawQuery(query, selectionArgs);
             if(cursor.moveToNext()){
                 id.add(listID.get(i));
                 first.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_FIRST_NAME)));
                 last.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_LAST_NAME)));
+                email.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_EMAIL)));
+                comments.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_COMMENTS)));
+                company.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_COMPANY)));
+                city.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_CITY)));
+                address.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_ADDRESS)));
+                hereToSee.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_HERE_TO_SEE)));
+                zipCode.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_ZIPCODE)));
+                signatureCapture.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SIGNATRUE_CAPTURE)));
+                badgeNumber.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_BADGE_NUMBER)));
+                badgeReturn.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_BADGE_RETURNED)));
+                guideName.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_GUIDE_NAME)));
+                vehicleColor.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VEHICLE_COLOR)));
+                vehicleMakeModel.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VEHICLE_MAKE_MODEL)));
+                vehicleLisencePlate.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VEHICLE_LISENCE_PLATE)));
+                visitorSignInAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN)));
+                visitorSignOutAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNOUT)));
+                visitorAgreementText.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VISITOR_AGREEMENT_TEXT)));
+                state.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_STATE)));
+                phone.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_PHONE)));
+
+
             }
 
         }//end of for loop
@@ -355,10 +574,29 @@ public class Database {
         name.add(id);
         name.add(first);
         name.add(last);
+        name.add(city);
+        name.add(company);
+        name.add(comments);
+        name.add(address);
+        name.add(hereToSee);
+        name.add(email);
+        name.add(signatureCapture);
+        name.add(state);
+        name.add(guideName);
+        name.add(badgeNumber);
+        name.add(badgeReturn);
+        name.add(vehicleLisencePlate);
+        name.add(vehicleColor);
+        name.add(vehicleMakeModel);
+        name.add(phone);
+        name.add(vehicleMakeModel);
+        name.add(visitorAgreementText);
+        name.add(visitorSignInAgreement);
+        name.add(visitorSignOutAgreement);
+        name.add(zipCode);
+
         return name;
     }
-
-
     //GET ALL VISITORS IN LIST - ON PREMISES
     public List<List<String>> getAllVisitorsListByStatus(String action){
         List<List<String>> name = new ArrayList<>();
@@ -417,7 +655,7 @@ public class Database {
         public static final String TABLE_ADMIN = "admin";
         public static final String COL_ADMIN_ID = "admin_id";
         //public static final String COL_NAME = "name";
-        public static final String COL_EMAIL = "email";
+        //public static final String COL_EMAIL = "email";
         public static final String COL_PASSWORD = "password";
 
 
@@ -437,6 +675,29 @@ public class Database {
         public static final String COL_VISITOR_ID = "visitor_id"; //primary key
         public static final String COL_FIRST_NAME = "first_name";
         public static final String COL_LAST_NAME = "last_name";
+        public static final String COL_ADDRESS = "address";
+        public static final String COL_COMPANY = "company";
+        public static final String COL_CITY = "city";
+        public static final String COL_STATE = "state";
+        public static final String COL_ZIPCODE = "zipcode";
+        public static final String COL_PHONE = "phone";
+        public static final String COL_EMAIL = "email";
+        public static final String COL_HERE_TO_SEE = "here_to_see";
+        public static final String COL_SIGNATRUE_CAPTURE = "signature_capture";
+        public static final String COL_PHOTO_CAPTURE = "photo_capture";
+        public static final String COL_GUIDE_NAME = "guide_name";
+        public static final String COL_BADGE_RETURNED = "returned";
+        public static final String COL_BADGE_NUMBER = "badge_number";
+        public static final String COL_VEHICLE_MAKE_MODEL = "vehicle_make_model";
+        public static final String COL_VEHICLE_COLOR = "color";
+        public static final String COL_VEHICLE_LISENCE_PLATE = "lisence_plate";
+        public static final String COL_COMMENTS = "comments";
+        public static final String COL_SHOW_AGREEMENT_ON_SIGNIN = "show_agreement_on_signin";
+        public static final String COL_SHOW_AGREEMENT_ON_SIGNOUT = "signout";
+        public static final String COL_VISITOR_AGREEMENT_TEXT = "visitor_agreement_text";
+
+
+
 
 //        //COLORS
 //        public static final String TABLE_COLORS ="colors";
@@ -457,7 +718,7 @@ public class Database {
         //CREATE TABEL'S
         public static final String CREATE_TABLE_COMPANY = "CREATE TABLE " + TABLE_COMPANY + "(" + COL_COMPANY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_NAME + " VARCHAR(255), " + COL_STATUS + " VARCHAR(50));";
         public static final String CREATE_TABLE_ADMIN = "CREATE TABLE " + TABLE_ADMIN + "(" + COL_ADMIN_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_NAME + " VARCHAR(255), " + COL_EMAIL + " VARCHAR(255), " + COL_PASSWORD + " VARCHAR(255));";
-        public static final String CREATE_TABLE_VISITOR = "CREATE TABLE " + TABLE_VISITOR + "(" + COL_VISITOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_FIRST_NAME + " VARCHAR(255), " + COL_LAST_NAME + " VARCHAR(255));";
+        public static final String CREATE_TABLE_VISITOR = "CREATE TABLE " + TABLE_VISITOR + "(" + COL_VISITOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_FIRST_NAME + " VARCHAR(255), " + COL_LAST_NAME + " VARCHAR(255),"+ COL_COMPANY +" VARCHAR(255),"+COL_ADDRESS+" VARCHAR(255),"+COL_CITY+" VARCHAR(255),"+COL_EMAIL+" VARCHAR(255),"+COL_STATE+" VARCHAR(255),"+COL_ZIPCODE+" VARCHAR(255),"+COL_PHONE+" VARCHAR(255),"+COL_HERE_TO_SEE+" VARCHAR(255),"+COL_SIGNATRUE_CAPTURE+"  VARCHAR(255),"+COL_PHOTO_CAPTURE+" BLOB,"+COL_GUIDE_NAME+"  VARCHAR(255),"+COL_BADGE_NUMBER+"  VARCHAR(255),"+COL_BADGE_RETURNED+"  VARCHAR(255),"+COL_VEHICLE_MAKE_MODEL+" VARCHAR(255),"+COL_VEHICLE_COLOR+"  VARCHAR(255),"+COL_VEHICLE_LISENCE_PLATE+"  VARCHAR(255),"+COL_COMMENTS+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNIN+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNOUT+"  VARCHAR(255),"+COL_VISITOR_AGREEMENT_TEXT+"  VARCHAR(255));";
         public static final String CREATE_TABLE_SIGNIN = "CREATE TABLE " + TABLE_SIGN_IN + "(" + COL_SIGN_IN + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_VISITOR_ID + " INTEGER, " + COL_IN + " VARCHAR(50), " + COL_OUT + " VARCHAR(50), " + COL_STATUS + " VARCHAR(50), " + COL_DATE + " VARCHAR(50));";
         public static final String CREATE_TABLE_FIELD_SETUP="CREATE TABLE "+TABLE_SINGN_IN_SETUP_FIELDS + " ("+COL_FIELD_ID+" VARCHAR(100),"+ COL_FIELD_OPTION+" VARCHAR(30));";
 
