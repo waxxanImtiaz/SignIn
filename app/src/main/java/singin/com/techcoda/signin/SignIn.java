@@ -217,7 +217,9 @@ public class SignIn extends Activity implements View.OnClickListener {
 
 
         if(visitorAgreement.getVisibility() == View.VISIBLE )
-            visitor.add("true");
+            if(visitorAgreement.isChecked())
+                visitor.add("true");
+            else visitor.add("false");
         else visitor.add("N/A");
 
         visitor.add("N/A");
@@ -507,43 +509,4 @@ public class SignIn extends Activity implements View.OnClickListener {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
-    //SEND EMAIL
-    public void sendEmail(){
-        boolean isEmailSend = false;
-        if(isEmailVisible) {
-            Toast.makeText(SignIn.this, "\"Send email\"", Toast.LENGTH_SHORT).show();
-            Intent email = new Intent(Intent.ACTION_SEND);
-            email.putExtra(Intent.EXTRA_EMAIL, new String[]{"wassanimtiaz@outlook.com"});
-            email.putExtra(Intent.EXTRA_SUBJECT, "I am sign in app user");
-            email.putExtra(Intent.EXTRA_TEXT, this.email.getText().toString());
-
-            //need this to prompts email client only
-            email.setType("message/rfc822");
-
-            startActivity(Intent.createChooser(email, "Choose an Email client :"));
-            isEmailSend = true;
-        }//end of if
-        if(isEmailSend) {
-
-        }
-//        String[] TO = {"waxxan.imtiaz.123@gmail.com"};
-//        String[] CC = {"wassanimtiaz@outlook.com"};
-//        Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//
-//        emailIntent.setData(Uri.parse("mailto:"));
-//        emailIntent.setType("text/plain");
-//        emailIntent.putExtra(Intent.EXTRA_EMAIL, TO);
-//        emailIntent.putExtra(Intent.EXTRA_CC, CC);
-//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Your subject");
-//        emailIntent.putExtra(Intent.EXTRA_TEXT, "Email message goes here");
-//
-//        try {
-//            startActivity(Intent.createChooser(emailIntent, "Send mail..."));
-//            finish();
-//            Toast.makeText(SignIn.this, "\"Finished sending email...\"", Toast.LENGTH_SHORT).show();
-//        }
-//        catch (android.content.ActivityNotFoundException ex) {
-//            Toast.makeText(SignIn.this, "There is no email client installed.", Toast.LENGTH_SHORT).show();
-//        }
-    }//end of send email method
 }

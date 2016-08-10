@@ -54,7 +54,9 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     File file;
     Intent i;
     String state;
-    private boolean isPrintReportClicked;
+    String date;
+    boolean isPrintReportClicked;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,7 +114,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     public void getAllCountersData(){
 
         int in, out, onPremises;
-        String date = new SimpleDateFormat("dd MM yyyy").format(new Date());
+        date = new SimpleDateFormat("dd MM yyyy").format(new Date());
 
         in = database.getCountVisitorIn(date);
         out = database.getCountVisitorOut(date);
@@ -162,29 +164,70 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 break;
 
             case R.id.btn_delete_records:
-                    isPrintReportClicked = false;
+                int rows =0;
+                if(!equals("in"))
+                 rows = database.deleteAllVisitorsOn(state,date);
+                else{
+                    rows = database.deleteAllVisitorsOn(state,date);
+                }
+                resetCounters(rows);
                     break;
             case R.id.btn_print_reports:
                 i.putExtra("clickedOn",state);
                 startActivity(i);
+                break;
+            case R.id.btn_email_report_pdf:
+                pdfCreater = new PdfCreater(getApplicationContext());
 
-//                   pdfCreater.createPDF(name,status,status);
-//                file = new File(pdfCreater.path+"/"+status+".pdf");
-//                Uri uri = Uri.fromFile(file);
-//                Intent i =new Intent(Intent.ACTION_VIEW);
-//                i.setDataAndType(uri,"application/pdf");
-//                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//                this.startActivity(i);
-//                isPrintReportClicked = true;
-//                    file.delete();
-              //  showDialog(status+".pdf file is created at "+pdfCreater.path);
-                //showDialog(status+".pdf file is created at "+pdfCreater.path);
-                    break;
 
+                if(state.equals("premises") || state.equals("gone") ){
+
+                    if(state.equals("gone")) {
+                        name = database.getAllVisitorsListUsingStatus(state);
+                    }
+                    else
+                    {
+                        name = database.getAllVisitorsListUsingStatus("premises");
+                    }
+                }
+                else {
+                    name = database.getAllVisitorsList();
+                }
+                if(pdfCreater.createPDF(name,flag,state)){
+                    //showDialog("pdf created successfully");
+                    emailReport();
+                }
+                else
+                    showDialog("pdf not created");
+                break;
+            //END OF CASE
 
             }
     }//End of onClick method
 
+
+    public void resetCounters(int rows)
+    {
+
+            showDialog("All Visitors "+flag+" deleted successfully");
+            if(state.equals("in")){
+                counterSignIn.setText("0");
+                counterSignOut.setText("0");
+                counterOnPremises.setText("0");
+            }
+            else if(state.equals("gone")){
+                counterSignOut.setText("0");
+            }
+            else {
+                counterOnPremises.setText("0");
+
+            }
+        if(rows > 0){
+            showDialog("Status is empty");
+        }
+
+
+    }
     //Credentials for Dialog box
     ListView list;
     EditText firstName;
@@ -403,7 +446,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     }
 
     private void initializeHandler(){
-
+        Fields.btn_delete_records.setOnClickListener(this);
         Fields.btn_email_report_pdf.setOnClickListener(this);
         Fields.btn_print_reports.setOnClickListener(this);
         Fields.btn_email_search_data_csv.setOnClickListener(this);
@@ -456,5 +499,18 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         }
 
         super.onBackPressed();
+    }
+
+    public void emailReport(){
+        Toast.makeText(AdminPanel.this, "\"Send email\"", Toast.LENGTH_SHORT).show();
+        Intent email = new Intent(Intent.ACTION_SEND);
+        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"Email address"});
+        email.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+        email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(pdfCreater.path+"/"+flag+".pdf")));
+        email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //need this to prompts email client only
+        email.setType("message/rfc822");
+        startActivity(Intent.createChooser(email, "Choose an Email client :"));
+        //isEmailSend = true;
     }
 }//end of class

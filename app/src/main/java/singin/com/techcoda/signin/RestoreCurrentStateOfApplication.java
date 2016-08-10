@@ -46,7 +46,7 @@ public class RestoreCurrentStateOfApplication {
     public void loadPhotoCaptureSubMenuState()
     {
         String photoCaptureState = database.isFieldEnabled("photo capture");
-        String autoPhotoCapture = database.isFieldEnabled("automatic photo capture");
+//        String autoPhotoCapture = database.isFieldEnabled("automatic photo capture");
         String photoSizeInEmail = database.isFieldEnabled("photo size in email");
         if(photoCaptureState.equals("Mandatory"))
         {
@@ -58,12 +58,12 @@ public class RestoreCurrentStateOfApplication {
             Fields.cb_photo_capture_mandatory.setChecked(false);
             Fields.cb_photo_capture_optional.setChecked(true);
         }
-        if(autoPhotoCapture.equals("yes"))
-        {
-            Fields.cb_auto_photo_capture.setChecked(true);
-        }
-        else if(autoPhotoCapture.equals("no"))
-            Fields.cb_auto_photo_capture.setChecked(false);
+//        if(autoPhotoCapture.equals("yes"))
+//        {
+//            Fields.cb_auto_photo_capture.setChecked(true);
+//        }
+//        else if(autoPhotoCapture.equals("no"))
+//            Fields.cb_auto_photo_capture.setChecked(false);
 
         if(photoSizeInEmail.equals("small")){
             Fields.cb_photo_capture_small.setChecked(true);

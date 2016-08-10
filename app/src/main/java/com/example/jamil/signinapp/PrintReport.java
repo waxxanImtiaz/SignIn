@@ -1,24 +1,14 @@
 package com.example.jamil.signinapp;
-
 import singin.com.techcoda.signin.*;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.lowagie.text.Table;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import singin.com.techcoda.signin.R;
@@ -269,27 +259,32 @@ public class PrintReport extends Activity {
             t1v.setText(id.get(i));
             t1v.setTextColor(Color.BLACK);
             t1v.setGravity(Gravity.CENTER);
+            t1v.setTextSize(15);
             tbrow.addView(t1v);
 
             TextView t2v = new TextView(this);
+            t2v.setTextSize(15);
             t2v.setText(first.get(i));
             t2v.setTextColor(Color.BLACK);
             t2v.setGravity(Gravity.CENTER);
             tbrow.addView(t2v);
 
             TextView t3v = new TextView(this);
+            t3v.setTextSize(15);
             t3v.setText(last.get(i));
             t3v.setTextColor(Color.BLACK);
             t3v.setGravity(Gravity.CENTER);
             tbrow.addView(t3v);
 
             TextView t4v = new TextView(this);
+            t4v.setTextSize(15);
             t4v.setText( company.get(i));
             t4v.setTextColor(Color.BLACK);
             t4v.setGravity(Gravity.CENTER);
             tbrow.addView(t4v);
 
             TextView t5v = new TextView(this);
+            t5v.setTextSize(15);
             t5v.setText( address.get(i));
             t5v.setTextColor(Color.BLACK);
             t5v.setGravity(Gravity.CENTER);
@@ -297,41 +292,48 @@ public class PrintReport extends Activity {
 
             TextView t6v = new TextView(this);
             t6v.setText( phone.get(i));
+            t6v.setTextSize(15);
             t6v.setTextColor(Color.BLACK);
             t6v.setGravity(Gravity.CENTER);
             tbrow.addView(t6v);
 
             TextView t7v = new TextView(this);
+            t7v.setTextSize(15);
             t7v.setText( email.get(i));
             t7v.setTextColor(Color.BLACK);
             t7v.setGravity(Gravity.CENTER);
             tbrow.addView(t7v);
 
             TextView t8v = new TextView(this);
+            t8v.setTextSize(15);
             t8v.setText(state.get(i));
             t8v.setTextColor(Color.BLACK);
             t8v.setGravity(Gravity.CENTER);
             tbrow.addView(t8v);
 
             TextView t9v = new TextView(this);
+            t9v.setTextSize(15);
             t9v.setText(city.get(i));
             t9v.setTextColor(Color.BLACK);
             t9v.setGravity(Gravity.CENTER);
             tbrow.addView(t9v);
 
             TextView t10v = new TextView(this);
+            t10v.setTextSize(15);
             t10v.setText(zipCode.get(i));
             t10v.setTextColor(Color.BLACK);
             t10v.setGravity(Gravity.CENTER);
             tbrow.addView(t10v);
 
             TextView t11v = new TextView(this);
+            t11v.setTextSize(15);
             t11v.setText( signatureCapture.get(i));
             t11v.setTextColor(Color.BLACK);
             t11v.setGravity(Gravity.CENTER);
             tbrow.addView(t11v);
 
             TextView t12v = new TextView(this);
+            t12v.setTextSize(15);
             t12v.setText(badgeReturned.get(i));
             t12v.setTextColor(Color.BLACK);
             t12v.setGravity(Gravity.CENTER);
@@ -344,6 +346,7 @@ public class PrintReport extends Activity {
             tbrow.addView(t13v);
 
             TextView t14v = new TextView(this);
+            t14v.setTextSize(15);
             t14v.setText(hereToSee.get(i));
             t14v.setTextColor(Color.BLACK);
             t14v.setGravity(Gravity.CENTER);
@@ -352,34 +355,40 @@ public class PrintReport extends Activity {
             TextView t15v = new TextView(this);
             t15v.setText(vehicleMakeModel.get(i));
             t15v.setTextColor(Color.BLACK);
+            t15v.setTextSize(15);
             t15v.setGravity(Gravity.CENTER);
             tbrow.addView(t15v);
 
             TextView t16v = new TextView(this);
+            t16v.setTextSize(15);
             t16v.setText(vehicleColor.get(i));
             t16v.setTextColor(Color.BLACK);
             t16v.setGravity(Gravity.CENTER);
             tbrow.addView(t16v);
 
             TextView t17v = new TextView(this);
+            t17v.setTextSize(15);
             t17v.setText(vehicleLisencePlate.get(i));
             t17v.setTextColor(Color.BLACK);
             t17v.setGravity(Gravity.CENTER);
             tbrow.addView(t17v);
 
             TextView t18v = new TextView(this);
+            t18v.setTextSize(15);
             t18v.setText(comments.get(i));
             t18v.setTextColor(Color.BLACK);
             t18v.setGravity(Gravity.CENTER);
             tbrow.addView(t18v);
 
             TextView t19v = new TextView(this);
+            t19v.setTextSize(15);
             t19v.setText(visitorAgreementText.get(i));
             t19v.setTextColor(Color.BLACK);
             t19v.setGravity(Gravity.CENTER);
             tbrow.addView(t19v);
 
             TextView t20v = new TextView(this);
+            t20v.setTextSize(15);
             t20v.setText(visitorSignInAgreement.get(i));
             t20v.setTextColor(Color.BLACK);
             t20v.setGravity(Gravity.CENTER);
@@ -387,6 +396,7 @@ public class PrintReport extends Activity {
 
             TextView t21v = new TextView(this);
             t21v.setText(visitorSignOutAgreement.get(i));
+            t21v.setTextSize(15);
             t21v.setTextColor(Color.BLACK);
             t21v.setGravity(Gravity.CENTER);
             tbrow.addView(t21v);

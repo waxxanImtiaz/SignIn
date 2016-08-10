@@ -53,10 +53,10 @@ public class SubMenuHandler implements View.OnClickListener{
                 Fields.cb_photo_capture_optional.setChecked(true);
                 database.updateSignInSetupFields("photo capture","Optional");
                 break;
-            case R.id.cb_auto_photo_capture:
-                Fields.cb_auto_photo_capture.setChecked(true);
-                database.updateSignInSetupFields("photo capture","yes");
-                break;
+//            case R.id.cb_auto_photo_capture:
+//                Fields.cb_auto_photo_capture.setChecked(true);
+//                database.updateSignInSetupFields("photo capture","yes");
+//                break;
             case R.id.cb_photo_capture_large:
                 Fields.cb_photo_capture_large.setChecked(true);
                 Fields.cb_photo_capture_small.setChecked(false);

@@ -164,7 +164,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
 
             Fields.cb_photo_capture_mandatory = (CheckBox)container.findViewById(R.id.cb_photo_capture_mandatory);
             Fields.cb_photo_capture_optional = (CheckBox)container.findViewById(R.id.cb_photo_capture_optional);
-            Fields.cb_auto_photo_capture = (CheckBox)container.findViewById(R.id.cb_auto_photo_capture);
+           // Fields.cb_auto_photo_capture = (CheckBox)container.findViewById(R.id.cb_auto_photo_capture);
             Fields.cb_photo_capture_large = (CheckBox)container.findViewById(R.id.cb_photo_capture_large);
             Fields.cb_photo_capture_medium = (CheckBox)container.findViewById(R.id.cb_photo_capture_medium);
             Fields.cb_photo_capture_small = (CheckBox)container.findViewById(R.id.cb_photo_capture_small);

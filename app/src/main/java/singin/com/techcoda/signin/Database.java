@@ -19,9 +19,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.NavigableMap;
 
-/**
- * Created by m on 6/14/2016.
- */
 public class Database {
 
     Context context;
@@ -395,6 +392,33 @@ public class Database {
 
 
 
+    public int deleteAllVisitorsOn(String state,String d)
+    {
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        String date = new SimpleDateFormat("dd MM yyyy").format(new Date()); //get current system date
+        List<String> listID = getVisitorsIDByStatusAndDate(state , date);
+        int rows = 0;
+        for(int i =0; i<listID.size(); i++) {
+            rows += db.delete(DatabaseHandler.TABLE_VISITOR, DatabaseHandler.COL_VISITOR_ID+ " = ?", new String[]{i+""});
+        }
+
+        String whereClause = DatabaseHandler.COL_STATUS + "=?";
+        String[] selectionArgs = { state };
+        if(state.equals("premises") || state.equals("gone")) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(DatabaseHandler.COL_STATUS, "none");
+            db.update(DatabaseHandler.TABLE_SIGN_IN, contentValues, whereClause, selectionArgs);
+        }
+        else{
+            selectionArgs = new String[]{ state };
+            whereClause = DatabaseHandler.COL_DATE + "=?";
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(DatabaseHandler.COL_DATE, "none");
+            db.update(DatabaseHandler.TABLE_SIGN_IN, contentValues, whereClause, selectionArgs);
+        }
+        db.close();// Closing database connection
+        return rows;
+    }
     //GET ALL VISITORS IN LIST - SIGN IN
 
     //getting all current date visitors
@@ -457,10 +481,10 @@ public class Database {
                 vehicleLisencePlate.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VEHICLE_LISENCE_PLATE)));
                 comments.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_COMMENTS)));
                 visitorAgreementText.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_VISITOR_AGREEMENT_TEXT)));
-                visitorSignInAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN)));
-                visitorSignOutAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNOUT)));
                 city.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_CITY)));
                 guideName.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_GUIDE_NAME)));
+                visitorSignInAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN)));
+                visitorSignOutAgreement.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNOUT)));
 
 
             }
