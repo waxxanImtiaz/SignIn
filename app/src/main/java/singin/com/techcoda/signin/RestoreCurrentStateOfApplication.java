@@ -261,5 +261,48 @@ public class RestoreCurrentStateOfApplication {
             Fields.cb_here_to_see_optional.setChecked(true);
         }
     }
+    public void loadGuideEscortSubMenu(){
+        String guide_escortOptions = database.isFieldEnabled("guide escort");
+        if(guide_escortOptions.equals("Mandatory"))
+        {
+            Fields.cb_guide_escort_mandatory.setChecked(true);
+            Fields.cb_guide_escort_not_used.setChecked(false);
+            Fields.cb_guide_escort_optoinal.setChecked(false);
+        }
+        else if(guide_escortOptions.equals("Not Used"))
+        {
+            Fields.cb_guide_escort_mandatory.setChecked(false);
+            Fields.cb_guide_escort_not_used.setChecked(true);
+            Fields.cb_guide_escort_optoinal.setChecked(false);
+        }
+        else if(guide_escortOptions.equals("Optional"))
+        {
+            Fields.cb_guide_escort_mandatory.setChecked(false);
+            Fields.cb_guide_escort_not_used.setChecked(false);
+            Fields.cb_guide_escort_optoinal.setChecked(true);
+        }
+    }
+
+    public void loadBadgeReturnedSubMenuState(){
+        String badge_returnedOptions = database.isFieldEnabled("badge returned");
+        if(badge_returnedOptions.equals("Mandatory"))
+        {
+            Fields.cb_badge_returned_mandatory.setChecked(true);
+            Fields.cb_badge_returned_not_used.setChecked(false);
+            Fields.cb_badge_returned_optional.setChecked(false);
+        }
+        else if(badge_returnedOptions.equals("Not Used"))
+        {
+            Fields.cb_badge_returned_mandatory.setChecked(false);
+            Fields.cb_badge_returned_not_used.setChecked(true);
+            Fields.cb_badge_returned_optional.setChecked(false);
+        }
+        else if(badge_returnedOptions.equals("Optional"))
+        {
+            Fields.cb_badge_returned_mandatory.setChecked(false);
+            Fields.cb_badge_returned_not_used.setChecked(false);
+            Fields.cb_badge_returned_optional.setChecked(true);
+        }
+    }
 }
 

@@ -5,11 +5,11 @@
     android:orientation="vertical"
     >
     <TableLayout
-        android:layout_width="311dp"
+        android:layout_width="290dp"
         android:layout_height="match_parent"
         android:shrinkColumns="*"
         style="@style/setup_menu_table"
-        android:id="@+id/tl_guide_escort_menu"
+        android:id="@+id/tl_comments_menu"
         android:stretchColumns="*"
         android:background="#ffffff"
         >
@@ -32,8 +32,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Guide/Escort name"
-                android:id="@+id/et_guide_escort"
+                android:hint="Comments"
+                android:id="@+id/et_comments"
                 android:background="@drawable/et_search" />
         </TableRow>
         <!--SPACE-->
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_width="100dp">
             <TextView
-                android:id="@+id/tv_guide_escort_not_used"
+                android:id="@+id/tv_comments_not_used"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
@@ -80,7 +80,7 @@
                 android:text=""
                 />
             <CheckBox
-                android:id="@+id/cb_guide_escort_not_used"
+                android:id="@+id/cb_comments_not_used"
                 android:layout_row="0"
                 android:layout_marginLeft="100dp"
                 android:layout_column="2"
@@ -113,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_width="100dp">
             <TextView
-                android:id="@+id/tv_guide_escort_mandatory"
+                android:id="@+id/tv_comments_mandatory"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
@@ -126,7 +126,7 @@
                 android:text=""
                 />
             <CheckBox
-                android:id="@+id/cb_guide_escort_mendatory"
+                android:id="@+id/cb_comments_mendatory"
                 android:layout_row="0"
                 android:layout_marginLeft="100dp"
                 android:layout_column="2"
@@ -158,7 +158,7 @@
             android:layout_height="wrap_content"
             android:layout_width="100dp">
             <TextView
-                android:id="@+id/tv_guide_escort_optional"
+                android:id="@+id/tv_comments_optional"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
@@ -171,7 +171,7 @@
                 android:text=""
                 />
             <CheckBox
-                android:id="@+id/cb_guide_escort_optional"
+                android:id="@+id/cb_comments_optional"
                 android:layout_row="0"
                 android:layout_marginLeft="100dp"
                 android:layout_column="2"

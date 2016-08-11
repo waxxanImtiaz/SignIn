@@ -227,6 +227,45 @@ public class SubMenuHandler implements View.OnClickListener{
                 Fields.cb_here_to_see_optional.setChecked(true);
                 database.updateSignInSetupFields("here to see","Not Used");
                 break;
+
+            //IF GUIDE ESCORT/NAME SUB MENU CLICKED
+            case R.id.cb_guide_escort_mendatory:
+                Fields.cb_guide_escort_mandatory.setChecked(true);
+                Fields.cb_guide_escort_not_used.setChecked(false);
+                Fields.cb_guide_escort_optoinal.setChecked(false);
+                database.updateSignInSetupFields("guide escort","Mandatory");
+                break;
+            case R.id.cb_guide_escort_not_used:
+                Fields.cb_guide_escort_mandatory.setChecked(false);
+                Fields.cb_guide_escort_not_used.setChecked(true);
+                Fields.cb_guide_escort_optoinal.setChecked(false);
+                database.updateSignInSetupFields("guide escort","Optional");
+                break;
+            case R.id.cb_guide_escort_optional:
+                Fields.cb_guide_escort_mandatory.setChecked(false);
+                Fields.cb_guide_escort_not_used.setChecked(false);
+                Fields.cb_guide_escort_optoinal.setChecked(true);
+                database.updateSignInSetupFields("guide escort","Not Used");
+                break;
+            //IF BADGE RETURNED SUB MENU CLICKED
+            case R.id.cb_badge_returned_mendatory:
+                Fields.cb_badge_returned_mandatory.setChecked(true);
+                Fields.cb_badge_returned_not_used.setChecked(false);
+                Fields.cb_badge_returned_optional.setChecked(false);
+                database.updateSignInSetupFields("badge returned","Mandatory");
+                break;
+            case R.id.cb_badge_returned_not_used:
+                Fields.cb_badge_returned_mandatory.setChecked(false);
+                Fields.cb_badge_returned_not_used.setChecked(true);
+                Fields.cb_badge_returned_optional.setChecked(false);
+                database.updateSignInSetupFields("badge returned","Optional");
+                break;
+            case R.id.cb_badge_returned_optional:
+                Fields.cb_badge_returned_mandatory.setChecked(false);
+                Fields.cb_badge_returned_not_used.setChecked(false);
+                Fields.cb_badge_returned_optional.setChecked(true);
+                database.updateSignInSetupFields("badge returned","Not Used");
+                break;
         }
     }
 

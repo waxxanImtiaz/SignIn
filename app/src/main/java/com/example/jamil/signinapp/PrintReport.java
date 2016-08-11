@@ -45,14 +45,14 @@ public class PrintReport extends Activity {
             }
         }
         else {
-            name = database.getAllVisitorsList();
+            name = database.getAllVisitorsList("in");
             tv_heading.setText("Total Visitors Signed In");
         }
 
         List<String> id = name.get(0);
         List<String> first = name.get(1);
         List<String> last = name.get(2);
-        List<String> company =  name.get(3);
+        List<String> company =  name.get(20);
         List<String> email = name.get(4);
         List<String> state = name.get(5);
         List<String> address = name.get(6);
@@ -69,7 +69,7 @@ public class PrintReport extends Activity {
         List<String> visitorAgreementText = name.get(17);
         List<String> visitorSignInAgreement = name.get(18);
         List<String> visitorSignOutAgreement = name.get(19);
-        List<String> city = name.get(20);
+        List<String> city = name.get(3);
 
 
         TableLayout stk = (TableLayout) findViewById(R.id.table_main);
@@ -101,7 +101,7 @@ public class PrintReport extends Activity {
         tbrow0.addView(tv2);
 
         TextView tv3 = new TextView(this);
-        tv3.setText(" Company ");
+        tv3.setText(" Visitor Sign In Agreement "); //Visitor sign in agreement
         tv3.setTextSize(25);
         tv3.setPadding(10,10,10,10);
         tv3.setTextColor(Color.BLACK);
@@ -115,21 +115,21 @@ public class PrintReport extends Activity {
         tbrow0.addView(tv4);
 
         TextView tv5 = new TextView(this);
-        tv5.setText(" Phone ");
+        tv5.setText(" Photo Capture ");//photo capture
         tv5.setPadding(10,10,10,10);
         tv5.setTextSize(25);
         tv5.setTextColor(Color.BLACK);
         tbrow0.addView(tv5);
 
         TextView tv6 = new TextView(this);
-        tv6.setText(" Email ");
+        tv6.setText(" Company ");
         tv6.setTextSize(25);
         tv6.setPadding(10,10,10,10);
         tv6.setTextColor(Color.BLACK);
         tbrow0.addView(tv6);
 
         TextView tv7 = new TextView(this);
-        tv7.setText(" State ");
+        tv7.setText(" Comments ");//comments
         tv7.setTextSize(25);
         tv7.setPadding(10,10,10,10);
         tv7.setTextColor(Color.BLACK);
@@ -137,7 +137,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv8 = new TextView(this);
-        tv8.setText(" City ");
+        tv8.setText(" City ");//visitor sign in agreemnet
         tv8.setTextSize(25);
         tv8.setPadding(10,10,10,10);
         tv8.setTextColor(Color.BLACK);
@@ -145,7 +145,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv9 = new TextView(this);
-        tv9.setText(" Zip Code ");
+        tv9.setText(" Email ");
         tv9.setTextSize(25);
         tv9.setPadding(10,10,10,10);
         tv9.setTextColor(Color.BLACK);
@@ -153,7 +153,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv10 = new TextView(this);
-        tv10.setText(" Signature Capture ");
+        tv10.setText(" State ");//state
         tv10.setTextColor(Color.BLACK);
         tv10.setTextSize(25);
         tv10.setPadding(10,10,10,10);
@@ -161,7 +161,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv11 = new TextView(this);
-        tv11.setText(" Badge Returned ");
+        tv11.setText(" Guide/Escort Name ");//GUIDE/ESCORT NAME
         tv11.setTextColor(Color.BLACK);
         tv11.setTextSize(25);
         tv11.setPadding(10,10,10,10);
@@ -186,7 +186,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv14 = new TextView(this);
-        tv14.setText(" Vehicle Make/Model ");
+        tv14.setText(" Badge Returned ");//badge returned
         tv14.setTextColor(Color.BLACK);
         tv14.setTextSize(25);
         tv14.setPadding(10,10,10,10);
@@ -194,7 +194,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv15 = new TextView(this);
-        tv15.setText(" Vehicle Color ");
+        tv15.setText(" Vehicle Lisence Plate ");//vehicle lisence plate
         tv15.setPadding(10,10,10,10);
         tv15.setTextSize(25);
         tv15.setTextColor(Color.BLACK);
@@ -202,7 +202,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv16 = new TextView(this);
-        tv16.setText(" Vehicle Lisence Plate ");
+        tv16.setText(" Vehicle Color ");//vehicle color
         tv16.setTextColor(Color.BLACK);
         tv16.setTextSize(25);
         tv16.setPadding(10,10,10,10);
@@ -210,7 +210,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv17 = new TextView(this);
-        tv17.setText(" Comments ");
+        tv17.setText(" Vehicle Make/Model");//vehicle make model
         tv17.setPadding(10,10,10,10);
         tv17.setTextSize(25);
         tv17.setTextColor(Color.BLACK);
@@ -218,7 +218,7 @@ public class PrintReport extends Activity {
 
 
         TextView tv18 = new TextView(this);
-        tv18.setText(" Visitor Agreement Text ");
+        tv18.setText(" Phone ");//Phone
         tv18.setTextColor(Color.BLACK);
         tv18.setTextSize(25);
         tv18.setPadding(10,10,10,10);
@@ -226,19 +226,19 @@ public class PrintReport extends Activity {
 
 
         TextView tv19 = new TextView(this);
-        tv19.setText(" Visitor Sign In Agreement ");
+        tv19.setText(" Visitor Agreement Text");//city
         tv19.setTextColor(Color.BLACK);
         tv19.setTextSize(25);
         tv19.setPadding(10,10,10,10);
         tbrow0.addView(tv19);
 
 
-        TextView tv20 = new TextView(this);
-        tv20.setText(" Visitor Sign Out Agreement ");
-        tv20.setTextColor(Color.BLACK);
-        tv20.setPadding(10,10,10,10);
-        tv20.setTextSize(25);
-        tbrow0.addView(tv20);
+//        TextView tv20 = new TextView(this);
+//        tv20.setText(" Visitor Agreement Text ");//visitor agreement text
+//        tv20.setTextColor(Color.BLACK);
+//        tv20.setPadding(10,10,10,10);
+//        tv20.setTextSize(25);
+//        tbrow0.addView(tv20);
 
         TextView tv21 = new TextView(this);
         tv21.setText("\t\t\t\t ");
@@ -387,12 +387,12 @@ public class PrintReport extends Activity {
             t19v.setGravity(Gravity.CENTER);
             tbrow.addView(t19v);
 
-            TextView t20v = new TextView(this);
-            t20v.setTextSize(15);
-            t20v.setText(visitorSignInAgreement.get(i));
-            t20v.setTextColor(Color.BLACK);
-            t20v.setGravity(Gravity.CENTER);
-            tbrow.addView(t20v);
+//            TextView t20v = new TextView(this);
+//            t20v.setTextSize(15);
+//            t20v.setText(visitorSignInAgreement.get(i));
+//            t20v.setTextColor(Color.BLACK);
+//            t20v.setGravity(Gravity.CENTER);
+//            tbrow.addView(t20v);
 
             TextView t21v = new TextView(this);
             t21v.setText(visitorSignOutAgreement.get(i));

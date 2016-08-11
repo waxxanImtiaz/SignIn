@@ -109,6 +109,8 @@ public class Database {
         temp = siginIn.get(21);
         contentValues.put(DatabaseHandler.COL_VISITOR_AGREEMENT_TEXT, temp+"");
 
+        temp = siginIn.get(22);
+        contentValues.put(DatabaseHandler.COL_USER_STATUS, temp);
         long rows = db.insert(DatabaseHandler.TABLE_VISITOR, null, contentValues);
         return rows;
     }
@@ -176,10 +178,45 @@ public class Database {
         contentValues.put(DatabaseHandler.COL_FIELD_ID, "phone");
         contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //guide escort/name row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "guide escort");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
         //email row
         contentValues.put(DatabaseHandler.COL_FIELD_ID, "email");
         contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //badge returned row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "badge returned");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+        //badge number row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "badge number");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+        //vehicle color row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "vehicle color");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+        //vehicle make/model row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "vehicle make/model");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+        //vehicle lisence plate row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "vehicle lisence plate");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+        //comments row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "comments");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+
         //here to see row
         contentValues.put(DatabaseHandler.COL_FIELD_ID, "here to see");
         contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
@@ -396,12 +433,11 @@ public class Database {
     {
         SQLiteDatabase db = dbh.getWritableDatabase();
         String date = new SimpleDateFormat("dd MM yyyy").format(new Date()); //get current system date
-        List<String> listID = getVisitorsIDByStatusAndDate(state , date);
+        List<String> listID = getVisitorsIDByStatusAndDate(state , d);
         int rows = 0;
         for(int i =0; i<listID.size(); i++) {
-            rows += db.delete(DatabaseHandler.TABLE_VISITOR, DatabaseHandler.COL_VISITOR_ID+ " = ?", new String[]{i+""});
+            rows += db.delete(DatabaseHandler.TABLE_VISITOR, DatabaseHandler.COL_VISITOR_ID+ " = ? AND "+DatabaseHandler.COL_USER_STATUS+" =?", new String[]{i+"",state});
         }
-
         String whereClause = DatabaseHandler.COL_STATUS + "=?";
         String[] selectionArgs = { state };
         if(state.equals("premises") || state.equals("gone")) {
@@ -411,9 +447,9 @@ public class Database {
         }
         else{
             selectionArgs = new String[]{ state };
-            whereClause = DatabaseHandler.COL_DATE + "=?";
+            whereClause = DatabaseHandler.COL_STATUS + "=?";
             ContentValues contentValues = new ContentValues();
-            contentValues.put(DatabaseHandler.COL_DATE, "none");
+            contentValues.put(DatabaseHandler.COL_STATUS, "none");
             db.update(DatabaseHandler.TABLE_SIGN_IN, contentValues, whereClause, selectionArgs);
         }
         db.close();// Closing database connection
@@ -518,7 +554,7 @@ public class Database {
     }
 
 
-    public List<List<String>> getAllVisitorsList(){
+    public List<List<String>> getAllVisitorsList(String status){
 
         List<List<String>> name = new ArrayList<>();
 
@@ -553,7 +589,7 @@ public class Database {
         //run loop to get everytime data by id which is stored in listID
         for(int i=0; i<listID.size(); i++){
 
-            String[] selectionArgs = { listID.get(i) };
+            String[] selectionArgs = { listID.get(i),status };
             String query = "SELECT " + DatabaseHandler.COL_FIRST_NAME + ", " + DatabaseHandler.COL_LAST_NAME
                     +","+DatabaseHandler.COL_ADDRESS+","+DatabaseHandler.COL_EMAIL+","+DatabaseHandler.COL_CITY
                     +","+DatabaseHandler.COL_COMMENTS+","+DatabaseHandler.COL_SHOW_AGREEMENT_ON_SIGNIN+","+
@@ -561,7 +597,7 @@ public class Database {
                     +","+DatabaseHandler.COL_STATE+","+DatabaseHandler.COL_PHONE+","+DatabaseHandler.COL_COMPANY+","+DatabaseHandler.COL_HERE_TO_SEE
                     +","+DatabaseHandler.COL_VEHICLE_COLOR+","+DatabaseHandler.COL_VEHICLE_MAKE_MODEL+ "," +
                     DatabaseHandler.COL_VEHICLE_LISENCE_PLATE+","+DatabaseHandler.COL_BADGE_NUMBER+","+DatabaseHandler.COL_BADGE_RETURNED
-                    +","+DatabaseHandler.COL_GUIDE_NAME+","+DatabaseHandler.COL_SIGNATRUE_CAPTURE+" FROM " + DatabaseHandler.TABLE_VISITOR + " WHERE " + DatabaseHandler.COL_VISITOR_ID + "=?";
+                    +","+DatabaseHandler.COL_GUIDE_NAME+","+DatabaseHandler.COL_SIGNATRUE_CAPTURE+" FROM " + DatabaseHandler.TABLE_VISITOR + " WHERE " + DatabaseHandler.COL_VISITOR_ID + "=? AND "+DatabaseHandler.COL_USER_STATUS+" =?";
 
 
             Cursor cursor = db.rawQuery(query, selectionArgs);
@@ -703,6 +739,7 @@ public class Database {
         public static final String COL_COMPANY = "company";
         public static final String COL_CITY = "city";
         public static final String COL_STATE = "state";
+        public static final String COL_USER_STATUS = "user_status";
         public static final String COL_ZIPCODE = "zipcode";
         public static final String COL_PHONE = "phone";
         public static final String COL_EMAIL = "email";
@@ -742,7 +779,7 @@ public class Database {
         //CREATE TABEL'S
         public static final String CREATE_TABLE_COMPANY = "CREATE TABLE " + TABLE_COMPANY + "(" + COL_COMPANY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_NAME + " VARCHAR(255), " + COL_STATUS + " VARCHAR(50));";
         public static final String CREATE_TABLE_ADMIN = "CREATE TABLE " + TABLE_ADMIN + "(" + COL_ADMIN_ID +  " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_NAME + " VARCHAR(255), " + COL_EMAIL + " VARCHAR(255), " + COL_PASSWORD + " VARCHAR(255));";
-        public static final String CREATE_TABLE_VISITOR = "CREATE TABLE " + TABLE_VISITOR + "(" + COL_VISITOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_FIRST_NAME + " VARCHAR(255), " + COL_LAST_NAME + " VARCHAR(255),"+ COL_COMPANY +" VARCHAR(255),"+COL_ADDRESS+" VARCHAR(255),"+COL_CITY+" VARCHAR(255),"+COL_EMAIL+" VARCHAR(255),"+COL_STATE+" VARCHAR(255),"+COL_ZIPCODE+" VARCHAR(255),"+COL_PHONE+" VARCHAR(255),"+COL_HERE_TO_SEE+" VARCHAR(255),"+COL_SIGNATRUE_CAPTURE+"  VARCHAR(255),"+COL_PHOTO_CAPTURE+" BLOB,"+COL_GUIDE_NAME+"  VARCHAR(255),"+COL_BADGE_NUMBER+"  VARCHAR(255),"+COL_BADGE_RETURNED+"  VARCHAR(255),"+COL_VEHICLE_MAKE_MODEL+" VARCHAR(255),"+COL_VEHICLE_COLOR+"  VARCHAR(255),"+COL_VEHICLE_LISENCE_PLATE+"  VARCHAR(255),"+COL_COMMENTS+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNIN+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNOUT+"  VARCHAR(255),"+COL_VISITOR_AGREEMENT_TEXT+"  VARCHAR(255));";
+        public static final String CREATE_TABLE_VISITOR = "CREATE TABLE " + TABLE_VISITOR + "(" + COL_VISITOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_FIRST_NAME + " VARCHAR(255), "+ COL_USER_STATUS + " VARCHAR(255), " + COL_LAST_NAME + " VARCHAR(255),"+ COL_COMPANY +" VARCHAR(255),"+COL_ADDRESS+" VARCHAR(255),"+COL_CITY+" VARCHAR(255),"+COL_EMAIL+" VARCHAR(255),"+COL_STATE+" VARCHAR(255),"+COL_ZIPCODE+" VARCHAR(255),"+COL_PHONE+" VARCHAR(255),"+COL_HERE_TO_SEE+" VARCHAR(255),"+COL_SIGNATRUE_CAPTURE+"  VARCHAR(255),"+COL_PHOTO_CAPTURE+" BLOB,"+COL_GUIDE_NAME+"  VARCHAR(255),"+COL_BADGE_NUMBER+"  VARCHAR(255),"+COL_BADGE_RETURNED+"  VARCHAR(255),"+COL_VEHICLE_MAKE_MODEL+" VARCHAR(255),"+COL_VEHICLE_COLOR+"  VARCHAR(255),"+COL_VEHICLE_LISENCE_PLATE+"  VARCHAR(255),"+COL_COMMENTS+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNIN+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNOUT+"  VARCHAR(255),"+COL_VISITOR_AGREEMENT_TEXT+"  VARCHAR(255));";
         public static final String CREATE_TABLE_SIGNIN = "CREATE TABLE " + TABLE_SIGN_IN + "(" + COL_SIGN_IN + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_VISITOR_ID + " INTEGER, " + COL_IN + " VARCHAR(50), " + COL_OUT + " VARCHAR(50), " + COL_STATUS + " VARCHAR(50), " + COL_DATE + " VARCHAR(50));";
         public static final String CREATE_TABLE_FIELD_SETUP="CREATE TABLE "+TABLE_SINGN_IN_SETUP_FIELDS + " ("+COL_FIELD_ID+" VARCHAR(100),"+ COL_FIELD_OPTION+" VARCHAR(30));";
 

@@ -505,6 +505,85 @@
 			android:id="@+id/here_to_see_heading_center"
 			/>
 	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/guide_escort_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/guide_escort_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/guide_escort_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Guide/Escort Name "
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="1dp"
+			android:paddingRight="0dp"
+			android:textColor="#000"
+			android:id="@+id/guide_escort_heading_center"
+			/>
+	</LinearLayout>
+
+	<LinearLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/badge_returned_sub_menu_heading_layout"
+		style="@style/inner_heading_style"
+		android:background="@drawable/title_border"
+		>
+		<ImageView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/chevron_left"
+			android:id="@+id/badge_returned_chroven_left"
+			android:layout_marginTop="5dp"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Setup"
+			android:layout_toRightOf="@+id/badge_returned_heading_left"
+			android:textColor="#6666FF"
+			android:layout_marginTop="7dp"
+			android:id="@+id/badge_returned_heading_left"
+			/>
+
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Badge Returned "
+			android:layout_marginTop="7dp"
+			android:layout_toEndOf="@+id/txt_design"
+			android:layout_toRightOf="@+id/txt_design"
+			android:layout_marginLeft="25dp"
+			android:paddingLeft="15dp"
+			android:paddingRight="0dp"
+			android:textColor="#000"
+			android:id="@+id/badge_returned_heading_center"
+			/>
+	</LinearLayout>
 	<!--<LinearLayout-->
 		<!--android:layout_width="wrap_content"-->
 		<!--android:layout_height="wrap_content"-->

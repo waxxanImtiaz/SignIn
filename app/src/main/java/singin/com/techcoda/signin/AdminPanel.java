@@ -143,7 +143,6 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 state = "premises";
                 setCountersButtonClicked(ll_onpremises);
                 break;
-
             case R.id.ll_signout:
                 setCountersButtonClicked(ll_out);
                 flag = "signout";
@@ -164,14 +163,9 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                 break;
 
             case R.id.btn_delete_records:
-                int rows =0;
-                if(!equals("in"))
-                 rows = database.deleteAllVisitorsOn(state,date);
-                else{
-                    rows = database.deleteAllVisitorsOn(state,date);
-                }
+                int rows = database.deleteAllVisitorsOn(state,date);
                 resetCounters(rows);
-                    break;
+                break;
             case R.id.btn_print_reports:
                 i.putExtra("clickedOn",state);
                 startActivity(i);
@@ -191,7 +185,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
                     }
                 }
                 else {
-                    name = database.getAllVisitorsList();
+                    name = database.getAllVisitorsList("in");
                 }
                 if(pdfCreater.createPDF(name,flag,state)){
                     //showDialog("pdf created successfully");
@@ -208,25 +202,17 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
 
     public void resetCounters(int rows)
     {
-
-            showDialog("All Visitors "+flag+" deleted successfully");
-            if(state.equals("in")){
+            if(state.equals("in") && rows>0){
                 counterSignIn.setText("0");
-                counterSignOut.setText("0");
-                counterOnPremises.setText("0");
             }
-            else if(state.equals("gone")){
+            else if(state.equals("gone") && rows>0){
                 counterSignOut.setText("0");
             }
-            else {
+            else if(state.equals("premises")&& rows>0) {
                 counterOnPremises.setText("0");
-
             }
-        if(rows > 0){
-            showDialog("Status is empty");
-        }
-
-
+             else
+                showDialog("Data not deleted");
     }
     //Credentials for Dialog box
     ListView list;
@@ -307,7 +293,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
 
     public void getAllVisitorSignIn(){
         //Get all the visitors which are on premises
-        name = database.getAllVisitorsList(); //get list of visitors who sign in today
+        name = database.getAllVisitorsList("in"); //get list of visitors who sign in today
         AdapterSigningOutVisitors adapter = new AdapterSigningOutVisitors(this, name.get(0), name.get(1), name.get(2));
         list.setAdapter(adapter);
         list.setOnItemClickListener(this);

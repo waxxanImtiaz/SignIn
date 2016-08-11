@@ -55,6 +55,54 @@ public class Fields {
     public static TextView tv_city;
     public static ImageView iv_city;
 
+    //FIELDS OF BADGE NUMBER
+    public static CheckBox cb_badge_number_mandatory;
+    public static CheckBox cb_badge_number_not_used;
+    public static CheckBox cb_badge_number_optoinal;
+    public static TextView tv_badge_number;
+    public static ImageView iv_badge_number;
+    //FIELDS OF VEHICLE LISENCE PLATE
+    public static CheckBox cb_vehicle_lisence_plate_mandatory;
+    public static CheckBox cb_vehicle_lisence_plate_not_used;
+    public static CheckBox cb_vehicle_lisence_plate_optoinal;
+    public static TextView tv_vehicle_lisence_plate;
+    public static ImageView iv_vehicle_lisence_plate;
+
+    //FIELDS OF VEHICLE COLOR
+    public static CheckBox cb_vehicle_color_mandatory;
+    public static CheckBox cb_vehicle_color_not_used;
+    public static CheckBox cb_vehicle_color_optoinal;
+    public static TextView tv_vehicle_color;
+    public static ImageView iv_vehicle_color;
+
+    //FIELDS OF VEHICLE MAKE MODEL
+    public static CheckBox cb_vehicle_make_model_mandatory;
+    public static CheckBox cb_vehicle_make_model_not_used;
+    public static CheckBox cb_vehicle_make_model_optoinal;
+    public static TextView tv_vehicle_make_model;
+    public static ImageView iv_vehicle_make_model;
+
+    //FIELDS OF COMMENTS
+    public static CheckBox cb_comments_mandatory;
+    public static CheckBox cb_comments_not_used;
+    public static CheckBox cb_comments_optoinal;
+    public static TextView tv_comments;
+    public static ImageView iv_comments;
+
+    //FIELDS OF badge_returned
+    public static CheckBox cb_badge_returned_mandatory;
+    public static CheckBox cb_badge_returned_not_used;
+    public static CheckBox cb_badge_returned_optional;
+    public static TextView tv_badge_returned;
+    public static ImageView iv_badge_returned;
+
+    //FIELDS OF GUIDE/ESCORT NAME
+    public static CheckBox cb_guide_escort_mandatory;
+    public static CheckBox cb_guide_escort_not_used;
+    public static CheckBox cb_guide_escort_optoinal;
+    public static TextView tv_guide_escort;
+    public static ImageView iv_guide_escort;
+
     //FIELDS OF STATE
     public static CheckBox cb_state_mandatory;
     public static CheckBox cb_state_not_used;
@@ -79,6 +127,25 @@ public class Fields {
     public static CheckBox cb_email_optional;
     public static TextView tv_email;
     public static ImageView iv_email;
+
+//    //FIELDS OF VEHICLE LISENCE PLATE
+//    public static CheckBox cb_vehicle_lisence_plate_mandatory;
+//    public static CheckBox cb_vehicle_lisence_plate_not_used;
+//    public static CheckBox cb_vehicle_lisence_plate_optional;
+//    public static TextView tv_vehicle_lisence_plate;
+//    public static ImageView iv_vehicle_lisence_plate;
+    //FIELDS OF BADGE NUMBER
+//    public static CheckBox cb_badge_number_mandatory;
+//    public static CheckBox cb_badge_number_not_used;
+//    public static CheckBox cb_badge_number_optional;
+//    public static TextView tv_badge_number;
+//    public static ImageView iv_badge_number;
+    //FIELDS OF VEHICLE MAKE MODEL
+//    public static CheckBox cb_vehicle_make_model_mandatory;
+//    public static CheckBox cb_vehicle_make_model_not_used;
+//    public static CheckBox cb_vehicle_make_model_optional;
+//    public static TextView tv_vehicle_make_model;
+//    public static ImageView iv_vehicle_make_model;
 
     //FIELDS OF SIGNATURE CAPTURE
     public static CheckBox cb_signature_capture_mandatory;
@@ -124,7 +191,10 @@ public class Fields {
     public static TableRow row_custom_field_three;
     public static TableRow row_custom_field_four;
     public static TableRow row_custom_field_five;
+    public static TableRow row_badge_returned;
     public static TableRow row_visitor_agreement_text;
+
+
     public static Button btn_email_report_pdf;
     public static Button btn_delete_records;
     public static Button btn_print_reports;
@@ -142,14 +212,32 @@ public class Fields {
         Fields.op_photo_capture = (TextView)container.findViewById(R.id.op_photo_capture);
         Fields.tv_address = (TextView)container.findViewById(R.id.tv_address);
         Fields.iv_address = (ImageView)container.findViewById(R.id.iv_address);
+        Fields.tv_vehicle_make_model = (TextView)container.findViewById(R.id.tv_vehicle_make_model);
+        Fields.iv_vehicle_make_model = (ImageView)container.findViewById(R.id.iv_vehicle_make_model);;
+        Fields.tv_vehicle_color = (TextView)container.findViewById(R.id.tv_vehicle_color);
+        Fields.iv_vehicle_color = (ImageView)container.findViewById(R.id.iv_vehicle_color);
         Fields.tv_here_to_see = (TextView)container.findViewById(R.id.tv_here_to_see);
         Fields.iv_here_to_see = (ImageView)container.findViewById(R.id.iv_here_to_see);
+//        Fields.tv_badge_returned = (TextView)container.findViewById(R.id.tv_badge_returned);
+//        Fields.iv_badge_returned = (ImageView)container.findViewById(R.id.iv_badge_returned);
+        Fields.iv_badge_number = (ImageView)container.findViewById(R.id.iv_badge_number);
+        Fields.tv_badge_number = (TextView)container.findViewById(R.id.tv_badge_number);
+        Fields.iv_vehicle_lisence_plate = (ImageView)container.findViewById(R.id.iv_vehicle_license_plate);
+        Fields.tv_vehicle_lisence_plate = (TextView)container.findViewById(R.id.tv_vehicle_license_plate);
+//        Fields.iv_vehicle_make_model = (ImageView)container.findViewById(R.id.iv_vehicle_make_model);
+//        Fields.tv_vehicle_make_model = (TextView)container.findViewById(R.id.tv_vehicle_make_model);
+//        Fields.iv_vehicle_color = (ImageView)container.findViewById(R.id.iv_vehicle_color);
+//        Fields.tv_vehicle_color = (TextView)container.findViewById(R.id.tv_vehicle_color);
+        Fields.iv_comments = (ImageView)container.findViewById(R.id.iv_comments);
+        Fields.tv_comments = (TextView)container.findViewById(R.id.tv_comments);
 
 
         Fields.iv_signature_capture = (ImageView)container.findViewById(R.id.iv_signature_capture);
         Fields.tv_signature_capture = (TextView)container.findViewById(R.id.tv_signature_capture);
         Fields.iv_city = (ImageView)container.findViewById(R.id.iv_city);
         Fields.tv_city = (TextView)container.findViewById(R.id.tv_city);
+        Fields.iv_badge_returned = (ImageView)container.findViewById(R.id.iv_badge_returned);
+        Fields.tv_badge_returned = (TextView)container.findViewById(R.id.tv_badge_returned);
         Fields.iv_photo_capture = (ImageView)container.findViewById(R.id.iv_photo_capture);
         Fields.tv_photo_capture = (TextView)container.findViewById(R.id.tv_photo_capture);
         Fields.iv_state = (ImageView)container.findViewById(R.id.iv_state);
@@ -160,6 +248,8 @@ public class Fields {
         Fields.tv_phone = (TextView)container.findViewById(R.id.tv_phone);
         Fields.iv_email = (ImageView)container.findViewById(R.id.iv_email);
         Fields.tv_email = (TextView)container.findViewById(R.id.tv_email);
+        Fields.iv_guide_escort = (ImageView)container.findViewById(R.id.iv_guide_escort_name);
+        Fields.tv_guide_escort = (TextView)container.findViewById(R.id.tv_guide_escort_name);
         tv_visitor_agreement_text = (TextView)container.findViewById(R.id.tv_visitor_agreement_text);
         iv_visitor_agreement_text = (ImageView)container.findViewById(R.id.iv_visitor_agrement_text);
 
@@ -182,17 +272,29 @@ public class Fields {
         row_comments = (TableRow)container.findViewById(R.id.row_comments);
         row_custom_field_one = (TableRow)container.findViewById(R.id.row_custom_field_one);
         row_custom_field_two = (TableRow)container.findViewById(R.id.row_custom_field_two);
+        row_badge_returned = (TableRow)container.findViewById(R.id.row_badge_returned);
         row_custom_field_three = (TableRow)container.findViewById(R.id.row_custom_field_three);
         row_custom_field_four = (TableRow)container.findViewById(R.id.row_custom_field_four);
         row_custom_field_five = (TableRow)container.findViewById(R.id.row_custom_field_five);
         row_visitor_agreement_text = (TableRow)container.findViewById(R.id.row_visitor_agreement_text);
 
-
         //HANDLE EVENTS
         Fields.iv_company.setOnClickListener(handler);
         Fields.tv_company.setOnClickListener(handler);
+        Fields.iv_badge_returned.setOnClickListener(handler);
+        Fields.tv_badge_returned.setOnClickListener(handler);
+        Fields.tv_guide_escort.setOnClickListener(handler);
         Fields.tv_address.setOnClickListener(handler);
+        Fields.iv_comments.setOnClickListener(handler);
+        Fields.tv_comments.setOnClickListener(handler);
         Fields.iv_address.setOnClickListener(handler);
+        Fields.iv_vehicle_color.setOnClickListener(handler);
+        Fields.tv_vehicle_color.setOnClickListener(handler);
+        Fields.tv_guide_escort.setOnClickListener(handler);
+        Fields.iv_vehicle_make_model.setOnClickListener(handler);
+        Fields.tv_vehicle_make_model.setOnClickListener(handler);
+        Fields.iv_vehicle_lisence_plate.setOnClickListener(handler);
+        Fields.tv_vehicle_lisence_plate.setOnClickListener(handler);
         Fields.tv_city.setOnClickListener(handler);
         Fields.iv_city.setOnClickListener(handler);
         Fields.tv_state.setOnClickListener(handler);
@@ -211,9 +313,13 @@ public class Fields {
         Fields.tv_visitor_agreement_text.setOnClickListener(handler);
         Fields.tv_here_to_see.setOnClickListener(handler);
         Fields.iv_here_to_see.setOnClickListener(handler);
+        Fields.tv_badge_number.setOnClickListener(handler);
+        Fields.iv_badge_number.setOnClickListener(handler);
+
 
         //ROW EVENTS
         row_company.setOnClickListener(handler);
+        row_badge_returned.setOnClickListener(handler);
         row_city.setOnClickListener(handler);
         row_address.setOnClickListener(handler);
         row_email.setOnClickListener(handler);

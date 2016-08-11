@@ -222,8 +222,14 @@ public class SignIn extends Activity implements View.OnClickListener {
             else visitor.add("false");
         else visitor.add("N/A");
 
+        //Visitor signoutAgreement
         visitor.add("N/A");
+
+        //visitor agreement text
         visitor.add("N/A");
+
+        //status
+        visitor.add("in");
 
         long rowsVisitor = database.insertVisitor(visitor,getBytes(iv_picture));
 //        long rowsVisitor = database.insertVisitor("1", firstName.getText().toString(), lastName.getText().toString());
@@ -336,6 +342,20 @@ public class SignIn extends Activity implements View.OnClickListener {
         else
             here_to_see.setVisibility(View.GONE);
 
+        option = database.isFieldEnabled("guide escort");
+
+        if(option != null && !option.equals("Not Used"))
+            guide_name.setVisibility(View.VISIBLE);
+        else
+            guide_name.setVisibility(View.GONE);
+
+        option = database.isFieldEnabled("badge returned");
+
+        if(option != null && !option.equals("Not Used"))
+            badge_returned.setVisibility(View.VISIBLE);
+        else
+           badge_returned.setVisibility(View.GONE);
+
         option = database.isFieldEnabled("comments");
 
         if(option != null && !option.equals("Not Used"))
@@ -384,6 +404,21 @@ public class SignIn extends Activity implements View.OnClickListener {
             open(view);
             return false;
         }
+        option = database.isFieldEnabled("city");
+
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(city.getText().toString().isEmpty()){
+                message = "City"+" field is empty";
+                open(view);
+                return false;
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
+
+        option = database.isFieldEnabled("company");
+
         if(option != null && option.equals("Mandatory"))
         {
             message = "Company"+" field is empty";
@@ -393,7 +428,10 @@ public class SignIn extends Activity implements View.OnClickListener {
                 open(view);
                 return false;
             }
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
+
         option = database.isFieldEnabled("address");
         if(option != null && option.equals("Mandatory"))
         {
@@ -403,6 +441,8 @@ public class SignIn extends Activity implements View.OnClickListener {
                 return false;
             }
 
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
 
 
@@ -410,14 +450,126 @@ public class SignIn extends Activity implements View.OnClickListener {
         if(option != null && option.equals("Mandatory")) {
             if (email.getText().toString().isEmpty()) {
                 isEmailVisible = true;
-                if (company.getText().equals("")) {
+                if (email.getText().equals("")) {
                     message = "Email" + " field is empty";
+                    open(view);
+                    return false;
+                }
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
+
+
+        option = database.isFieldEnabled("guide escort");
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(guide_name.getText().toString().isEmpty())
+            {
+                isEmailVisible = true;
+                if(guide_name.getText().equals("")){
+                    message = "Guide/Escort Name"+" field is empty";
+                    open(view);
+                    return false;
+                }
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
+
+        option = database.isFieldEnabled("badge returned");
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(badge_returned.getText().toString().isEmpty())
+            {
+                isEmailVisible = true;
+                if(badge_returned.getText().equals("")){
+                    message = "Badge Returned"+" field is empty";
+                    open(view);
+                    return false;
+                }
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
+
+        option = database.isFieldEnabled("badge number");
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(badge_number.getText().toString().isEmpty())
+            {
+                isEmailVisible = true;
+                if(badge_number.getText().equals("")){
+                    message = "Badge Number"+" field is empty";
+                    open(view);
+                    return false;
+                }
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
+
+        option = database.isFieldEnabled("comments");
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(here_to_see.getText().toString().isEmpty())
+            {
+                isEmailVisible = true;
+                if(comments.getText().equals("")){
+                    message = "Comments"+" field is empty";
                     open(view);
                     return false;
                 }
             }
         }
 
+        option = database.isFieldEnabled("vehicle make/model");
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(vehicle_make_model.getText().toString().isEmpty())
+            {
+                isEmailVisible = true;
+                if(vehicle_make_model.getText().equals("")){
+                    message = "Vehicle Make/Model"+" field is empty";
+                    open(view);
+                    return false;
+                }
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
+
+        option = database.isFieldEnabled("vehicle color");
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(vehicle_color.getText().toString().isEmpty())
+            {
+                isEmailVisible = true;
+                if(vehicle_color.getText().equals("")){
+                    message = "Vehicle Color"+" field is empty";
+                    open(view);
+                    return false;
+                }
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
+
+        option = database.isFieldEnabled("vehicle lisence plate");
+        if(option != null && option.equals("Mandatory"))
+        {
+            if(vehicle_lisence_plate.getText().toString().isEmpty())
+            {
+                isEmailVisible = true;
+                if(vehicle_lisence_plate.getText().equals("")){
+                    message = "Vehicle Lisense Plate"+" field is empty";
+                    open(view);
+                    return false;
+                }
+            }
+        }else  if(option != null && option.equals("Optional"))
+        {
+        }
 
         option = database.isFieldEnabled("here to see");
         if(option != null && option.equals("Mandatory"))
@@ -431,9 +583,9 @@ public class SignIn extends Activity implements View.OnClickListener {
                 return false;
             }
         }
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
-
-
         option = database.isFieldEnabled("vehicle color");
         if(option != null && option.equals("Mandatory")) {
             if (vehicle_color.getText().toString().isEmpty()) {
@@ -444,6 +596,8 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
         option = database.isFieldEnabled("vehicle lisence plate");
         if( option != null && option.equals("Mandatory")) {
@@ -455,6 +609,8 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
         option = database.isFieldEnabled("vehicle make model");
         if(option != null && option.equals("Mandatory")) {
@@ -466,6 +622,8 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
         option = database.isFieldEnabled("comments");
         if( option != null && option.equals("Mandatory")) {
@@ -478,6 +636,8 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
 
         option = database.isFieldEnabled("visitor agreement");
@@ -490,6 +650,8 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
+        }else  if(option != null && option.equals("Optional"))
+        {
         }
 
         return true;
