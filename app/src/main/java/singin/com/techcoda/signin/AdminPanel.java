@@ -3,8 +3,10 @@ package singin.com.techcoda.signin;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -488,15 +490,32 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     }
 
     public void emailReport(){
-        Toast.makeText(AdminPanel.this, "\"Send email\"", Toast.LENGTH_SHORT).show();
-        Intent email = new Intent(Intent.ACTION_SEND);
-        email.putExtra(Intent.EXTRA_EMAIL, new String[]{"Email address"});
-        email.putExtra(Intent.EXTRA_SUBJECT, "Subject");
-        email.putExtra(Intent.EXTRA_STREAM,Uri.fromFile(new File(pdfCreater.path+"/"+flag+".pdf")));
-        email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //need this to prompts email client only
-        email.setType("message/rfc822");
-        startActivity(Intent.createChooser(email, "Choose an Email client :"));
+
+
+        if(isOnline()) {
+            Toast.makeText(AdminPanel.this, "\"Send email\"", Toast.LENGTH_SHORT).show();
+            Intent email = new Intent(Intent.ACTION_SEND);
+            email.putExtra(Intent.EXTRA_EMAIL, new String[]{"Email address"});
+            email.putExtra(Intent.EXTRA_SUBJECT, "Subject");
+            email.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(pdfCreater.path + "/" + flag + ".pdf")));
+            email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            //need this to prompts email client only
+            email.setType("message/rfc822");
+            startActivity(Intent.createChooser(email, "Choose an Email client :"));
+        }else{
+            showDialog("No Internet Connection Available");
+        }
         //isEmailSend = true;
+    }
+
+    public boolean isOnline() {
+        try {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error while checking for wifi", Toast.LENGTH_SHORT).show();
+        }
+        return false;
     }
 }//end of class

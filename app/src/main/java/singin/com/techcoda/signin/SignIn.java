@@ -131,10 +131,15 @@ public class SignIn extends Activity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        try {
+                Bitmap bp = (Bitmap) data.getExtras().get("data");
+                if (bp != null)
+                    iv_picture.setImageBitmap(bp);
 
-        Bitmap bp = (Bitmap) data.getExtras().get("data");
-        if(bp != null)
-            iv_picture.setImageBitmap(bp);
+        }catch(Exception e)
+        {
+
+        }
         //iv_picture.setImageBitmap(ImageConverter.getRoundedCornerBitmap(bp,100));
     }
     public void insertVisitor(){
