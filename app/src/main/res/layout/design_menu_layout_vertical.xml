@@ -1,0 +1,1277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TableLayout
+
+        android:layout_width="315dp"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"
+        style="@style/setup_menu_table"
+        android:id="@+id/tl_design_menu"
+        android:stretchColumns="*"
+        android:background="#ffffff">
+
+    <!--SPACE-->
+    <TableRow
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="20dp"
+            />
+    </TableRow>
+    <!--END OF SPACE-->
+
+    <!-- Row 1 with single column -->
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="100dp">
+        <TextView
+            android:layout_row="1"
+            android:layout_column="0"
+            android:paddingRight="0dp"
+            style="@style/setup_full_style_center_fields"
+            android:text="UPGRADE TO PRO TO SIGN IN "
+            />
+    </TableRow>
+
+        <TableRow
+
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                android:text="UNLIMITED USERS PER DAY "
+                />
+        </TableRow>
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+    <!--HORIZONTAL LINE-->
+    <TableRow
+
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+    <!-- Row 2 with 3 columns -->
+    <TableRow
+        style="@style/setup_table_rows"
+        android:id="@+id/tableRow2"
+        android:layout_height="wrap_content"
+        android:layout_width="100dp">
+        <TextView
+            android:id="@+id/tv_upgrade_to_pro"
+            android:layout_row="1"
+            android:layout_column="0"
+            style="@style/setup_full_style_left_fields"
+            android:text="Upgrade To Pro"
+            />
+        <TextView
+            android:id="@+id/op_updgrade_to_pro"
+            android:layout_row="0"
+            android:layout_column="1"
+            style="@style/setup_full_style_center_fields"
+            android:text=""
+            />
+        <ImageView
+            android:id="@+id/iv_upgrade_to_pro"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:paddingRight="4dp"
+            android:paddingLeft="40dp"
+            style="@style/setup_full_style_image_fields"
+            android:src="@drawable/chevron_right"
+            />
+    </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <TableRow
+
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                android:text="SIGN IN SUPPORT "
+                />
+        </TableRow>
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="0dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+    <!--HORIZONTAL LINE-->
+    <TableRow
+
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+    <TableRow
+        android:id="@+id/row_email_support"
+        android:layout_height="20dp"
+        style="@style/setup_table_rows"
+
+        android:layout_width="200dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email Support"
+            style="@style/setup_full_style_left_fields"
+            android:id="@+id/tv_email_support"
+            />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/op_email_support"
+            style="@style/setup_full_style_center_fields"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/iv_email_support"
+            android:paddingLeft="40dp"
+            style="@style/setup_full_style_image_fields"
+            android:src="@drawable/chevron_right"
+            />
+    </TableRow>
+
+
+    <!--HORIZONTAL LINE-->
+    <TableRow
+        android:layout_height="20dp"
+        android:layout_width="200dp">
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"
+            />
+        <View android:layout_width="match_parent"
+            style="@style/horizontal_line"
+            android:layout_height="1dp" />
+        <View android:layout_width="match_parent"
+            android:layout_height="1dp"
+            style="@style/horizontal_line"/>
+    </TableRow>
+    <!--END OF HORIZONTAL LINE-->
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <TableRow
+
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                android:text="SLIDES SHOW "
+                />
+        </TableRow>
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+        <TableRow
+            android:id="@+id/row_use_landscape_photo_series"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Use Landscape Photo Series"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_landscape_photo_series"
+                />
+        </TableRow>
+
+
+
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+        <TableRow
+            android:id="@+id/row_use_flora_photo_series"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Use Flora Photo Series"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_flora_photo_series"
+                />
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+
+        <TableRow
+            android:id="@+id/row_add_photo"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Photos"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_add_photos"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                style="@style/setup_full_style_center_fields"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_add_photos"
+                style="@style/setup_full_style_image_fields"
+                android:src="@drawable/chevron_right"
+                android:paddingLeft="40dp"
+                />
+        </TableRow>
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_remove_photos"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove Photos"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_remove_photos"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/op_remove_photos"
+                style="@style/setup_full_style_center_fields"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_remove_photos"
+                style="@style/setup_full_style_image_fields"
+                android:src="@drawable/chevron_right"
+                android:paddingLeft="40dp"
+                />
+        </TableRow>
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <TableRow
+
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                android:text="BADGE "
+                />
+        </TableRow>
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+
+        <TableRow
+            android:id="@+id/row_select_badge_logo"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select Badge Logo"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_badge_logo"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/op_select_badge_logo"
+                style="@style/setup_full_style_center_fields"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_badge_logo"
+                style="@style/setup_full_style_image_fields"
+                android:src="@drawable/chevron_right"
+                android:paddingLeft="40dp"
+                />
+        </TableRow>
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_title_bar"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title Bar"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_title_bar"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="HELLOO"
+                android:paddingLeft="0dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:id="@+id/op_title_bar"
+                style="@style/setup_full_style_center_fields"
+                />
+        </TableRow>
+
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+        <TableRow
+            android:id="@+id/row_print_after_sign_in"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Print After Sign In"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_print_after_signin"
+                />
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+
+        <!--HORIZONTAL LINE END-->
+
+        <TableRow
+            android:id="@+id/row_email_after_sign_in"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Email After Sign In"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_email_after_signin"
+                />
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OR HORIZONTAL LINE-->
+
+
+
+        <TableRow
+            android:id="@+id/row_admin_email"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Admin Email"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_admin_email"
+                />
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/row_print_settings_logo"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Print Settings"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_print_setting"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/op_print_settings"
+                style="@style/setup_full_style_center_fields"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_print_setting"
+                style="@style/setup_full_style_image_fields"
+                android:src="@drawable/chevron_right"
+                android:paddingLeft="40dp"
+                />
+        </TableRow>
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <TableRow
+
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                android:text="WELCOME TEXT "
+                />
+        </TableRow>
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_title"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:paddingRight="0dp"
+                android:layout_marginRight="130dp"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_title"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WELCOME"
+                android:paddingLeft="0dp"
+                android:layout_row="0"
+                android:id="@+id/op_title"
+                android:layout_column="2"
+                style="@style/setup_full_style_center_fields"
+                />
+        </TableRow>
+
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_sub_title"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subtitle"
+                android:layout_marginRight="130dp"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_sub_title"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="All Visitor  -"
+                android:paddingLeft="0dp"
+                android:layout_marginLeft="-80dp"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:id="@+id/op_sub_title"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Please Sign In"
+                android:paddingLeft="0dp"
+                android:layout_marginLeft="-25dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                />
+        </TableRow>
+
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Font"
+                android:layout_marginRight="130dp"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_font"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FuturaBT-Bold"
+                android:paddingLeft="0dp"
+                android:layout_marginLeft="-80dp"
+                android:layout_row="0"
+                android:id="@+id/op_font"
+                android:layout_column="1"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_font"
+                style="@style/setup_full_style_image_fields"
+                android:src="@drawable/chevron_right"
+                android:paddingLeft="40dp"
+                />
+        </TableRow>
+
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_color"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Font Color"
+                android:layout_marginRight="130dp"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_font_color"
+                />
+
+            <View android:id="@+id/font_color_bar"
+                android:background="#0000FF"
+                android:layout_width = "30sp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_font_color"
+                style="@style/setup_full_style_image_fields"
+                android:src="@drawable/chevron_right"
+                android:paddingLeft="40dp"
+                />
+        </TableRow>
+
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <TableRow
+
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                android:text="ADMINISTRATOR PASSWORD "
+                />
+        </TableRow>
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_password_required"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passoword Required"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_password_required"
+                />
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--HORIZONTAL LINE END-->
+
+
+        <TableRow
+            android:id="@+id/row_password"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Passoword"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_password"
+                />
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--HORIZONTAL LINE END-->
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <TableRow
+
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <TextView
+                android:layout_row="1"
+                android:layout_column="0"
+                android:paddingRight="0dp"
+                style="@style/setup_full_style_center_fields"
+                android:text="LDAP/ACTIVE DIRECTORY "
+                />
+        </TableRow>
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_account_settings_logo"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Account Settings"
+                style="@style/setup_full_style_left_fields"
+                android:id="@+id/tv_account_setting"
+                />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:id="@+id/op_account_settings"
+                style="@style/setup_full_style_center_fields"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_account_setting"
+                style="@style/setup_full_style_image_fields"
+                android:src="@drawable/chevron_right"
+                android:paddingLeft="40dp"
+                />
+        </TableRow>
+
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+    </TableLayout>
+</LinearLayout>

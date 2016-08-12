@@ -217,6 +217,32 @@ public class Database {
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
 
 
+        //
+        //custom field one row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "custom field one");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //custom field two row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "custom field two");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+        //custom field three row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "custom field three");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //custom field four row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "custom field four");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+        //custom field five row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "custom field five");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+
+        //
+
         //here to see row
         contentValues.put(DatabaseHandler.COL_FIELD_ID, "here to see");
         contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "Not Used");
@@ -240,6 +266,16 @@ public class Database {
         contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "small");
         rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
 
+        //Sign in agreement row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "signin agreement");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "false");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
+
+
+        //Sign out agreement row
+        contentValues.put(DatabaseHandler.COL_FIELD_ID, "signout agreement");
+        contentValues.put(DatabaseHandler.COL_FIELD_OPTION, "false");
+        rows = rows + db.insert(DatabaseHandler.TABLE_SINGN_IN_SETUP_FIELDS, null, contentValues);
         //Toast.makeText(context.getApplicationContext(),rows+" rows effected",Toast.LENGTH_LONG).show();
         return rows;
     }

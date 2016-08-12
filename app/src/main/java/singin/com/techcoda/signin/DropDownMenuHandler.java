@@ -32,6 +32,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     public int mAnimStyle;
     private int mOrientation;
     private int rootWidth=0;
+    private Database database;
     private View container;
     private QuickAction.OnDismissListener mDismissListener;
     public static final int HORIZONTAL = 0;
@@ -51,6 +52,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     private ImageView company_chroven_left;
     private ImageView address_chroven_left;
     private TextView address_heading_left;
+    private ImageView comments_chroven_left;
+    private TextView comments_heading_left;
     private TextView company_heading_left;
     private ImageView here_to_see_chroven_left;
     private TextView here_to_see_heading_left;
@@ -64,6 +67,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     private TextView zip_code_heading_left;
     private ImageView phone_chroven_left;
     private TextView phone_heading_left;
+    private ImageView badge_number_chroven_left;
+    private TextView badge_number_heading_left;
     private ImageView email_chroven_left;
     private ImageView badge_returned_chroven_left;
     private TextView badge_returned_heading_left;
@@ -91,6 +96,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
     private LinearLayout state_sub_menu_heading_layout;
     private LinearLayout zip_sub_menu_heading_layout;
     private LinearLayout phone_sub_menu_heading_layout;
+    private LinearLayout comments_sub_menu_heading_layout;
+    private LinearLayout badge_number_sub_menu_heading_layout;
     private LinearLayout email_sub_menu_heading_layout;
     private LinearLayout signature_capture_sub_menu_heading_layout;
     private LinearLayout visitor_agreement_text_sub_menu_heading_layout;
@@ -141,10 +148,47 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
              mTrackThree.setVisibility(View.GONE);
 
             Fields.initilizeSetupFilds(container,this);
+            LoadOptionFields loadOptionFields = new LoadOptio
 
-            LoadOptionFields loadOptionFields = new LoadOptionFields(mContext,container);
+            nFields(mContext,container);
+
+
             loadOptionFields.startLoading();
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+            currentSate.loadAgreement();
 
+        }
+        else if(layout == R.layout.comments_sub_menu)
+        {
+            container = getmInflater().inflate(R.layout.comments_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+            Fields.cb_comments_mandatory = (CheckBox)container.findViewById(R.id.cb_comments_mendatory);
+            Fields.cb_comments_not_used = (CheckBox)container.findViewById(R.id.cb_comments_not_used);
+            Fields.cb_comments_optoinal = (CheckBox)container.findViewById(R.id.cb_comments_optional);
+
+            currentSate.loadCommentsSubMenuState();
+            Fields.cb_comments_optoinal.setOnClickListener(handler);
+            Fields.cb_comments_not_used.setOnClickListener(handler);
+            Fields.cb_comments_mandatory.setOnClickListener(handler);
+
+        }
+        else if(layout == R.layout.badge_number_sub_menu)
+        {
+            container = getmInflater().inflate(R.layout.badge_number_sub_menu, null);
+            handler = new SubMenuHandler(mContext,container);
+            currentSate = new RestoreCurrentStateOfApplication(mContext,container);
+
+            Fields.cb_badge_number_mandatory = (CheckBox)container.findViewById(R.id.cb_badge_number_mendatory);
+            Fields.cb_badge_number_not_used = (CheckBox)container.findViewById(R.id.cb_badge_number_not_used);
+            Fields.cb_badge_number_optional = (CheckBox)container.findViewById(R.id.cb_badge_number_optional);
+
+
+            currentSate.loadBadgeNumberSubMenuState();
+            Fields.cb_badge_number_optional.setOnClickListener(handler);
+            Fields.cb_badge_number_not_used.setOnClickListener(handler);
+            Fields.cb_badge_number_mandatory.setOnClickListener(handler);
 
         }
         else if(layout == R.layout.company_sub_menu) {
@@ -397,7 +441,9 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         address_sub_menu_heading_layout  = (LinearLayout)mRootView.findViewById(R.id.address_sub_menu_heading_layout);
         signature_capture_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.signature_capture_sub_menu_heading_layout);
         company_chroven_left = (ImageView)mRootView.findViewById(R.id.company_chroven_left);
+        badge_number_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.badge_number_sub_menu_heading_layout);
         company_heading_left = (TextView)mRootView.findViewById(R.id.company_heading_left);
+        comments_sub_menu_heading_layout  = (LinearLayout)mRootView.findViewById(R.id.comments_sub_menu_heading_layout);
         city_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.city_sub_menu_heading_layout);
         state_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.state_sub_menu_heading_layout);
         zip_sub_menu_heading_layout = (LinearLayout)mRootView.findViewById(R.id.zip_sub_menu_heading_layout);
@@ -418,10 +464,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         badge_returned_heading_left = (TextView)mRootView.findViewById(R.id.badge_returned_heading_left);
         address_heading_left = (TextView)mRootView.findViewById(R.id.address_heading_left);
         here_to_see_chroven_left = (ImageView)mRootView.findViewById(R.id.here_to_see_chroven_left);
+        badge_number_chroven_left = (ImageView)mRootView.findViewById(R.id.badge_number_chroven_left);
+        badge_number_heading_left = (TextView)mRootView.findViewById(R.id.badge_number_heading_left);
         here_to_see_heading_left = (TextView)mRootView.findViewById(R.id.here_to_see_heading_left);
         city_chroven_left = (ImageView)mRootView.findViewById(R.id.city_chroven_left);
         city_heading_left = (TextView)mRootView.findViewById(R.id.city_heading_left);
         state_chroven_left = (ImageView)mRootView.findViewById(R.id.state_chroven_left);
+        comments_chroven_left = (ImageView)mRootView.findViewById(R.id.comments_chroven_left);
+        comments_heading_left = (TextView)mRootView.findViewById(R.id.comments_heading_left);
         state_heading_left = (TextView)mRootView.findViewById(R.id.state_heading_left);
         zip_code_chroven_left = (ImageView)mRootView.findViewById(R.id.zip_chroven_left);
         zip_code_heading_left = (TextView)mRootView.findViewById(R.id.zip_heading_left);
@@ -443,9 +493,13 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         city_chroven_left.setOnClickListener(this);
         city_heading_left.setOnClickListener(this);
         state_chroven_left.setOnClickListener(this);
+        comments_chroven_left.setOnClickListener(this);
+        comments_heading_left.setOnClickListener(this);
         state_heading_left.setOnClickListener(this);
         zip_code_chroven_left.setOnClickListener(this);
         zip_code_heading_left.setOnClickListener(this);
+        badge_number_chroven_left.setOnClickListener(this);
+        badge_number_heading_left.setOnClickListener(this);
         phone_chroven_left.setOnClickListener(this);
         signature_capture_chroven_left.setOnClickListener(this);
         signature_capture_heading_left.setOnClickListener(this);
@@ -468,10 +522,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 email_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -489,7 +545,9 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -501,6 +559,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 break;
             case R.id.design:
                 setup.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.VISIBLE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -511,6 +570,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 email_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -543,18 +603,41 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
                 break;
-            case R.id.row_badge_returned:
-            case R.id.tv_badge_returned:
-            case R.id.iv_badge_returned:
-                load("badge returned");
+            case R.id.row_comments:
+            case R.id.tv_comments:
+            case R.id.iv_comments:
+                load("comments");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
-            case R.id.badge_returned_chroven_left:
-            case R.id.badge_returned_heading_left:
+            case R.id.comments_chroven_left:
+            case R.id.comments_heading_left:
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                break;
+            case R.id.cb_show_visitor_agreement_upon_signin:
+                database = new Database(mContext);
+                if(Fields.cb_signin_agreement.isChecked()){
+
+                    Fields.cb_signin_agreement.setChecked(true);
+                    database.updateSignInSetupFields("signin agreement","true");
+                }
+                else {
+                    Fields.cb_signin_agreement.setChecked(false);
+                    database.updateSignInSetupFields("signin agreement","false");
+                }
+                break;
+            case R.id.cb_show_visitor_agreement_upon_signout:
+                database = new Database(mContext);
+                if(Fields.cb_signout_agreement.isChecked()){
+                    database.updateSignInSetupFields("signout agreement","true");
+                    Fields.cb_signout_agreement.setChecked(true);
+                }
+                else {
+                    database.updateSignInSetupFields("signout agreement","false");
+                    Fields.cb_signout_agreement.setChecked(false);
+                }
                 break;
             case R.id.row_photo_capture:
             case R.id.tv_photo_capture:
@@ -565,6 +648,18 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 break;
             case R.id.photo_capture_heading_left:
             case R.id.photo_capture_chroven_left:
+                setSubMenuHeadings(R.id.setup);
+                mTrackTwo.setVisibility(View.VISIBLE);
+                mTrackThree.setVisibility(View.GONE);
+                break;
+            case R.id.iv_badge_number:
+            case R.id.tv_badge_number:
+                load("badge number");
+                mTrackTwo.setVisibility(View.GONE);
+                mTrackThree.setVisibility(View.VISIBLE);
+                break;
+            case R.id.badge_number_chroven_left:
+            case R.id.badge_number_heading_left:
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
@@ -714,12 +809,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 setup.setVisibility(View.VISIBLE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 email_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -733,6 +830,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 report.setVisibility(View.VISIBLE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -749,11 +848,13 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.VISIBLE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -768,12 +869,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -785,6 +888,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             break;
             case R.id.photo_capture_sub_menu_heading_layout:
                 setup.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -796,6 +900,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 email_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -806,6 +911,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -813,6 +919,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 address_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -825,6 +932,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -833,6 +941,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 city_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
                 email_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -844,12 +953,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -863,12 +974,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -882,6 +995,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -890,6 +1004,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.VISIBLE);
@@ -901,12 +1016,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
                 photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -920,6 +1037,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -928,6 +1046,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -939,6 +1058,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -947,6 +1067,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -959,6 +1080,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -966,6 +1088,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -979,6 +1102,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -986,6 +1110,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -1000,6 +1125,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setup.setVisibility(View.GONE);
                 report.setVisibility(View.GONE);
                 design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
                 badge_returned_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
                 company_sub_menu_heading_layout.setVisibility(View.GONE);
@@ -1007,13 +1133,61 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 address_sub_menu_heading_layout.setVisibility(View.GONE);
                 city_sub_menu_heading_layout.setVisibility(View.GONE);
                 state_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
                 zip_sub_menu_heading_layout.setVisibility(View.GONE);
                 guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
                 signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
                 phone_sub_menu_heading_layout.setVisibility(View.GONE);
                 email_sub_menu_heading_layout.setVisibility(View.GONE);
-                guide_escort_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
+                visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
+                here_to_see_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+            case R.id.badge_number_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
+                visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
+                signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
+                visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
+                here_to_see_sub_menu_heading_layout.setVisibility(View.GONE);
+                break;
+
+            case R.id.comments_sub_menu_heading_layout:
+                setup.setVisibility(View.GONE);
+                report.setVisibility(View.GONE);
+                design.setVisibility(View.GONE);
+                comments_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                badge_returned_sub_menu_heading_layout.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                company_sub_menu_heading_layout.setVisibility(View.GONE);
+                photo_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                address_sub_menu_heading_layout.setVisibility(View.GONE);
+                city_sub_menu_heading_layout.setVisibility(View.GONE);
+                state_sub_menu_heading_layout.setVisibility(View.GONE);
+                badge_number_sub_menu_heading_layout.setVisibility(View.GONE);
+                zip_sub_menu_heading_layout.setVisibility(View.GONE);
+                guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
+                visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
+                signature_capture_sub_menu_heading_layout.setVisibility(View.GONE);
+                phone_sub_menu_heading_layout.setVisibility(View.GONE);
+                email_sub_menu_heading_layout.setVisibility(View.GONE);
+                guide_escort_sub_menu_heading_layout.setVisibility(View.GONE);
                 visitor_agreement_text_sub_menu_heading_layout.setVisibility(View.GONE);
                 here_to_see_sub_menu_heading_layout.setVisibility(View.GONE);
                 break;
@@ -1035,6 +1209,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             company_heading_left.setOnClickListener(this);
             //isCompanyLoaded = true;
         }
+        else if(head.equals("comments"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
+            setSubMenuHeadings(R.id.comments_sub_menu_heading_layout);
+            addActionItem(R.layout.comments_sub_menu);
+        }
         else if(head.equals("photo capture")){
             setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
             if(getmTrack().getChildCount()>0)
@@ -1042,6 +1224,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             setSubMenuHeadings(R.id.photo_capture_sub_menu_heading_layout);
             addActionItem(R.layout.photo_capture_sub_menu);
             //isPhotoCaptureLoaded = true;
+        }
+        else if(head.equals("badge number"))
+        {
+            setView(Fields.scrollers[1],Fields.scrollerLayouts[1]);
+            if(getmTrack().getChildCount()>0)
+                getmTrack().removeAllViews();
+            setSubMenuHeadings(R.id.badge_number_sub_menu_heading_layout);
+            addActionItem(R.layout.badge_number_sub_menu);
         }
         else if(head.equals("badge returned"))
         {

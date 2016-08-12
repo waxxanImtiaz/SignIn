@@ -28,6 +28,30 @@ public class LoadOptionFields {
         this.container = container;
     }
 
+    public void loadOptionFields(){
+        Database database = new Database(mContext);
+     Fields.op_company.setText(database.isFieldEnabled("company"));
+     Fields.op_email.setText(database.isFieldEnabled("email"));
+     Fields.op_state.setText(database.isFieldEnabled("state"));
+     Fields.op_badgeReturned.setText(database.isFieldEnabled("badge returned"));
+     Fields.op_badgeNumber.setText(database.isFieldEnabled("badge number"));
+     Fields.op_phone.setText(database.isFieldEnabled("phone"));
+     Fields.op_address.setText(database.isFieldEnabled("address"));
+     Fields.op_hereToSee.setText(database.isFieldEnabled("here to see"));
+     Fields.op_zipCode.setText(database.isFieldEnabled("zip code"));
+     Fields.op_signature_capture.setText(database.isFieldEnabled("signature capture"));
+     Fields.op_photo_capture.setText(database.isFieldEnabled("photo capture"));
+     Fields.op_guideName.setText(database.isFieldEnabled("guide escort"));
+     Fields.op_vehicleMakeModel.setText(database.isFieldEnabled("vehicle make/model"));
+     Fields.op_vehicleLisencePlate.setText(database.isFieldEnabled("vehicle lisence plate"));
+     Fields.op_vehicleColor.setText(database.isFieldEnabled("vehicle color"));
+     Fields.op_comments.setText(database.isFieldEnabled("comments"));
+     Fields.op_customFieldOne.setText(database.isFieldEnabled("custom field one"));
+     Fields.op_customFieldTwo.setText(database.isFieldEnabled("custom field two"));
+     Fields.op_customFieldThree.setText(database.isFieldEnabled("custom field three"));
+     Fields.op_customFieldFour.setText(database.isFieldEnabled("custom field four"));
+     Fields.op_customFieldFive.setText(database.isFieldEnabled("custom field five"));
+    }
     public  void startLoading(){
         //INITIALIZING LAYOUT OPTION FIELDS
         op_city = (TextView)container.findViewById(R.id.op_city);

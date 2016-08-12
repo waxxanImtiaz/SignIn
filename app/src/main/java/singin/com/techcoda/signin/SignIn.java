@@ -645,7 +645,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         {
         }
 
-        option = database.isFieldEnabled("visitor agreement");
+        option = database.isFieldEnabled("signin agreement");
         if(option != null && option.equals("true")) {
             if (visitorAgreement.isChecked()) {
                 isEmailVisible = true;

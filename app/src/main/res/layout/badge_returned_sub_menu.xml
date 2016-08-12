@@ -5,7 +5,7 @@
     android:orientation="vertical"
     >
     <TableLayout
-        android:layout_width="311dp"
+        android:layout_width="312dp"
         android:layout_height="match_parent"
         android:shrinkColumns="*"
         style="@style/setup_menu_table"

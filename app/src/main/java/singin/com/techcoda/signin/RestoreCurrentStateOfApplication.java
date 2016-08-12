@@ -304,5 +304,69 @@ public class RestoreCurrentStateOfApplication {
             Fields.cb_badge_returned_optional.setChecked(true);
         }
     }
+
+    public void loadBadgeNumberSubMenuState(){
+        String badge_numberOptions = database.isFieldEnabled("badge number");
+        if(badge_numberOptions.equals("Mandatory"))
+        {
+            Fields.cb_badge_number_mandatory.setChecked(true);
+            Fields.cb_badge_number_not_used.setChecked(false);
+            Fields.cb_badge_number_optional.setChecked(false);
+        }
+        else if(badge_numberOptions.equals("Not Used"))
+        {
+            Fields.cb_badge_number_mandatory.setChecked(false);
+            Fields.cb_badge_number_not_used.setChecked(true);
+            Fields.cb_badge_number_optional.setChecked(false);
+        }
+        else if(badge_numberOptions.equals("Optional"))
+        {
+            Fields.cb_badge_number_mandatory.setChecked(false);
+            Fields.cb_badge_number_not_used.setChecked(false);
+            Fields.cb_badge_number_optional.setChecked(true);
+        }
+    }
+    public void loadCommentsSubMenuState(){
+        String commentsOptions = database.isFieldEnabled("comments");
+        if(commentsOptions.equals("Mandatory"))
+        {
+            Fields.cb_comments_mandatory.setChecked(true);
+            Fields.cb_comments_not_used.setChecked(false);
+            Fields.cb_comments_optoinal.setChecked(false);
+        }
+        else if(commentsOptions.equals("Not Used"))
+        {
+            Fields.cb_comments_mandatory.setChecked(false);
+            Fields.cb_comments_not_used.setChecked(true);
+            Fields.cb_comments_optoinal.setChecked(false);
+        }
+        else if(commentsOptions.equals("Optional"))
+        {
+            Fields.cb_comments_mandatory.setChecked(false);
+            Fields.cb_comments_not_used.setChecked(false);
+            Fields.cb_comments_optoinal.setChecked(true);
+        }
+    }
+
+    public void loadAgreement(){
+        String signInAgreementOptions = database.isFieldEnabled("signin agreement");
+        String signOutAgreementOptions = database.isFieldEnabled("signout agreement");
+
+        if(signInAgreementOptions.equals("true"))
+        {
+            Fields.cb_signin_agreement.setChecked(true);
+        }
+        else
+            Fields.cb_signin_agreement.setChecked(false);
+
+
+        if(signOutAgreementOptions.equals("false"))
+        {
+            Fields.cb_signout_agreement.setChecked(false);
+        }
+        else
+            Fields.cb_signout_agreement.setChecked(true);
+    }
+
 }
 

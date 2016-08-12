@@ -27,7 +27,7 @@ public class Fields {
     public static CheckBox ch_company_not_used;
     public static CheckBox ch_company_mendatory;
     public static CheckBox ch_company_optional;
-    public static TextView opCompany;
+    //public static TextView opCompany;
 
     //FIELDS OF PHOTO CAPTURE SUB MENU
     public static ImageView iv_photo_capture;
@@ -39,7 +39,28 @@ public class Fields {
     public static CheckBox cb_photo_capture_optional;
     public static CheckBox cb_photo_capture_mandatory;
     public static TextView op_company;
+    public static TextView op_city;
+    public static TextView op_email;
+    public static TextView op_state;
+    public static TextView op_guideName;
     public static TextView op_photo_capture;
+    public static TextView op_address;
+    public static TextView op_zipCode;
+    public static TextView op_phone;
+    public static TextView op_hereToSee;
+    public static TextView op_badgeReturned;
+    public static TextView op_badgeNumber;
+    public static TextView op_vehicleColor;
+    public static TextView op_vehicleMakeModel;
+    public static TextView op_vehicleLisencePlate;
+    public static TextView op_comments;
+    public static TextView op_customFieldOne;
+    public static TextView op_customFieldTwo;
+    public static TextView op_customFieldThree;
+    public static TextView op_customFieldFour;
+    public static TextView op_customFieldFive;
+
+
 
     //FIELDS OF ADDRESS
     public static CheckBox cb_address_mandatory;
@@ -58,7 +79,7 @@ public class Fields {
     //FIELDS OF BADGE NUMBER
     public static CheckBox cb_badge_number_mandatory;
     public static CheckBox cb_badge_number_not_used;
-    public static CheckBox cb_badge_number_optoinal;
+    public static CheckBox cb_badge_number_optional;
     public static TextView tv_badge_number;
     public static ImageView iv_badge_number;
     //FIELDS OF VEHICLE LISENCE PLATE
@@ -96,6 +117,8 @@ public class Fields {
     public static TextView tv_badge_returned;
     public static ImageView iv_badge_returned;
 
+    public static CheckBox cb_signin_agreement;
+    public static CheckBox cb_signout_agreement;
     //FIELDS OF GUIDE/ESCORT NAME
     public static CheckBox cb_guide_escort_mandatory;
     public static CheckBox cb_guide_escort_not_used;
@@ -222,6 +245,8 @@ public class Fields {
 //        Fields.iv_badge_returned = (ImageView)container.findViewById(R.id.iv_badge_returned);
         Fields.iv_badge_number = (ImageView)container.findViewById(R.id.iv_badge_number);
         Fields.tv_badge_number = (TextView)container.findViewById(R.id.tv_badge_number);
+        cb_signin_agreement = (CheckBox)container.findViewById(R.id.cb_show_visitor_agreement_upon_signin);
+        cb_signout_agreement = (CheckBox)container.findViewById(R.id.cb_show_visitor_agreement_upon_signout);
         Fields.iv_vehicle_lisence_plate = (ImageView)container.findViewById(R.id.iv_vehicle_license_plate);
         Fields.tv_vehicle_lisence_plate = (TextView)container.findViewById(R.id.tv_vehicle_license_plate);
 //        Fields.iv_vehicle_make_model = (ImageView)container.findViewById(R.id.iv_vehicle_make_model);
@@ -315,6 +340,33 @@ public class Fields {
         Fields.iv_here_to_see.setOnClickListener(handler);
         Fields.tv_badge_number.setOnClickListener(handler);
         Fields.iv_badge_number.setOnClickListener(handler);
+        cb_signin_agreement.setOnClickListener(handler);
+        cb_signout_agreement.setOnClickListener(handler);
+
+        //Intialize option fields
+
+        op_company = (TextView)container.findViewById(R.id.op_company);
+        op_city = (TextView)container.findViewById(R.id.op_city);
+        op_address = (TextView)container.findViewById(R.id.op_address);
+        op_photo_capture = (TextView)container.findViewById(R.id.op_photo_capture);
+        op_state = (TextView)container.findViewById(R.id.op_state);
+        op_phone = (TextView)container.findViewById(R.id.op_phone);
+        op_badgeNumber = (TextView)container.findViewById(R.id.op_badge_number);
+        op_badgeReturned = (TextView)container.findViewById(R.id.op_badge_returned);
+        op_zipCode = (TextView)container.findViewById(R.id.op_zip_code);
+        op_signature_capture = (TextView)container.findViewById(R.id.op_signature_capture);
+        op_guideName = (TextView)container.findViewById(R.id.op_guide_escort_name);
+        op_vehicleColor = (TextView)container.findViewById(R.id.op_vehicle_color);
+        op_vehicleLisencePlate = (TextView)container.findViewById(R.id.op_vehicle_license_plate);
+        op_vehicleMakeModel = (TextView)container.findViewById(R.id.op_vehicle_make_model);
+        op_customFieldOne = (TextView)container.findViewById(R.id.op_custom_field_one);
+        op_customFieldTwo = (TextView)container.findViewById(R.id.op_custom_field_two);
+        op_customFieldThree = (TextView)container.findViewById(R.id.op_custom_field_three);
+        op_customFieldFour = (TextView)container.findViewById(R.id.op_custom_field_four);
+        op_customFieldFive = (TextView)container.findViewById(R.id.op_custom_field_five);
+        op_hereToSee = (TextView)container.findViewById(R.id.op_here_to_see);
+        op_comments = (TextView)container.findViewById(R.id.op_comments);
+        op_email = (TextView)container.findViewById(R.id.op_email);
 
 
         //ROW EVENTS

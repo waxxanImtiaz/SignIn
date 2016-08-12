@@ -266,6 +266,45 @@ public class SubMenuHandler implements View.OnClickListener{
                 Fields.cb_badge_returned_optional.setChecked(true);
                 database.updateSignInSetupFields("badge returned","Not Used");
                 break;
+
+            //IF BADGE NUMBER SUB MENU CLICKED
+            case R.id.cb_badge_number_mendatory:
+                Fields.cb_badge_number_mandatory.setChecked(true);
+                Fields.cb_badge_number_not_used.setChecked(false);
+                Fields.cb_badge_number_optional.setChecked(false);
+                database.updateSignInSetupFields("badge number","Mandatory");
+                break;
+            case R.id.cb_badge_number_not_used:
+                Fields.cb_badge_number_mandatory.setChecked(false);
+                Fields.cb_badge_number_not_used.setChecked(true);
+                Fields.cb_badge_number_optional.setChecked(false);
+                database.updateSignInSetupFields("badge number","Optional");
+                break;
+            case R.id.cb_badge_number_optional:
+                Fields.cb_badge_number_mandatory.setChecked(false);
+                Fields.cb_badge_number_not_used.setChecked(false);
+                Fields.cb_badge_number_optional.setChecked(true);
+                database.updateSignInSetupFields("badge number","Not Used");
+                break;
+            //IF COMMENTS SUB MENU CLICKED
+            case R.id.cb_comments_mendatory:
+                Fields.cb_comments_mandatory.setChecked(true);
+                Fields.cb_comments_not_used.setChecked(false);
+                Fields.cb_comments_optoinal.setChecked(false);
+                database.updateSignInSetupFields("comments","Mandatory");
+                break;
+            case R.id.cb_comments_not_used:
+                Fields.cb_comments_mandatory.setChecked(false);
+                Fields.cb_comments_not_used.setChecked(true);
+                Fields.cb_comments_optoinal.setChecked(false);
+                database.updateSignInSetupFields("comments","Optional");
+                break;
+            case R.id.cb_comments_optional:
+                Fields.cb_comments_mandatory.setChecked(false);
+                Fields.cb_comments_not_used.setChecked(false);
+                Fields.cb_comments_optoinal.setChecked(true);
+                database.updateSignInSetupFields("comments","Not Used");
+                break;
         }
     }
 
