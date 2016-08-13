@@ -22,7 +22,6 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
     public ScrollView mScroller;
     private boolean mDidAction;
     public int mAnimStyle;
-    private int mOrientation;
     private int rootWidth = 0;
     private Database database;
     private View container;
@@ -38,11 +37,9 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
     private int heading_id;
 
     private TextView design;
-    public DropDownReportMenuHandler(Context context, int orientation, int heading_id) {
+    public DropDownReportMenuHandler(Context context, int heading_id) {
         super(context);
-
         setHeading_id(heading_id);
-        mOrientation = orientation;
         setmInflater((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
         setRootViewId(R.layout.layout_report_menu);
     }//end of constructor
@@ -54,9 +51,11 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
         mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
     }
     public void addActionItem(int layout) {
-
-        if (layout == R.layout.report_popup_layout_vertical && mOrientation == VERTICAL) {
+        if (layout == R.layout.report_popup_layout_vertical) {
             container = getmInflater().inflate(R.layout.report_popup_layout_vertical, null);
+
+            if(mTrackThree != null)
+                mTrackThree.setVisibility(View.GONE);
         }
 
         container.setFocusable(true);
@@ -141,7 +140,6 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
         switch (getHeading_id()) {
             case R.id.design:
                 design.setVisibility(View.VISIBLE);
-
                 break;
         }
 
@@ -249,7 +247,6 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
 
         mWindow.showAtLocation(anchor, Gravity.NO_GRAVITY, xPos, yPos);
     }
-
     public int getHeading_id() {
         return 0;
     }

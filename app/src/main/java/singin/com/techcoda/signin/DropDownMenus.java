@@ -42,7 +42,7 @@ public class DropDownMenus {
         designMenu.setMenuHeadings();
         designMenu.addActionItem(R.layout.design_menu_layout_vertical);
 
-        reportMenu = new DropDownReportMenuHandler(mContext,DropDownReportMenuHandler.VERTICAL,R.id.tv_report_head);
+        reportMenu = new DropDownReportMenuHandler(mContext,R.id.tv_report_head);
         reportMenu.setView(Fields.scrollers[0],Fields.scrollerLayouts[0]);
         reportMenu.setMenuHeadings();
         reportMenu.addActionItem(R.layout.report_popup_layout_vertical);
