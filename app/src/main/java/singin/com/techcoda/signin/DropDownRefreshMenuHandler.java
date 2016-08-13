@@ -7,12 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class DropDownDesignMenuHandler extends PopupWindows implements PopupWindow.OnDismissListener,View.OnClickListener {
+public class DropDownRefreshMenuHandler extends PopupWindows implements PopupWindow.OnDismissListener,View.OnClickListener {
     public View mRootView;
     private ImageView mArrowUp;
     private ImageView mArrowDown;
@@ -30,17 +29,16 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
     private QuickAction.OnDismissListener mDismissListener;
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
-    private ImageView font_chroven_left;
-    private TextView font_heading_left;
+
     private static final int ANIM_GROW_FROM_LEFT = 1;
     private static final int ANIM_GROW_FROM_RIGHT = 2;
     private static final int ANIM_GROW_FROM_CENTER = 3;
     public static final int ANIM_REFLECT = 4;
     public static final int ANIM_AUTO = 5;
     private int heading_id;
-    private LinearLayout font_sub_menu_heading_layout;
+
     private TextView design;
-    public DropDownDesignMenuHandler(Context context, int orientation, int heading_id) {
+    public DropDownRefreshMenuHandler(Context context, int orientation, int heading_id) {
         super(context);
 
         setHeading_id(heading_id);
@@ -57,23 +55,14 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
     }
     public void addActionItem(int layout) {
 
-         if (layout == R.layout.design_menu_layout_vertical && mOrientation == VERTICAL) {
+        if (mOrientation == HORIZONTAL) {
+            container = getmInflater().inflate(R.layout.action_item_horizontal, null);
+        } else if (layout == R.layout.design_menu_layout_vertical && mOrientation == VERTICAL) {
+
             container = getmInflater().inflate(R.layout.design_menu_layout_vertical, null);
 
-             if(mTrackThree != null)
-                 mTrackThree.setVisibility(View.GONE);
+        }
 
-             DesignMenuFields.initilizeDesignMenuFields(container,this);
-        }
-        else if(layout == R.layout.font_styles_sub_menu_lat)
-        {
-            container = getmInflater().inflate(R.layout.font_styles_sub_menu_lat, null);
-
-        }
-        else if(layout == R.layout.font_sub_color_menu)
-        {
-            container = getmInflater().inflate(R.layout.font_sub_color_menu, null);
-        }
         container.setFocusable(true);
         container.setClickable(true);
         getmTrack().addView(container);
@@ -87,21 +76,79 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
         mAnimStyle 	= ANIM_AUTO;
     }
 
+    public void setAnimationStyle(int screenWidth, int requestedX, boolean onTop) {
+        int arrowPos = requestedX - mArrowUp.getMeasuredWidth() / 2;
 
-    public void setMenuHeadings() {
-        design = (TextView)mRootView.findViewById(R.id.tv_design_head);
-        font_sub_menu_heading_layout  = (LinearLayout)mRootView.findViewById(R.id.font_sub_menu_heading_layout_design);
-        font_chroven_left = (ImageView)mRootView.findViewById(R.id.font_chroven_left_design);
-        font_heading_left = (TextView)mRootView.findViewById(R.id.font_heading_left_design);
-        font_sub_menu_heading_layout.setVisibility(View.GONE);
-        font_chroven_left.setOnClickListener(this);
-        font_heading_left.setOnClickListener(this);
-        switch (getHeading_id()) {
-            case R.id.tv_design_head:
-                design.setVisibility(View.VISIBLE);
-                font_sub_menu_heading_layout.setVisibility(View.GONE);
+        switch (mAnimStyle) {
+            case ANIM_GROW_FROM_LEFT:
+                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Left : R.style.Animations_PopDownMenu_Left);
+                break;
+
+            case ANIM_GROW_FROM_RIGHT:
+                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Right : R.style.Animations_PopDownMenu_Right);
+                break;
+
+            case ANIM_GROW_FROM_CENTER:
+                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Center : R.style.Animations_PopDownMenu_Center);
+                break;
+
+            case ANIM_REFLECT:
+                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Reflect : R.style.Animations_PopDownMenu_Reflect);
+                break;
+
+            case ANIM_AUTO:
+                if (arrowPos <= screenWidth / 4) {
+                    mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Left : R.style.Animations_PopDownMenu_Left);
+                } else if (arrowPos > screenWidth / 4 && arrowPos < 3 * (screenWidth / 4)) {
+                    mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Center : R.style.Animations_PopDownMenu_Center);
+                } else {
+                    mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Right : R.style.Animations_PopDownMenu_Right);
+                }
+
                 break;
         }
+    }
+
+    /**
+     * Show arrow
+     *
+     * @param whichArrow arrow type resource id
+     * @param requestedX distance from left screen
+     */
+    public void showArrow(int whichArrow, int requestedX) {
+        final View showArrow = (whichArrow == R.id.arrow_up) ? mArrowUp : mArrowDown;
+        final View hideArrow = (whichArrow == R.id.arrow_up) ? mArrowDown : mArrowUp;
+
+        final int arrowWidth = mArrowUp.getMeasuredWidth();
+
+        showArrow.setVisibility(View.VISIBLE);
+
+        ViewGroup.MarginLayoutParams param = (ViewGroup.MarginLayoutParams) showArrow.getLayoutParams();
+
+        param.leftMargin = requestedX - arrowWidth / 2;
+
+        hideArrow.setVisibility(View.INVISIBLE);
+    }
+
+    /**
+     * Set listener for window dismissed. This listener will only be fired if the quicakction dialog is dismissed
+     * by clicking outside the dialog or clicking on sticky item.
+     */
+    public void setOnDismissListener(QuickAction.OnDismissListener listener) {
+        setOnDismissListener(this);
+
+        mDismissListener = listener;
+    }
+
+    public void setMenuHeadings() {
+        design = (TextView)mRootView.findViewById(R.id.design);
+
+        switch (getHeading_id()) {
+            case R.id.design:
+                design.setVisibility(View.VISIBLE);
+                break;
+        }
+
         setContentView(mRootView);
     }
 
@@ -110,13 +157,8 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
 
         switch (id)
         {
-            case R.id.tv_design_head:
+            case R.id.design:
                 design.setVisibility(View.VISIBLE);
-                font_sub_menu_heading_layout.setVisibility(View.GONE);
-                break;
-            case R.id.font_sub_menu_heading_layout_design:
-                font_sub_menu_heading_layout.setVisibility(View.VISIBLE);
-                design.setVisibility(View.GONE);
                 break;
 
         }
@@ -124,41 +166,13 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
     }
 
     public void load(String head) {
-        if(head.equals("font")) {
-            setView(Fields.scrollers[1], Fields.scrollerLayouts[1]);
-            if (getmTrack().getChildCount() > 0)
-                getmTrack().removeAllViews();
-            setSubMenuHeadings(R.id.font_sub_menu_heading_layout_design);
-            addActionItem(R.layout.font_styles_sub_menu_lat);
-            font_chroven_left.setOnClickListener(this);
-            font_heading_left.setOnClickListener(this);
-        }
     }
 
     @Override
     public void onClick(View v) {
 
-        int id = v.getId();
-        switch (id) {
-
-            case R.id.row_font:
-            case R.id.tv_font:
-            case R.id.iv_font:
-           // case R.id.op_font:
-                load("font");
-                mTrackTwo.setVisibility(View.GONE);
-                mTrackThree.setVisibility(View.VISIBLE);
-                break;
-            case R.id.font_chroven_left_design:
-            case R.id.font_heading_left_design:
-            //case R.id.font_sub_menu_heading_layout:
-                setSubMenuHeadings(R.id.tv_design_head);
-                mTrackTwo.setVisibility(View.VISIBLE);
-                mTrackThree.setVisibility(View.GONE);
-                //Fields.op_company.setText(database.isFieldEnabled("company"));
-                break;
-        }
     }
+
     @Override
     public void onDismiss() {
         if (!mDidAction && mDismissListener != null) {
@@ -248,69 +262,6 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
         this.heading_id = heading_id;
     }
 
-    public void setAnimationStyle(int screenWidth, int requestedX, boolean onTop) {
-        int arrowPos = requestedX - mArrowUp.getMeasuredWidth() / 2;
-
-        switch (mAnimStyle) {
-            case ANIM_GROW_FROM_LEFT:
-                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Left : R.style.Animations_PopDownMenu_Left);
-                break;
-
-            case ANIM_GROW_FROM_RIGHT:
-                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Right : R.style.Animations_PopDownMenu_Right);
-                break;
-
-            case ANIM_GROW_FROM_CENTER:
-                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Center : R.style.Animations_PopDownMenu_Center);
-                break;
-
-            case ANIM_REFLECT:
-                mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Reflect : R.style.Animations_PopDownMenu_Reflect);
-                break;
-
-            case ANIM_AUTO:
-                if (arrowPos <= screenWidth / 4) {
-                    mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Left : R.style.Animations_PopDownMenu_Left);
-                } else if (arrowPos > screenWidth / 4 && arrowPos < 3 * (screenWidth / 4)) {
-                    mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Center : R.style.Animations_PopDownMenu_Center);
-                } else {
-                    mWindow.setAnimationStyle((onTop) ? R.style.Animations_PopUpMenu_Right : R.style.Animations_PopDownMenu_Right);
-                }
-
-                break;
-        }
-    }
-
-    /**
-     * Show arrow
-     *
-     * @param whichArrow arrow type resource id
-     * @param requestedX distance from left screen
-     */
-    public void showArrow(int whichArrow, int requestedX) {
-        final View showArrow = (whichArrow == R.id.arrow_up) ? mArrowUp : mArrowDown;
-        final View hideArrow = (whichArrow == R.id.arrow_up) ? mArrowDown : mArrowUp;
-
-        final int arrowWidth = mArrowUp.getMeasuredWidth();
-
-        showArrow.setVisibility(View.VISIBLE);
-
-        ViewGroup.MarginLayoutParams param = (ViewGroup.MarginLayoutParams) showArrow.getLayoutParams();
-
-        param.leftMargin = requestedX - arrowWidth / 2;
-
-        hideArrow.setVisibility(View.INVISIBLE);
-    }
-
-    /**
-     * Set listener for window dismissed. This listener will only be fired if the quicakction dialog is dismissed
-     * by clicking outside the dialog or clicking on sticky item.
-     */
-    public void setOnDismissListener(QuickAction.OnDismissListener listener) {
-        setOnDismissListener(this);
-
-        mDismissListener = listener;
-    }
     public ViewGroup getmTrack() {
         return mTrack;
     }

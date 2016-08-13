@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="vertical">
+    <TableLayout
+        android:layout_width="340dp"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"
+        style="@style/setup_menu_table"
+        android:id="@+id/tl_visitor_agreement_text_sub_menu"
+        android:stretchColumns="*"
+        android:background="#ffffff">
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+
+        <!-- Row 1 with single column -->
+        <TableRow
+            style="@style/setup_table_rows"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Enter Agreement Text"
+                android:inputType="text"
+                android:fontFamily="sans-serif"
+                android:textSize="20dp"
+                android:padding="10dp"
+                android:id="@+id/et_visitor_agreement_text_sub"
+                android:background="@drawable/et_search" />
+        </TableRow>
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="40dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <!--HORIZONTAL LINE-->
+        <!--<TableRow-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_width="200dp">-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--style="@style/horizontal_line"-->
+                <!--/>-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--style="@style/horizontal_line"-->
+                <!--android:layout_height="1dp" />-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--style="@style/horizontal_line"/>-->
+        <!--</TableRow>-->
+        <!--END OF HORIZONTAL LINE-->
+        <TableRow
+            style="@style/setup_table_rows"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <Button
+                android:id="@+id/bt_visitor_agree"
+                android:layout_row="1"
+                style="@style/setup_full_style_left_fields"
+                android:text="Agree"
+                android:textColor="#000"
+                android:background="@drawable/bt_agree"
+                android:paddingRight="110dp"
+                android:paddingLeft="110dp"
+                />
+        </TableRow>
+
+
+
+        <!--HORIZONTAL LINE-->
+        <!--<TableRow-->
+            <!--style="@style/setup_table_rows"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_width="200dp">-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--style="@style/horizontal_line"-->
+                <!--/>-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--style="@style/horizontal_line"-->
+                <!--android:layout_height="1dp" />-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--style="@style/horizontal_line"/>-->
+        <!--</TableRow>-->
+        <!--END OF HORIZONTAL LINE-->
+        <TableRow
+            style="@style/setup_table_rows"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
+            <Button
+                android:id="@+id/bt_visitor_not_agree"
+                android:layout_row="1"
+                style="@style/setup_full_style_left_fields"
+                android:text="Not Agree"
+                android:textColor="#000"
+                android:background="@drawable/bt_agree"
+                android:paddingRight="110dp"
+                android:paddingLeft="110dp"
+                />
+        </TableRow>
+        <!--HORIZONTAL LINE-->
+        <!--<TableRow-->
+            <!--style="@style/setup_table_rows"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_width="200dp">-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--style="@style/horizontal_line"-->
+                <!--/>-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--style="@style/horizontal_line"-->
+                <!--android:layout_height="1dp" />-->
+            <!--<View android:layout_width="match_parent"-->
+                <!--android:layout_height="1dp"-->
+                <!--style="@style/horizontal_line"/>-->
+        <!--</TableRow>-->
+        <!--END OF HORIZONTAL LINE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="90dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+    </TableLayout>
+</LinearLayout>

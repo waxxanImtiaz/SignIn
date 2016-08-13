@@ -25,6 +25,9 @@ public class DropDownMenus {
     private static QuickAction reportQuickAction;
     private static QuickAction designQuickAction;
     private static DropDownMenuHandler setupMenu;
+    private static DropDownDesignMenuHandler designMenu;
+    private static DropDownReportMenuHandler reportMenu;
+
 
     public DropDownMenus(Context mContext)
     {
@@ -33,6 +36,17 @@ public class DropDownMenus {
         setupMenu.setView(Fields.scrollers[0],Fields.scrollerLayouts[0]);
         setupMenu.setMenuHeadings();
         setupMenu.addActionItem(R.layout.setup_menu_layout_vertical);
+
+        designMenu = new DropDownDesignMenuHandler(mContext,DropDownDesignMenuHandler.VERTICAL,R.id.tv_design_head);
+        designMenu.setView(Fields.scrollers[0],Fields.scrollerLayouts[0]);
+        designMenu.setMenuHeadings();
+        designMenu.addActionItem(R.layout.design_menu_layout_vertical);
+
+        reportMenu = new DropDownReportMenuHandler(mContext,DropDownReportMenuHandler.VERTICAL,R.id.tv_report_head);
+        reportMenu.setView(Fields.scrollers[0],Fields.scrollerLayouts[0]);
+        reportMenu.setMenuHeadings();
+        reportMenu.addActionItem(R.layout.report_popup_layout_vertical);
+
     }
     public void setup_button_clicked(View view) {
         //setupQuickAction.setSubMenuView(view);
@@ -42,13 +56,11 @@ public class DropDownMenus {
 
     public void report_button_clicked(View view)
     {
-//        reportQuickAction.setSubMenuView(view);
-//        reportQuickAction.show(view);
+        reportMenu.show(view);
     }
     public void design_button_clicked(View view)
     {
-//        designQuickAction.setSubMenuView(view);
-//        designQuickAction.show(view);
+        designMenu.show(view);
     }
 
     public void addItemsToSetupMenu(){

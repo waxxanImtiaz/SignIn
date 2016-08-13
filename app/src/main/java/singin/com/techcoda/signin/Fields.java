@@ -151,6 +151,7 @@ public class Fields {
     public static TextView tv_email;
     public static ImageView iv_email;
 
+    public static View setupContainer;
 //    //FIELDS OF VEHICLE LISENCE PLATE
 //    public static CheckBox cb_vehicle_lisence_plate_mandatory;
 //    public static CheckBox cb_vehicle_lisence_plate_not_used;
@@ -228,6 +229,7 @@ public class Fields {
     //initialize setupFields
     public static void initilizeSetupFilds(View container,DropDownMenuHandler handler)
     {
+        setupContainer = container;
         Fields.iv_company = (ImageView)container.findViewById(R.id.iv_company);
         Fields.tv_company = (TextView)container.findViewById(R.id.tv_company);
         Fields.op_company = (TextView)container.findViewById(R.id.op_company);
@@ -404,6 +406,24 @@ public class Fields {
     }
 }
 
+
+class DesignMenuFields{
+    public static ImageView iv_font;
+    public static TextView tv_font;
+    public static TableRow row_font;
+
+    public static void initilizeDesignMenuFields(View container,DropDownDesignMenuHandler handler){
+
+        iv_font = (ImageView)container.findViewById(R.id.iv_font);
+        tv_font = (TextView)container.findViewById(R.id.tv_font);
+        row_font = (TableRow)container.findViewById(R.id.row_font);
+
+        iv_font.setOnClickListener(handler);
+        tv_font.setOnClickListener(handler);
+        row_font.setOnClickListener(handler);
+
+    }
+}
 //FONT FAMILIES
 class FontFamilies{
     public static int fontFamiliesIndex=0;

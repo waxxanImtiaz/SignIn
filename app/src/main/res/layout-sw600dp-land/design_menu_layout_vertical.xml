@@ -934,6 +934,7 @@
             android:id="@+id/row_font"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
+
             android:layout_width="200dp">
             <TextView
                 android:layout_width="wrap_content"
@@ -1290,6 +1291,5 @@
                 />
         </TableRow>
         <!--END OF SPACE-->
-
     </TableLayout>
 </LinearLayout>

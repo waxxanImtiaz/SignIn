@@ -15,6 +15,8 @@ import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 /**
  * Created by android on 7/29/2016.
  */
@@ -117,11 +119,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         setHeading_id(heading_id);
         mOrientation = orientation;
         setmInflater((LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE));
-        if (mOrientation == HORIZONTAL) {
-            setRootViewId(R.layout.popup_horizontal);
-        } else {
-            setRootViewId(R.layout.popup_vertical);
-        }
+        setRootViewId(R.layout.popup_vertical);
     }//end of constructor
 
     public void setRootViewId(int id) {
@@ -129,11 +127,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
        //mRootViewTwo = (ViewGroup)mInflater.inflate(id,null);
         mArrowDown 	= (ImageView) mRootView.findViewById(R.id.arrow_down_two);
         mArrowUp 	= (ImageView) mRootView.findViewById(R.id.arrow_up);
-
-        //   filiper = (ViewFlipper)mRootView.findViewById(R.id.dropDownFlipper);
         mRootView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-        //mRootViewTwo.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-
     }
     public void addActionItem(int layout) {
 
@@ -148,12 +142,13 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
              mTrackThree.setVisibility(View.GONE);
 
             Fields.initilizeSetupFilds(container,this);
-            LoadOptionFields loadOptionFields = new LoadOptio
+            LoadOptionFields loadOptionFields = new LoadOptionFields(mContext,container);
 
-            nFields(mContext,container);
+            //nFields(mContext,container);
 
-
+            database = new Database(mContext);
             loadOptionFields.startLoading();
+            loadOptionFields.loadOptionFields();
             currentSate = new RestoreCurrentStateOfApplication(mContext,container);
             currentSate.loadAgreement();
 
@@ -588,12 +583,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
         int id = view.getId();
         switch (id)
         {
+
             case R.id.row_company:
             case R.id.tv_company:
             case R.id.iv_company:
+            case R.id.op_company:
                     load("company");
-//                    setupMenuCurrentSate.loadSetupCurrentState();
-//                    flipper.showNext();
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
@@ -602,10 +597,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_company.setText(database.isFieldEnabled("company"));
                 break;
             case R.id.row_comments:
             case R.id.tv_comments:
             case R.id.iv_comments:
+            case R.id.op_comments:
                 load("comments");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -614,12 +611,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             case R.id.comments_heading_left:
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
+                Fields.op_comments.setText(database.isFieldEnabled("comments"));
                 mTrackThree.setVisibility(View.GONE);
+
                 break;
             case R.id.cb_show_visitor_agreement_upon_signin:
-                database = new Database(mContext);
                 if(Fields.cb_signin_agreement.isChecked()){
-
                     Fields.cb_signin_agreement.setChecked(true);
                     database.updateSignInSetupFields("signin agreement","true");
                 }
@@ -629,7 +626,6 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 }
                 break;
             case R.id.cb_show_visitor_agreement_upon_signout:
-                database = new Database(mContext);
                 if(Fields.cb_signout_agreement.isChecked()){
                     database.updateSignInSetupFields("signout agreement","true");
                     Fields.cb_signout_agreement.setChecked(true);
@@ -642,6 +638,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             case R.id.row_photo_capture:
             case R.id.tv_photo_capture:
             case R.id.iv_photo_capture:
+            case R.id.op_photo_capture:
                     load("photo capture");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -651,9 +648,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_photo_capture.setText(database.isFieldEnabled("photo capture"));
                 break;
+            case R.id.row_badge_number:
             case R.id.iv_badge_number:
             case R.id.tv_badge_number:
+            case R.id.op_badge_number:
                 load("badge number");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -663,10 +663,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_badgeNumber.setText(database.isFieldEnabled("badge number"));
                 break;
             case R.id.row_address:
             case R.id.tv_address:
             case R.id.iv_address:
+            case R.id.op_address:
                 load("address");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -676,9 +678,11 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_address.setText(database.isFieldEnabled("address"));
                 break;
             case R.id.iv_city:
             case R.id.tv_city:
+            case R.id.op_city:
                 load("city");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -688,10 +692,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_city.setText(database.isFieldEnabled("city"));
                 break;
             case R.id.row_state:
             case R.id.iv_state:
             case R.id.tv_state:
+            case R.id.op_state:
                 load("state");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -701,10 +707,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_state.setText(database.isFieldEnabled("state"));
                 break;
             case R.id.row_zip_code:
             case R.id.tv_zip_code:
             case R.id.iv_zip_code:
+            case R.id.op_zip_code:
                 load("zip code");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -714,10 +722,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_zipCode.setText(database.isFieldEnabled("zip code"));
                 break;
             case R.id.row_phone:
             case R.id.iv_phone:
             case R.id.tv_phone:
+            case R.id.op_phone:
                 load("phone");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -727,10 +737,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_phone.setText(database.isFieldEnabled("phone"));
                 break;
             case R.id.row_email:
             case R.id.iv_email:
             case R.id.tv_email:
+            case R.id.op_email:
                 load("email");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -740,10 +752,12 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_email.setText(database.isFieldEnabled("email"));
                 break;
             case R.id.row_signature_capture:
             case R.id.iv_signature_capture:
             case R.id.tv_signature_capture:
+            case R.id.op_signature_capture:
                 load("signature capture");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -753,6 +767,8 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_signature_capture.setText(database.isFieldEnabled("signature capture"));
+
                 break;
             case R.id.row_visitor_agreement_text:
             case R.id.iv_visitor_agrement_text:
@@ -770,6 +786,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
             case R.id.row_here_to_see:
             case R.id.iv_here_to_see:
             case R.id.tv_here_to_see:
+            case R.id.op_here_to_see:
                 load("here to see");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -779,11 +796,14 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_hereToSee.setText(database.isFieldEnabled("here to see"));
+
                 break;
 
             case R.id.row_guide_escrot:
             case R.id.iv_guide_escort_name:
             case R.id.tv_guide_escort_name:
+            case R.id.op_guide_escort_name:
                 load("guide escort");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
@@ -793,6 +813,7 @@ public class DropDownMenuHandler extends PopupWindows implements PopupWindow.OnD
                 setSubMenuHeadings(R.id.setup);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
+                Fields.op_guideName.setText(database.isFieldEnabled("guide escort"));
                 break;
         }//end of switch
     }//end of onClick method

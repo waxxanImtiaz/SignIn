@@ -8,50 +8,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/design_style"
-        android:paddingRight="136dp"
-        android:paddingLeft="137dp"
-        android:id="@+id/tv_design_head"
-        android:text="@string/design"
+        android:paddingRight="123dp"
+        android:paddingLeft="125dp"
+        android:id="@+id/tv_report_head"
+        android:text="@string/report"
         />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/font_sub_menu_heading_layout_design"
-        style="@style/inner_heading_style"
-        android:background="@drawable/title_border"
-        >
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/chevron_left"
-            android:id="@+id/font_chroven_left_design"
-            android:layout_marginTop="5dp"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Design"
-            android:layout_toRightOf="@+id/font_chroven_left_design"
-            android:textColor="#6666FF"
-            android:layout_marginTop="7dp"
-            android:id="@+id/font_heading_left_design"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Font"
-            android:layout_marginTop="7dp"
-            android:layout_marginLeft="25dp"
-            android:paddingLeft="46dp"
-            android:paddingRight="45dp"
-            android:textColor="#000"
-            android:id="@+id/font_heading_center"
-            />
-    </LinearLayout>
-
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

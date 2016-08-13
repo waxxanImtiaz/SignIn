@@ -361,6 +361,15 @@ public class SignIn extends Activity implements View.OnClickListener {
         else
            badge_returned.setVisibility(View.GONE);
 
+
+
+        option = database.isFieldEnabled("badge number");
+
+        if(option != null && !option.equals("Not Used"))
+            badge_number.setVisibility(View.VISIBLE);
+        else
+            badge_number.setVisibility(View.GONE);
+
         option = database.isFieldEnabled("comments");
 
         if(option != null && !option.equals("Not Used"))
@@ -388,7 +397,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         else
             vehicle_lisence_plate.setVisibility(View.GONE);
 
-        option = database.isFieldEnabled("visitor siginin agreement");
+        option = database.isFieldEnabled("signin agreement");
         if(option != null && !option.equals("false"))
             ll_visitor_agreement.setVisibility(View.VISIBLE);
         else
@@ -647,7 +656,7 @@ public class SignIn extends Activity implements View.OnClickListener {
 
         option = database.isFieldEnabled("signin agreement");
         if(option != null && option.equals("true")) {
-            if (visitorAgreement.isChecked()) {
+            if (!visitorAgreement.isChecked()) {
                 isEmailVisible = true;
                 if (vehicle_color.getText().equals("")) {
                     message = "Please Show Signin Agreement";

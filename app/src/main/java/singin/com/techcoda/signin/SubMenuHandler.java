@@ -284,6 +284,7 @@ public class SubMenuHandler implements View.OnClickListener{
                 Fields.cb_badge_number_mandatory.setChecked(false);
                 Fields.cb_badge_number_not_used.setChecked(false);
                 Fields.cb_badge_number_optional.setChecked(true);
+                Fields.op_badgeNumber.setText("Optional");
                 database.updateSignInSetupFields("badge number","Not Used");
                 break;
             //IF COMMENTS SUB MENU CLICKED

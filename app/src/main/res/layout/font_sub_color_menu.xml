@@ -1,0 +1,526 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    android:orientation="vertical"
+    >
+
+    <TableLayout
+
+        android:layout_width="310dp"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"
+        style="@style/setup_menu_table"
+        android:id="@+id/tl_design_menu"
+        android:stretchColumns="*"
+        android:background="#ffffff">
+
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_blue"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_blue"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_blue"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+
+        <TableRow
+            android:id="@+id/row_font_color_black"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_black"
+                android:background="#000"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_black"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+
+        <TableRow
+            android:id="@+id/row_font_color_green"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_green"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_green"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+
+        <TableRow
+            android:id="@+id/row_font_color_pink"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_pink"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/icb_font_color_pink"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_color_yellow"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_yellow"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_yellow"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_color_red"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_red"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_red"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_color_orange"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_orange"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_orange"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_color_indigo"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_indigo"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_indigo"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_color_sky_blue"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_sky_blue"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_sky_blue"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+
+        <TableRow
+            android:id="@+id/row_font_color_reddish"
+            android:layout_height="20dp"
+            style="@style/setup_table_rows"
+
+            android:layout_width="200dp">
+
+            <View android:id="@+id/v_font_color_bar_reddish"
+                android:background="#0000FF"
+                android:layout_width = "5dp"
+                android:layout_height="30dip"
+                android:layout_marginLeft="-10dp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:layout_centerVertical ="true"
+                android:layout_alignParentTop="true"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_font_color_reddish"
+                android:paddingLeft="-100dp"
+                android:layout_row="0"
+                android:layout_column="2"
+                android:layout_marginLeft="100dp"
+                />
+
+        </TableRow>
+
+        <!--HORIZONTAL LINE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"
+                />
+            <View android:layout_width="match_parent"
+                style="@style/horizontal_line"
+                android:layout_height="1dp" />
+            <View android:layout_width="match_parent"
+                android:layout_height="1dp"
+                style="@style/horizontal_line"/>
+        </TableRow>
+        <!--END OF HORIZONTAL LINE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+        <!--SPACE-->
+        <TableRow
+            android:layout_height="20dp"
+            android:layout_width="200dp">
+            <View android:layout_width="match_parent"
+                android:layout_height="20dp"
+                />
+        </TableRow>
+        <!--END OF SPACE-->
+    </TableLayout>
+</LinearLayout>

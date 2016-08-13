@@ -162,4 +162,9 @@
 		<item name="android:paddingRight">2dp</item>
 		<item name="android:layout_marginRight">5dp</item>
 	</style>
+
+	<style name="report_image_style">
+		<item name="android:paddingLeft">0dp</item>
+		<item name="android:paddingTop">0dp</item>
+	</style>
 </resources>

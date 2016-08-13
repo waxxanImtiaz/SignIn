@@ -48,90 +48,207 @@
             android:layout_height="wrap_content"
             android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_company"-->
-            <!--android:hint="Company"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_company"
+            android:hint="Company"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_address"-->
-            <!--android:hint="Address"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_address"
+            android:hint="Address"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_city"-->
-            <!--android:hint="City"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_city"
+            android:hint="City"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_state"-->
-            <!--android:hint="State"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_state"
+            android:hint="State"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_zipcode"-->
-            <!--android:hint="Zip Code"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_zipcode"
+            android:hint="Zip Code"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_phone"-->
-            <!--android:hint="Phone"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_phone"
+            android:hint="Phone"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
 
 
-        <!--<EditText-->
-            <!--android:id="@+id/et_email"-->
-            <!--android:hint="Email"-->
-            <!--android:ems="10"-->
-            <!--android:textSize="20dp"-->
-            <!--android:padding="10dp"-->
-            <!--android:layout_marginBottom="15dp"-->
-            <!--android:background="@drawable/contact_edittext_bg"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:inputType="textPersonName"/>-->
+        <EditText
+            android:id="@+id/et_email"
+            android:hint="Email"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+
+        <EditText
+            android:id="@+id/et_here_to_see"
+            android:hint="Here To See"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_guide_escort_name"
+            android:hint="Guide/Escort Name"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_badge_returned"
+            android:hint="Badge Returned"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_badge_number"
+            android:hint="Badge Number"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_vehicle_make_model"
+            android:hint="Vehicle Make/Model"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_vehicle_color"
+            android:hint="Vehicle Color"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_comments"
+            android:hint="Comments"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/et_vehicle_lisence_plate"
+            android:hint="Vehicle Lisence Plate"
+            android:ems="10"
+            android:textSize="20dp"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/contact_edittext_bg"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+        <LinearLayout
+            android:layout_width="600dp"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/ll_visitor_agreement"
+            >
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cb_visitor_agreement"
+                android:layout_marginRight="10dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Are you agree?"
+                android:textSize="20dp"
+                />
+        </LinearLayout>
 
 
         <Button
