@@ -29,6 +29,98 @@ public class Database {
         this.context = context;
     }
 
+    //GET FONT STYLE
+    public String getFontPath(String name){
+
+        String font_Path = null;
+
+        String[] selectionArgs = { name };
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        String query = "SELECT " + DatabaseHandler.COL_FONT_PATH+ " FROM " + DatabaseHandler.TABLE_FONT_STYLES + " WHERE " + DatabaseHandler.COL_FONT_NAME +"=?";
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        while(cursor.moveToNext()){
+            font_Path = cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_FONT_PATH));
+        }
+        return font_Path;
+    }
+
+    public void insertStylesIntoFontStyles(){
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        long rows = 0;
+        //first row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 1);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Hand writting");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/handwritting.ttf");
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        //second row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 2);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Groovey");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/groovey_fonts.ttf");
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        //Third row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 3);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Libel Suit Rg");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/libel-suit-rg.ttf");
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //fourth row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 4);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Tauri Regular");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/Tauri-Regular.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //fifth row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 5);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Roboto Black");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/Roboto-Black.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //sixth row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 6);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Roboto Light");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/Roboto-Light.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //seventh row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 7);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "DroidSerif Regular");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/DroidSerif-Regular.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //eighth row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 8);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Jumping Running");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/Jumping Running.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //ninth row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 9);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Roboto Regular");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/Roboto-Regular.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //tenth row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 10);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Airplane swash italic");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/J-airplane-swash-italic-font.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+
+        //evelenth row
+        contentValues.put(DatabaseHandler.COL_FONT_ID, 11);
+        contentValues.put(DatabaseHandler.COL_FONT_NAME, "Raleway Regular");
+        contentValues.put(DatabaseHandler.COL_FONT_PATH, "fonts/Raleway-Regular.ttf");
+        db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+        rows = rows + db.insert(DatabaseHandler.TABLE_FONT_STYLES, null, contentValues);
+       // Toast.makeText(context.getApplicationContext(),rows+" rows effected",Toast.LENGTH_SHORT).show();
+    }
     //INSERT SING IN VISITOR
 //    public long insertVisitor(String companyID, String firstName, String lastName){
     public long insertVisitor(List<String> siginIn, byte[] b){
@@ -796,16 +888,16 @@ public class Database {
 
 
 
-//        //COLORS
-//        public static final String TABLE_COLORS ="colors";
-//        public static final String COL_COLOR_ID ="color_id";
-//        public static final String COL_COLOR_CODE ="color_code";
+        //COLORS
+        public static final String TABLE_COLORS ="colors";
+        public static final String COL_COLOR_ID ="color_id";
+        public static final String COL_COLOR_CODE ="color_code";
 //
-//        //FONT STYLES
-//        public static final String TABLE_FONT_STYLES="fonts";
-//        public static final String COL_FONT_ID="font_id";
-//        public static final String COL_FONT_NAME="font_name";
-//        public static final String COL_FONT_PATH="font_path";
+        //FONT STYLES
+        public static final String TABLE_FONT_STYLES="fonts";
+        public static final String COL_FONT_ID="font_id";
+        public static final String COL_FONT_NAME="font_name";
+        public static final String COL_FONT_PATH="font_path";
 
         //SINGN IN SETUP FIELDS TABLE
         public static final String TABLE_SINGN_IN_SETUP_FIELDS = "sign_in_setup_fields";
@@ -818,6 +910,8 @@ public class Database {
         public static final String CREATE_TABLE_VISITOR = "CREATE TABLE " + TABLE_VISITOR + "(" + COL_VISITOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_COMPANY_ID + " INTEGER, " + COL_FIRST_NAME + " VARCHAR(255), "+ COL_USER_STATUS + " VARCHAR(255), " + COL_LAST_NAME + " VARCHAR(255),"+ COL_COMPANY +" VARCHAR(255),"+COL_ADDRESS+" VARCHAR(255),"+COL_CITY+" VARCHAR(255),"+COL_EMAIL+" VARCHAR(255),"+COL_STATE+" VARCHAR(255),"+COL_ZIPCODE+" VARCHAR(255),"+COL_PHONE+" VARCHAR(255),"+COL_HERE_TO_SEE+" VARCHAR(255),"+COL_SIGNATRUE_CAPTURE+"  VARCHAR(255),"+COL_PHOTO_CAPTURE+" BLOB,"+COL_GUIDE_NAME+"  VARCHAR(255),"+COL_BADGE_NUMBER+"  VARCHAR(255),"+COL_BADGE_RETURNED+"  VARCHAR(255),"+COL_VEHICLE_MAKE_MODEL+" VARCHAR(255),"+COL_VEHICLE_COLOR+"  VARCHAR(255),"+COL_VEHICLE_LISENCE_PLATE+"  VARCHAR(255),"+COL_COMMENTS+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNIN+"  VARCHAR(255),"+COL_SHOW_AGREEMENT_ON_SIGNOUT+"  VARCHAR(255),"+COL_VISITOR_AGREEMENT_TEXT+"  VARCHAR(255));";
         public static final String CREATE_TABLE_SIGNIN = "CREATE TABLE " + TABLE_SIGN_IN + "(" + COL_SIGN_IN + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_VISITOR_ID + " INTEGER, " + COL_IN + " VARCHAR(50), " + COL_OUT + " VARCHAR(50), " + COL_STATUS + " VARCHAR(50), " + COL_DATE + " VARCHAR(50));";
         public static final String CREATE_TABLE_FIELD_SETUP="CREATE TABLE "+TABLE_SINGN_IN_SETUP_FIELDS + " ("+COL_FIELD_ID+" VARCHAR(100),"+ COL_FIELD_OPTION+" VARCHAR(30));";
+        public static final String CREATE_TABLE_FONT_STYLES="CREATE TABLE " + TABLE_FONT_STYLES +"(" + COL_FONT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_FONT_NAME + " VARCHAR(50), " + COL_FONT_PATH + " VARCHAR(50));";
+        public static final String CREATE_TABLE_COLORS=" CREATE TABLE " + TABLE_COLORS + "("+COL_COLOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + COL_COLOR_CODE + " VARCHAR(50));";
 
         //DROP TABLE
         public static final String DROP_TABLE_COMPANY = "DROP TABLE IF EXISTS " + TABLE_COMPANY;
@@ -825,8 +919,10 @@ public class Database {
         public static final String DROP_TABLE_VISITOR = "DROP TABLE IF EXISTS " + TABLE_VISITOR;
         public static final String DROP_TABLE_SIGNIN = "DROP TABLE IF EXISTS " + TABLE_SIGN_IN;
         public  static final String DROP_TABLE_SIGNIN_SETUP_FIELDS = "DROP TABLE IF EXISTS "+TABLE_SINGN_IN_SETUP_FIELDS;
+        public static final String DROP_TABLE_FONT_STYLES = "DROP TABLE IF EXISTS " + TABLE_FONT_STYLES;
+        public static final String DROP_TABLE_COLORS = "DROP TABLE IF EXISTS " + TABLE_COLORS;
 
-       Context context;
+        Context context;
 
         public DatabaseHandler(Context context){
             super(context, DB_NAME, null, DB_VERSION);
@@ -840,7 +936,8 @@ public class Database {
             db.execSQL(CREATE_TABLE_VISITOR);
             db.execSQL(CREATE_TABLE_SIGNIN);
             db.execSQL(CREATE_TABLE_FIELD_SETUP);
-           // insertIntoSignInSetupFields();
+            db.execSQL(CREATE_TABLE_FONT_STYLES);
+            db.execSQL(CREATE_TABLE_COLORS);
         }
 
         @Override
@@ -851,6 +948,8 @@ public class Database {
             db.execSQL(DROP_TABLE_VISITOR);
             db.execSQL(DROP_TABLE_SIGNIN);
             db.execSQL(DROP_TABLE_SIGNIN_SETUP_FIELDS);
+            db.execSQL(DROP_TABLE_FONT_STYLES);
+            db.execSQL(DROP_TABLE_COLORS);
             onCreate(db);
         }
     }//end of DatabaseHandler

@@ -60,10 +60,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_cone"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -119,10 +119,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_two"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -178,10 +178,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_three"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -237,10 +237,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_four"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -296,10 +296,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_five"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -355,10 +355,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_six"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -414,10 +414,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_seven"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -473,10 +473,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_eight"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -532,10 +532,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cb_font_nine"
-                android:paddingLeft="-100dp"
+                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="100dp"
+                android:layout_marginLeft="75dp"
                 />
 
         </TableRow>
@@ -559,7 +559,7 @@
 
 
 
-               <!--SPACE-->
+        <!--SPACE-->
         <TableRow
             android:layout_height="20dp"
             android:layout_width="200dp">

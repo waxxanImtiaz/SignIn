@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         database = new Database(this);
         database.insertIntoSignInSetupFields();
+        database.insertStylesIntoFontStyles();
         goSignIn = (Button) findViewById(R.id.btn_go_signin);
         goSignOut = (Button) findViewById(R.id.btn_goto_signout);
 

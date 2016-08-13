@@ -60,20 +60,22 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
          if (layout == R.layout.design_menu_layout_vertical && mOrientation == VERTICAL) {
             container = getmInflater().inflate(R.layout.design_menu_layout_vertical, null);
 
+
              if(mTrackThree != null)
                  mTrackThree.setVisibility(View.GONE);
-
              DesignMenuFields.initilizeDesignMenuFields(container,this);
         }
         else if(layout == R.layout.font_styles_sub_menu_lat)
         {
             container = getmInflater().inflate(R.layout.font_styles_sub_menu_lat, null);
+            DesignMenuFields.loadFontNames(container);
+
 
         }
         else if(layout == R.layout.font_sub_color_menu)
         {
             container = getmInflater().inflate(R.layout.font_sub_color_menu, null);
-        }
+                 }
         container.setFocusable(true);
         container.setClickable(true);
         getmTrack().addView(container);

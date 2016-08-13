@@ -411,6 +411,24 @@ class DesignMenuFields{
     public static ImageView iv_font;
     public static TextView tv_font;
     public static TableRow row_font;
+    public static TextView tv_font_one;
+    public static TextView tv_font_two;
+    public static TextView tv_font_three;
+    public static TextView tv_font_four;
+    public static TextView tv_font_five;
+    public static TextView tv_font_six;
+    public static TextView tv_font_seven;
+    public static TextView tv_font_eight;
+    public static TextView tv_font_nine;
+    public static CheckBox cb_font_one;
+    public static CheckBox cb_font_two;
+    public static CheckBox cb_font_three;
+    public static CheckBox cb_font_four;
+    public static CheckBox cb_font_five;
+    public static CheckBox cb_font_six;
+    public static CheckBox cb_font_seven;
+    public static CheckBox cb_font_eight;
+    public static CheckBox cb_font_nine;
 
     public static void initilizeDesignMenuFields(View container,DropDownDesignMenuHandler handler){
 
@@ -422,6 +440,29 @@ class DesignMenuFields{
         tv_font.setOnClickListener(handler);
         row_font.setOnClickListener(handler);
 
+    }
+    public static void loadFontNames(View container)
+    {
+        DesignMenuFields.tv_font_one = (TextView)container.findViewById(R.id.tv_font_one);
+        DesignMenuFields.tv_font_two = (TextView)container.findViewById(R.id.tv_font_two);
+        DesignMenuFields.tv_font_three = (TextView)container.findViewById(R.id.tv_font_three);
+        DesignMenuFields.tv_font_four = (TextView)container.findViewById(R.id.tv_font_four);
+        DesignMenuFields.tv_font_five = (TextView)container.findViewById(R.id.tv_font_five);
+        DesignMenuFields.tv_font_six = (TextView)container.findViewById(R.id.tv_font_six);
+        DesignMenuFields.tv_font_seven = (TextView)container.findViewById(R.id.tv_font_seven);
+        DesignMenuFields.tv_font_eight = (TextView)container.findViewById(R.id.tv_font_eight);
+        DesignMenuFields.tv_font_nine = (TextView)container.findViewById(R.id.tv_font_nine);
+
+        tv_font_one.setText( "Hand writting");
+        tv_font_two.setText("Groovey");
+        tv_font_three.setText("Libel Suit Rg");
+        tv_font_four.setText( "Tauri Regular");
+        tv_font_five.setText("Roboto Black");
+        tv_font_six.setText("Roboto Light");
+        tv_font_seven.setText("Jumping Running");
+        tv_font_eight.setText("Roboto Regular");
+        tv_font_nine.setText("Airplane swash italic");
+        //tv_font_ten.setText("Raleway Regular");
     }
 }
 //FONT FAMILIES
