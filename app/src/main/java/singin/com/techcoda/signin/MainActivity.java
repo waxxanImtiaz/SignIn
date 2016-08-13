@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_goto_signout:
                 intent = new Intent(MainActivity.this, SignOut.class);
                 startActivity(intent);
+
                 break;
 
         }
@@ -76,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.admin_icon:
                 intent = new Intent(MainActivity.this, AdminPanel.class);
                 startActivity(intent);
+                finish();
                 return true;
 
             default:

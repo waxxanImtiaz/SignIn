@@ -63,7 +63,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -122,7 +122,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -181,7 +181,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -240,7 +240,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -299,7 +299,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -358,7 +358,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -417,7 +417,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -476,7 +476,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>
@@ -535,7 +535,7 @@
                 android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="75dp"
+                android:layout_marginLeft="65dp"
                 />
 
         </TableRow>

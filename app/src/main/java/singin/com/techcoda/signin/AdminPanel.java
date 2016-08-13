@@ -43,6 +43,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     ImageButton mDownloadImageButton;
     Button mDesignButton;
     Button mSetupButton;
+    Button mDoneButton;
     Button mReportButton;
     private LinearLayout countersButtonClicked;
     PopupWindowHandler handler;
@@ -77,10 +78,12 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
        // mDropDownMenu.setSetupMenu();
         mDropDownMenu.setDesignMenu();
         initComponenets();
+        mDoneButton = (Button)findViewById(R.id.btn_done);
         mSetupButton = (Button)findViewById(R.id.btn_setup);
         mReportButton = (Button)findViewById(R.id.btn_report);
         mDesignButton = (Button)findViewById(R.id.btn_design);
 
+        mDoneButton.setOnClickListener(this);
         mDesignButton.setOnClickListener(this);
         mSetupButton.setOnClickListener(this);
         ll_in.setOnClickListener(this);
@@ -131,6 +134,11 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     public void onClick(View v) {
         switch(v.getId()) {
 
+            case R.id.btn_done:
+                Intent signOut = new Intent(this,MainActivity.class);
+                startActivity(signOut);
+                finish();
+                break;
             case R.id.ll_signin:
                 setCountersButtonClicked(ll_in);
                 flag = "signin";
@@ -171,6 +179,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
             case R.id.btn_print_reports:
                 i.putExtra("clickedOn",state);
                 startActivity(i);
+                finish();
                 break;
             case R.id.btn_email_report_pdf:
                 pdfCreater = new PdfCreater(getApplicationContext());

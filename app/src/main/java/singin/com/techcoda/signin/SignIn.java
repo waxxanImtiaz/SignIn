@@ -125,6 +125,7 @@ public class SignIn extends Activity implements View.OnClickListener {
             case R.id.btn_image_capture:
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 0);
+                finish();
                 break;
         }
     }

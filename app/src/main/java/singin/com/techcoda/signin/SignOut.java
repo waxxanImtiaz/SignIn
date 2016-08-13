@@ -1,6 +1,9 @@
 package singin.com.techcoda.signin;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
@@ -51,6 +54,10 @@ public class SignOut extends Activity implements View.OnClickListener, AdapterVi
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         signOutVisitor(position);
         getVisitors();
+
+        Intent i = new Intent(this,MainActivity.class);
+        startActivity(i);
+        finish();
     }
 
     public void signOutVisitor(int position){
@@ -62,9 +69,24 @@ public class SignOut extends Activity implements View.OnClickListener, AdapterVi
         if (rows > 0){
             Toast.makeText(this, "Sign Out Successful", Toast.LENGTH_SHORT).show();
         }else{
-            Toast.makeText(this, "Error Occured, Please Sign Out again..", Toast.LENGTH_SHORT).show();
+            showDialog("Error Occured, Please Sign Out again");
         }
     }//end of signOutVisitor
+
+    public void showDialog(String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(message);
+
+//        alertDialogBuilder.setItems(path);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+//                        finish();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 
     public void getVisitors(){
         //Get all the visitors which are on premises
