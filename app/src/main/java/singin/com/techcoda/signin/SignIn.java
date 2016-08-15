@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import com.example.jamil.signinapp.*;
 /**
  * Created by apple on 6/15/16.
  */
@@ -57,6 +57,7 @@ public class SignIn extends Activity implements View.OnClickListener {
     EditText vehicle_lisence_plate;
     EditText comments;
     EditText guide_name;
+    Button btn_signature_capture;
     CheckBox visitorAgreement;
     LinearLayout ll_visitor_agreement;
 
@@ -101,6 +102,9 @@ public class SignIn extends Activity implements View.OnClickListener {
         vehicle_lisence_plate = (EditText)findViewById(R.id.et_vehicle_lisence_plate);
         visitorAgreement = (CheckBox) findViewById(R.id.cb_visitor_agreement);
         ll_visitor_agreement = (LinearLayout)findViewById(R.id.ll_visitor_agreement);
+        btn_signature_capture = (Button)findViewById(R.id.btn_signature_capture);
+
+        btn_signature_capture.setOnClickListener(this);
         btn_image_capture.setOnClickListener(this);
 
         checkForFields();
@@ -126,6 +130,10 @@ public class SignIn extends Activity implements View.OnClickListener {
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent, 0);
                 finish();
+                break;
+            case R.id.btn_signature_capture:
+                Intent i = new Intent(SignIn.this,Signature.class);
+                startActivity(i);
                 break;
         }
     }

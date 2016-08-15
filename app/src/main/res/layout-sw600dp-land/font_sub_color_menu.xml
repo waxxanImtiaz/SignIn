@@ -43,14 +43,14 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_blue"
+            android:id="@+id/row_font_color_one"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_blue"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_one"
+                android:background="@color/colorAccent"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -62,7 +62,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_blue"
+                android:id="@+id/cb_font_color_one"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -90,13 +90,13 @@
 
 
         <TableRow
-            android:id="@+id/row_font_color_black"
+            android:id="@+id/row_font_color_two"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_black"
-                android:background="#000"
+            <View android:id="@+id/v_font_color_bar_two"
+                android:background="#1D539D"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -108,7 +108,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_black"
+                android:id="@+id/cb_font_color_two"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -136,13 +136,13 @@
 
 
         <TableRow
-            android:id="@+id/row_font_color_green"
+            android:id="@+id/row_font_color_three"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_green"
+            <View android:id="@+id/v_font_color_bar_three"
                 android:background="#0000FF"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
@@ -156,7 +156,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_green"
+                android:id="@+id/cb_font_color_three"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -184,14 +184,14 @@
 
 
         <TableRow
-            android:id="@+id/row_font_color_pink"
+            android:id="@+id/row_font_color_four"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_pink"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_bar_four"
+                android:background="#BA815A"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -203,7 +203,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/icb_font_color_pink"
+                android:id="@+id/icb_font_color_four"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -230,14 +230,14 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_color_yellow"
+            android:id="@+id/row_font_color_five"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_yellow"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_bar_five"
+                android:background="#FFBDBD"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -249,7 +249,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_yellow"
+                android:id="@+id/cb_font_color_five"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -276,14 +276,14 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_color_red"
+            android:id="@+id/row_font_color_six"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_red"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_bar_six"
+                android:background="#5B4B49"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -295,7 +295,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_red"
+                android:id="@+id/cb_font_color_six"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -322,14 +322,14 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_color_orange"
+            android:id="@+id/row_font_color_seven"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_orange"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_bar_seven"
+                android:background="#FFD700"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -342,7 +342,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_orange"
+                android:id="@+id/cb_font_color_seven"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -369,14 +369,14 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_color_indigo"
+            android:id="@+id/row_font_color_eight"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_indigo"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_bar_eight"
+                android:background="#CCBEC7"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -388,7 +388,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_indigo"
+                android:id="@+id/cb_font_color_eight"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -415,14 +415,14 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_color_sky_blue"
+            android:id="@+id/row_font_color_sky_nine"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_sky_blue"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_bar_nine"
+                android:background="#201E1F"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -434,7 +434,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_sky_blue"
+                android:id="@+id/cb_font_color_nine"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"
@@ -461,14 +461,14 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_color_reddish"
+            android:id="@+id/row_font_color_ten"
             android:layout_height="20dp"
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
 
-            <View android:id="@+id/v_font_color_bar_reddish"
-                android:background="#0000FF"
+            <View android:id="@+id/v_font_color_bar_ten"
+                android:background="#00FFA4"
                 android:layout_width = "5dp"
                 android:layout_height="30dip"
                 android:layout_marginLeft="-10dp"
@@ -479,7 +479,7 @@
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/cb_font_color_reddish"
+                android:id="@+id/cb_font_color_ten"
                 android:paddingLeft="-100dp"
                 android:layout_row="0"
                 android:layout_column="2"

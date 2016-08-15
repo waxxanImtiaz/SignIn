@@ -30,15 +30,22 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
     private QuickAction.OnDismissListener mDismissListener;
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
-    private ImageView font_chroven_left;
-    private TextView font_heading_left;
+
     private static final int ANIM_GROW_FROM_LEFT = 1;
     private static final int ANIM_GROW_FROM_RIGHT = 2;
     private static final int ANIM_GROW_FROM_CENTER = 3;
     public static final int ANIM_REFLECT = 4;
     public static final int ANIM_AUTO = 5;
     private int heading_id;
+
+    private ImageView font_chroven_left;
+    private TextView font_heading_left;
+    private ImageView font_color_chroven_left;
+    private TextView font_color_heading_left;
+
+
     private LinearLayout font_sub_menu_heading_layout;
+    private LinearLayout font_color_sub_menu_heading_layout_design;
     private TextView design;
     public DropDownDesignMenuHandler(Context context, int orientation, int heading_id) {
         super(context);
@@ -71,11 +78,11 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
             DesignMenuFields.loadFontNames(container);
 
 
-        }
+    }
         else if(layout == R.layout.font_sub_color_menu)
         {
             container = getmInflater().inflate(R.layout.font_sub_color_menu, null);
-                 }
+        }
         container.setFocusable(true);
         container.setClickable(true);
         getmTrack().addView(container);
@@ -93,16 +100,38 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
     public void setMenuHeadings() {
         design = (TextView)mRootView.findViewById(R.id.tv_design_head);
         font_sub_menu_heading_layout  = (LinearLayout)mRootView.findViewById(R.id.font_sub_menu_heading_layout_design);
+        font_color_sub_menu_heading_layout_design  = (LinearLayout)mRootView.findViewById(R.id.font_color_sub_menu_heading_layout_design);
         font_chroven_left = (ImageView)mRootView.findViewById(R.id.font_chroven_left_design);
         font_heading_left = (TextView)mRootView.findViewById(R.id.font_heading_left_design);
+        font_color_chroven_left = (ImageView)mRootView.findViewById(R.id.font_color_chroven_left_design_lat);
+        font_color_heading_left = (TextView)mRootView.findViewById(R.id.font_color_heading_left_design_lat);
+
+        font_color_sub_menu_heading_layout_design.setVisibility(View.GONE);
         font_sub_menu_heading_layout.setVisibility(View.GONE);
         font_chroven_left.setOnClickListener(this);
         font_heading_left.setOnClickListener(this);
+
+        font_color_chroven_left.setOnClickListener(this);
+        font_color_heading_left.setOnClickListener(this);
+
+
         switch (getHeading_id()) {
             case R.id.tv_design_head:
                 design.setVisibility(View.VISIBLE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
+                font_color_sub_menu_heading_layout_design.setVisibility(View.GONE);
                 break;
+            case R.id.font_color_sub_menu_heading_layout_design:
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                font_color_sub_menu_heading_layout_design.setVisibility(View.VISIBLE);
+                break;
+            case R.id.font_sub_menu_heading_layout:
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                font_color_sub_menu_heading_layout_design.setVisibility(View.GONE);
+                break;
+
         }
         setContentView(mRootView);
     }
@@ -115,17 +144,25 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
             case R.id.tv_design_head:
                 design.setVisibility(View.VISIBLE);
                 font_sub_menu_heading_layout.setVisibility(View.GONE);
+                font_color_sub_menu_heading_layout_design.setVisibility(View.GONE);
+                break;
+            case R.id.font_color_sub_menu_heading_layout_design:
+                design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.GONE);
+                font_color_sub_menu_heading_layout_design.setVisibility(View.VISIBLE);
                 break;
             case R.id.font_sub_menu_heading_layout_design:
-                font_sub_menu_heading_layout.setVisibility(View.VISIBLE);
                 design.setVisibility(View.GONE);
+                font_sub_menu_heading_layout.setVisibility(View.VISIBLE);
+                font_color_sub_menu_heading_layout_design.setVisibility(View.GONE);
                 break;
-
         }
         setContentView(mRootView);
     }
 
     public void load(String head) {
+
+
         if(head.equals("font")) {
             setView(Fields.scrollers[1], Fields.scrollerLayouts[1]);
             if (getmTrack().getChildCount() > 0)
@@ -134,6 +171,15 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
             addActionItem(R.layout.font_styles_sub_menu_lat);
             font_chroven_left.setOnClickListener(this);
             font_heading_left.setOnClickListener(this);
+        }
+        else if(head.equals("font color")) {
+            setView(Fields.scrollers[1], Fields.scrollerLayouts[1]);
+            if (getmTrack().getChildCount() > 0)
+                getmTrack().removeAllViews();
+            setSubMenuHeadings(R.id.font_color_sub_menu_heading_layout_design);
+            addActionItem(R.layout.font_sub_color_menu);
+            font_color_chroven_left.setOnClickListener(this);
+            font_color_heading_left.setOnClickListener(this);
         }
     }
 
@@ -146,18 +192,30 @@ public class DropDownDesignMenuHandler extends PopupWindows implements PopupWind
             case R.id.row_font:
             case R.id.tv_font:
             case R.id.iv_font:
-           // case R.id.op_font:
                 load("font");
                 mTrackTwo.setVisibility(View.GONE);
                 mTrackThree.setVisibility(View.VISIBLE);
                 break;
             case R.id.font_chroven_left_design:
             case R.id.font_heading_left_design:
-            //case R.id.font_sub_menu_heading_layout:
                 setSubMenuHeadings(R.id.tv_design_head);
                 mTrackTwo.setVisibility(View.VISIBLE);
                 mTrackThree.setVisibility(View.GONE);
-                //Fields.op_company.setText(database.isFieldEnabled("company"));
+                break;
+
+            case R.id.row_font_color:
+            case R.id.tv_font_color:
+            case R.id.iv_font_color:
+                design.setVisibility(View.GONE);
+                load("font color");
+                mTrackTwo.setVisibility(View.GONE);
+                mTrackThree.setVisibility(View.VISIBLE);
+                break;
+            case R.id.font_color_heading_left_design_lat:
+            case R.id.font_color_chroven_left_design_lat:
+                setSubMenuHeadings(R.id.tv_design_head);
+                mTrackTwo.setVisibility(View.VISIBLE);
+                mTrackThree.setVisibility(View.GONE);
                 break;
         }
     }

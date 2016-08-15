@@ -13,6 +13,8 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
+import singin.com.techcoda.signin.designmenuhandlers.DesignFontColorMenuHandler;
+
 /**
  * Created by android on 7/27/2016.
  */
@@ -408,6 +410,8 @@ public class Fields {
 
 
 class DesignMenuFields{
+
+    //FONTS
     public static ImageView iv_font;
     public static TextView tv_font;
     public static TableRow row_font;
@@ -420,6 +424,7 @@ class DesignMenuFields{
     public static TextView tv_font_seven;
     public static TextView tv_font_eight;
     public static TextView tv_font_nine;
+
     public static CheckBox cb_font_one;
     public static CheckBox cb_font_two;
     public static CheckBox cb_font_three;
@@ -430,8 +435,37 @@ class DesignMenuFields{
     public static CheckBox cb_font_eight;
     public static CheckBox cb_font_nine;
 
+    //FONT COLORS
+    public static ImageView iv_font_color;
+    public static TextView tv_font_color;
+    public static TableRow row_font_color;
+    public static TextView tv_font_color_one;
+    public static TextView tv_font_color_two;
+    public static TextView tv_font_color_three;
+    public static TextView tv_font_color_four;
+    public static TextView tv_font_color_five;
+    public static TextView tv_font_color_six;
+    public static TextView tv_font_color_seven;
+    public static TextView tv_font_color_eight;
+    public static TextView tv_font_color_nine;
+    public static TextView tv_font_color_ten;
+
+    //COLOR CHECKBOXES
+    public static TextView cb_font_color_one;
+    public static TextView cb_font_color_two;
+    public static TextView cb_font_color_three;
+    public static TextView cb_font_color_four;
+    public static TextView cb_font_color_five;
+    public static TextView cb_font_color_six;
+    public static TextView cb_font_color_seven;
+    public static TextView cb_font_color_eight;
+    public static TextView cb_font_color_nine;
+    public static TextView cb_font_color_ten;
+
+
     public static void initilizeDesignMenuFields(View container,DropDownDesignMenuHandler handler){
 
+        //FONT ROW
         iv_font = (ImageView)container.findViewById(R.id.iv_font);
         tv_font = (TextView)container.findViewById(R.id.tv_font);
         row_font = (TableRow)container.findViewById(R.id.row_font);
@@ -439,6 +473,40 @@ class DesignMenuFields{
         iv_font.setOnClickListener(handler);
         tv_font.setOnClickListener(handler);
         row_font.setOnClickListener(handler);
+
+        //FONT COLOR ROW
+        iv_font_color = (ImageView)container.findViewById(R.id.iv_font_color);
+        tv_font_color = (TextView)container.findViewById(R.id.tv_font_color);
+        row_font_color = (TableRow) container.findViewById(R.id.row_font_color);
+
+        iv_font_color.setOnClickListener(handler);
+        tv_font_color.setOnClickListener(handler);
+        row_font_color.setOnClickListener(handler);
+    }
+    public static void loadFontColors(View container,DesignFontColorMenuHandler handler)
+    {
+        cb_font_color_one = (CheckBox)container.findViewById(R.id.cb_font_color_one);
+        cb_font_color_two = (CheckBox)container.findViewById(R.id.cb_font_color_two);
+        cb_font_color_three = (CheckBox)container.findViewById(R.id.cb_font_color_three);
+        cb_font_color_four = (CheckBox)container.findViewById(R.id.cb_font_color_four);
+        cb_font_color_five = (CheckBox)container.findViewById(R.id.cb_font_color_five);
+        cb_font_color_six = (CheckBox)container.findViewById(R.id.cb_font_color_six);
+        cb_font_color_seven = (CheckBox)container.findViewById(R.id.cb_font_color_seven);
+        cb_font_color_eight = (CheckBox)container.findViewById(R.id.cb_font_color_eight);
+        cb_font_color_nine = (CheckBox)container.findViewById(R.id.cb_font_color_nine);
+        cb_font_color_ten = (CheckBox)container.findViewById(R.id.cb_font_color_ten);
+
+
+        cb_font_color_one.setOnClickListener(handler);
+        cb_font_color_two.setOnClickListener(handler);
+        cb_font_color_three.setOnClickListener(handler);
+        cb_font_color_four.setOnClickListener(handler);
+        cb_font_color_five.setOnClickListener(handler);
+        cb_font_color_six.setOnClickListener(handler);
+        cb_font_color_seven.setOnClickListener(handler);
+        cb_font_color_eight.setOnClickListener(handler);
+        cb_font_color_nine.setOnClickListener(handler);
+        cb_font_color_ten.setOnClickListener(handler);
 
     }
     public static void loadFontNames(View container)

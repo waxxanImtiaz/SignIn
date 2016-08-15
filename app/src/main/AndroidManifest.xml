@@ -52,7 +52,8 @@
 
         <!-- ListOFSignIn -->
 
-        <activity android:name="com.example.jamil.signinapp.PrintReport"></activity>
+        <activity android:name="com.example.jamil.signinapp.PrintReport" />
+        <activity android:name="com.example.jamil.signinapp.Signature"></activity>
     </application>
 
 </manifest>

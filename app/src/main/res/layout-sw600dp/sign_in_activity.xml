@@ -47,6 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp" />
+
         </LinearLayout>
         <!--<ImageButton-->
             <!--android:layout_width="wrap_content"-->
@@ -57,6 +58,34 @@
             <!--android:src="@drawable/cat"-->
             <!--android:id="@+id/circleView"-->
             <!--/>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/ll_signature_capture">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/iv_sign_capture"
+                android:layout_gravity="center"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:contentDescription="Hello"
+                android:layout_marginTop="24dp" />
+            <Button
+                android:id="@+id/btn_signature_capture"
+                android:text="Capture Signature"
+                android:textColor="#fff"
+                android:textSize="21dp"
+                android:fontFamily="sans-serif-condensed"
+                android:textAllCaps="false"
+                android:background="@drawable/btn_sign"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp" />
+
+        </LinearLayout>
         <EditText
             android:id="@+id/et_firstname"
             android:hint="First Name"

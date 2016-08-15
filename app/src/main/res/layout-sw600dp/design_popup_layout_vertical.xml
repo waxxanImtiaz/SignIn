@@ -52,6 +52,44 @@
             />
     </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/font_color_sub_menu_heading_layout_design"
+        style="@style/inner_heading_style"
+        android:background="@drawable/title_border"
+        >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/chevron_left"
+            android:id="@+id/font_color_chroven_left_design_lat"
+            android:layout_marginTop="5dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Design"
+            android:layout_toRightOf="@+id/font_chroven_left_design"
+            android:textColor="#6666FF"
+            android:layout_marginTop="7dp"
+            android:id="@+id/font_color_heading_left_design_lat"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Font Color"
+            android:layout_marginTop="7dp"
+            android:layout_marginLeft="25dp"
+            android:paddingLeft="27dp"
+            android:paddingRight="27dp"
+            android:textColor="#000"
+            android:id="@+id/font_color_heading_center"
+            />
+    </LinearLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

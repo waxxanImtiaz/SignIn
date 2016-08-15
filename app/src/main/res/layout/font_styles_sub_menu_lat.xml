@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:shrinkColumns="*"
         style="@style/setup_menu_table"
-        android:id="@+id/tl_design_menu"
+        android:id="@+id/tl_setup_menu"
         android:stretchColumns="*"
         android:background="#ffffff">
 
@@ -24,6 +24,7 @@
                 />
         </TableRow>
         <!--END OF SPACE-->
+
         <!--HORIZONTAL LINE-->
         <TableRow
             android:layout_height="20dp"
@@ -41,49 +42,31 @@
         </TableRow>
         <!--END OF HORIZONTAL LINE-->
 
+
         <TableRow
-            android:id="@+id/row_font_one"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_one"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_one"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="First Oneadfadsfdsaf"
                 />
 
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cb_font_cone"
-                android:paddingLeft="-50dp"
+                android:id="@+id/cb_font_one"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
-                />
 
+                android:src="@drawable/chevron_right"
+                />
         </TableRow>
+
 
         <!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE--><!--HORIZONTAL LINE-->
         <TableRow
             android:layout_height="20dp"
             android:layout_width="200dp">
@@ -101,30 +84,25 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_two"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_two"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_two"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font Two"
+                android:text="First Two"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/cb_font_two"
-                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
 
         <!--HORIZONTAL LINE-->
@@ -165,25 +143,21 @@
             style="@style/setup_table_rows"
 
             android:layout_width="200dp">
-
             <TextView
                 android:id="@+id/tv_font_three"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="First three"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/cb_font_three"
-                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
 
         <!--HORIZONTAL LINE-->
@@ -201,50 +175,28 @@
                 android:layout_height="1dp"
                 style="@style/horizontal_line"/>
         </TableRow>
-        <!--END OF HORIZONTAL LINE--><!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
         <!--END OF HORIZONTAL LINE-->
-
         <TableRow
-            android:id="@+id/row_font_four"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_four"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_four"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="First Four"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/cb_font_four"
-                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
-
         <!--HORIZONTAL LINE-->
         <TableRow
             android:layout_height="20dp"
@@ -260,50 +212,28 @@
                 android:layout_height="1dp"
                 style="@style/horizontal_line"/>
         </TableRow>
-        <!--END OF HORIZONTAL LINE--><!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
         <!--END OF HORIZONTAL LINE-->
-
         <TableRow
-            android:id="@+id/row_font_five"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_five"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_five"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="Airpnae swash italic"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/cb_font_five"
-                android:paddingLeft="-50dp"
+                android:id="@+id/cb_fontfive"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
-
         <!--HORIZONTAL LINE-->
         <TableRow
             android:layout_height="20dp"
@@ -319,48 +249,27 @@
                 android:layout_height="1dp"
                 style="@style/horizontal_line"/>
         </TableRow>
-        <!--END OF HORIZONTAL LINE--><!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
         <!--END OF HORIZONTAL LINE-->
-
         <TableRow
-            android:id="@+id/row_font_six"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_six"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_six"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="First Six"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/cb_font_six"
-                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
 
         <!--HORIZONTAL LINE-->
@@ -378,48 +287,28 @@
                 android:layout_height="1dp"
                 style="@style/horizontal_line"/>
         </TableRow>
-        <!--END OF HORIZONTAL LINE--><!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_seven"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_seven"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_seven"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="First Seven"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/cb_font_seven"
-                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
 
         <!--HORIZONTAL LINE-->
@@ -437,66 +326,30 @@
                 android:layout_height="1dp"
                 style="@style/horizontal_line"/>
         </TableRow>
-        <!--END OF HORIZONTAL LINE--><!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_eight"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_eight"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_eight"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="First Eight"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/cb_font_eight"
-                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
-
         <!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE--><!--HORIZONTAL LINE-->
         <TableRow
             android:layout_height="20dp"
             android:layout_width="200dp">
@@ -514,32 +367,26 @@
         <!--END OF HORIZONTAL LINE-->
 
         <TableRow
-            android:id="@+id/row_font_nine"
-            android:layout_height="20dp"
             style="@style/setup_table_rows"
-
-            android:layout_width="200dp">
-
+            android:id="@+id/row_font_nine"
+            android:layout_height="wrap_content"
+            android:layout_width="100dp">
             <TextView
                 android:id="@+id/tv_font_nine"
                 android:layout_row="1"
                 android:layout_column="0"
                 style="@style/setup_full_style_left_fields"
-                android:text="Font One"
+                android:text="First Nine"
                 />
 
+            />
             <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/cb_font_nine"
-                android:paddingLeft="-50dp"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:layout_marginLeft="65dp"
+                android:src="@drawable/chevron_right"
                 />
-
         </TableRow>
-
         <!--HORIZONTAL LINE-->
         <TableRow
             android:layout_height="20dp"
@@ -557,9 +404,7 @@
         </TableRow>
         <!--END OF HORIZONTAL LINE-->
 
-
-
-               <!--SPACE-->
+        <!--SPACE-->
         <TableRow
             android:layout_height="20dp"
             android:layout_width="200dp">
@@ -577,5 +422,7 @@
                 />
         </TableRow>
         <!--END OF SPACE-->
+
+
     </TableLayout>
 </LinearLayout>
