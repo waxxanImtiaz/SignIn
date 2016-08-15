@@ -120,6 +120,12 @@ public class SignIn extends Activity implements View.OnClickListener {
 
         signInBtn = (Button) findViewById(R.id.btn_signin);
         signInBtn.setOnClickListener(this);
+        File photo = new File(getAlbumStorageDir("Signatures"), String.format("Signature_one.jpg", System.currentTimeMillis()));
+
+        if(photo.exists())
+        {
+            photo.delete();
+        }
 
     }
 
@@ -275,7 +281,8 @@ public class SignIn extends Activity implements View.OnClickListener {
         //status
         visitor.add("in");
 
-        long rowsVisitor = database.insertVisitor(visitor,getBytes(iv_picture),getBytes(iv_sign_capture));
+        //getBytes(iv_sign_capture)
+        long rowsVisitor = database.insertVisitor(visitor,getBytes(iv_picture),null);
 //        long rowsVisitor = database.insertVisitor("1", firstName.getText().toString(), lastName.getText().toString());
 
         if (rowsVisitor > 0){
@@ -288,7 +295,17 @@ public class SignIn extends Activity implements View.OnClickListener {
             long rowsSignIn = database.insertVisitorIntoSingIn(visitorID, time, "premises", date);
             if (rowsSignIn > 0){
                 Toast.makeText(this, "Visitor Saved..", Toast.LENGTH_SHORT).show();
-            
+
+                if(isOnline())
+                {
+                    //setEmailToAdmin();
+                    Toast.makeText(this, "Email send to admin successfully..", Toast.LENGTH_SHORT).show();
+                }
+                else
+                {
+                    Toast.makeText(this, "Email did not sent to Admin! No internet connection available..", Toast.LENGTH_SHORT).show();
+                }
+
             }
         }
         else{

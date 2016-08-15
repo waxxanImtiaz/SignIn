@@ -30,69 +30,69 @@
             android:stretchColumns="*"
             android:background="#ffffff">
 
-        <!--SPACE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
+            <!--SPACE-->
+            <TableRow
                 android:layout_height="20dp"
-                />
-        </TableRow>
-        <!--END OF SPACE-->
+                android:layout_width="200dp">
+                <View android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    />
+            </TableRow>
+            <!--END OF SPACE-->
 
-        <!--HORIZONTAL LINE-->
-        <TableRow
-            android:layout_height="20dp"
-            android:layout_width="200dp">
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"
-                />
-            <View android:layout_width="match_parent"
-                style="@style/horizontal_line"
-                android:layout_height="1dp" />
-            <View android:layout_width="match_parent"
-                android:layout_height="1dp"
-                style="@style/horizontal_line"/>
-        </TableRow>
-        <!--END OF HORIZONTAL LINE-->
-        <!-- Row 1 with single column -->
+            <!--HORIZONTAL LINE-->
+            <TableRow
+                android:layout_height="20dp"
+                android:layout_width="200dp">
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    style="@style/horizontal_line"
+                    />
+                <View android:layout_width="match_parent"
+                    style="@style/horizontal_line"
+                    android:layout_height="1dp" />
+                <View android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    style="@style/horizontal_line"/>
+            </TableRow>
+            <!--END OF HORIZONTAL LINE-->
+            <!-- Row 1 with single column -->
 
-        <TableRow
-            style="@style/setup_table_rows"
-            android:id="@+id/row_heading_report"
-            android:layout_height="wrap_content"
-            android:layout_width="100dp">
-        <TextView
-            android:id="@+id/tv_id_report"
-            android:layout_row="1"
-            android:layout_column="0"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            style="@style/setup_full_style_left_fields"
-            android:text="ID"
-            />
-        <TextView
-            android:id="@+id/tv_firstname_report"
-            android:layout_row="0"
-            android:layout_column="1"
-            android:textColor="#000"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            style="@style/setup_full_style_center_fields"
-            android:text="First Name"
-            />
-            <TextView
-                android:id="@+id/tv_lastname_report"
-                android:layout_row="0"
-                android:layout_column="1"
-                android:textColor="#000"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                style="@style/setup_full_style_center_fields"
-                android:text="Last Name"
-                />
-        </TableRow>
+            <TableRow
+                style="@style/setup_table_rows"
+                android:id="@+id/row_heading_report"
+                android:layout_height="wrap_content"
+                android:layout_width="100dp">
+                <TextView
+                    android:id="@+id/tv_id_report"
+                    android:layout_row="1"
+                    android:layout_column="0"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_left_fields"
+                    android:text="ID"
+                    />
+                <TextView
+                    android:id="@+id/tv_firstname_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="First Name"
+                    />
+                <TextView
+                    android:id="@+id/tv_lastname_report"
+                    android:layout_row="0"
+                    android:layout_column="1"
+                    android:textColor="#000"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    style="@style/setup_full_style_center_fields"
+                    android:text="Last Name"
+                    />
+            </TableRow>
             <!--HORIZONTAL LINE-->
             <TableRow
                 android:layout_height="20dp"
@@ -115,7 +115,7 @@
                 android:id="@+id/row_body_report"
                 android:layout_height="wrap_content"
                 android:layout_width="100dp">
-                </TableRow>
-</TableLayout>
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 </LinearLayout>
