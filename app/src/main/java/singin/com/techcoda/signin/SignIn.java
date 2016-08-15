@@ -2,13 +2,16 @@ package singin.com.techcoda.signin;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.util.Log;
@@ -24,6 +27,7 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.security.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,7 +64,8 @@ public class SignIn extends Activity implements View.OnClickListener {
     Button btn_signature_capture;
     CheckBox visitorAgreement;
     LinearLayout ll_visitor_agreement;
-
+    ImageView iv_sign_capture;
+    Bitmap bitmap;
     Database database;
     private static String message;
     private boolean isEmailVisible;
@@ -85,6 +90,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         company = (EditText)findViewById(R.id.et_company);
         address = (EditText)findViewById(R.id.et_address);
         email = (EditText)findViewById(R.id.et_email);
+        iv_sign_capture = (ImageView)findViewById(R.id.iv_sign_capture);
         city = (EditText)findViewById(R.id.et_city);
         zipCode = (EditText)findViewById(R.id.et_zipcode);
         state = (EditText)findViewById(R.id.et_state);
@@ -104,15 +110,17 @@ public class SignIn extends Activity implements View.OnClickListener {
         ll_visitor_agreement = (LinearLayout)findViewById(R.id.ll_visitor_agreement);
         btn_signature_capture = (Button)findViewById(R.id.btn_signature_capture);
 
+
         btn_signature_capture.setOnClickListener(this);
         btn_image_capture.setOnClickListener(this);
-
+        iv_sign_capture.setVisibility(View.GONE);
         checkForFields();
         String currentDate = new SimpleDateFormat("dd MMMM yyyy").format(new Date());
         tv_Date.setText(currentDate);
 
         signInBtn = (Button) findViewById(R.id.btn_signin);
         signInBtn.setOnClickListener(this);
+
     }
 
     @Override
@@ -134,8 +142,30 @@ public class SignIn extends Activity implements View.OnClickListener {
             case R.id.btn_signature_capture:
                 Intent i = new Intent(SignIn.this,Signature.class);
                 startActivity(i);
+                File photo = new File(getAlbumStorageDir("Signatures"), String.format("Signature_one.jpg", System.currentTimeMillis()));
+             //   File dir = new File(photo,"Signature_one.jpg");
+                if(photo != null)
+                {
+
+                    bitmap = BitmapFactory.decodeFile(photo.getAbsolutePath());
+                    if(bitmap != null)
+                    {
+                        iv_sign_capture.setVisibility(View.VISIBLE);
+                    }
+                    iv_sign_capture.setImageBitmap(bitmap);
+                }
                 break;
         }
+    }
+
+    public File getAlbumStorageDir(String albumName) {
+        // Get the directory for the user's public pictures directory.
+        File file = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), albumName);
+        if (!file.mkdirs()) {
+            Log.e("SignaturePad", "Directory not created");
+        }
+        return file;
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -245,7 +275,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         //status
         visitor.add("in");
 
-        long rowsVisitor = database.insertVisitor(visitor,getBytes(iv_picture));
+        long rowsVisitor = database.insertVisitor(visitor,getBytes(iv_picture),getBytes(iv_sign_capture));
 //        long rowsVisitor = database.insertVisitor("1", firstName.getText().toString(), lastName.getText().toString());
 
         if (rowsVisitor > 0){
@@ -258,6 +288,7 @@ public class SignIn extends Activity implements View.OnClickListener {
             long rowsSignIn = database.insertVisitorIntoSingIn(visitorID, time, "premises", date);
             if (rowsSignIn > 0){
                 Toast.makeText(this, "Visitor Saved..", Toast.LENGTH_SHORT).show();
+            
             }
         }
         else{
@@ -680,6 +711,16 @@ public class SignIn extends Activity implements View.OnClickListener {
         return true;
     }//end of method checkForFields
 
+    public void setEmailToAdmin(){
+        Intent emailIntent = new Intent();
+        emailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");// Package Name, Class Name
+        emailIntent.setData(Uri.parse("mailto:"));
+        emailIntent.setType("text/plain");
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, "waxxan.imtiaz.123@gmail.com");
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Visitor Signed In");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "First Name:"+firstName.getText().toString()+",Last Name:"+lastName.getText().toString());
+        startActivity(emailIntent);
+    }
     public void open(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage(message);
@@ -689,6 +730,31 @@ public class SignIn extends Activity implements View.OnClickListener {
             public void onClick(DialogInterface arg0, int arg1) {
               //
                 // finish();
+            }
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    public boolean isOnline() {
+        try {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
+
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "Error while checking for wifi", Toast.LENGTH_SHORT).show();
+        }
+        return false;
+    }
+    public void showDialog(String message){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setMessage(message);
+
+//        alertDialogBuilder.setItems(path);
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+//                        finish();
             }
         });
         AlertDialog alertDialog = alertDialogBuilder.create();

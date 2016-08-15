@@ -488,7 +488,7 @@ class DesignMenuFields{
         cb_font_color_one = (CheckBox)container.findViewById(R.id.cb_font_color_one);
         cb_font_color_two = (CheckBox)container.findViewById(R.id.cb_font_color_two);
         cb_font_color_three = (CheckBox)container.findViewById(R.id.cb_font_color_three);
-        cb_font_color_four = (CheckBox)container.findViewById(R.id.cb_font_color_four);
+        cb_font_color_four = (CheckBox)container.findViewById(R.id.icb_font_color_four);
         cb_font_color_five = (CheckBox)container.findViewById(R.id.cb_font_color_five);
         cb_font_color_six = (CheckBox)container.findViewById(R.id.cb_font_color_six);
         cb_font_color_seven = (CheckBox)container.findViewById(R.id.cb_font_color_seven);

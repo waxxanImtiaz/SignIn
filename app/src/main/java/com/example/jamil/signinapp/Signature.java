@@ -99,8 +99,9 @@ public class Signature extends Activity {
     public boolean addJpgSignatureToGallery(Bitmap signature) {
         boolean result = false;
         try {
-            File photo = new File(getAlbumStorageDir("SignaturePad"), String.format("Signature_%d.jpg", System.currentTimeMillis()));
+            File photo = new File(getAlbumStorageDir("Signatures"), String.format("Signature_one.jpg", System.currentTimeMillis()));
             saveBitmapToJPG(signature, photo);
+
             scanMediaFile(photo);
             result = true;
         } catch (IOException e) {
@@ -119,7 +120,7 @@ public class Signature extends Activity {
     public boolean addSvgSignatureToGallery(String signatureSvg) {
         boolean result = false;
         try {
-            File svgFile = new File(getAlbumStorageDir("SignaturePad"), String.format("Signature_%d.svg", System.currentTimeMillis()));
+            File svgFile = new File(getAlbumStorageDir("SignaturePad"), String.format("Signature_one.svg", System.currentTimeMillis()));
             OutputStream stream = new FileOutputStream(svgFile);
             OutputStreamWriter writer  = new OutputStreamWriter(stream);
             writer.write(signatureSvg);
