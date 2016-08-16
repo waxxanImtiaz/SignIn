@@ -73,17 +73,17 @@ public class PdfCreater {
             doc.add(p1);
 
 //            PdfPTable table = new PdfPTable((visitors.si));
-            PdfPTable table = new PdfPTable((5));
+            PdfPTable table = new PdfPTable((3));
 
             table.addCell("ID");
             table.addCell("First Name");
             table.addCell("Last Name");
-            table.addCell("City");//city
-            table.addCell("Company");//company
+           // table.addCell("City");//city
+            //table.addCell("Company");//company
             //table.addCell("Comments");//comments
 //            table.addCell("Address");//Address
 //            table.addCell("Here To See");//here to see
-            table.addCell("Email "); //Email
+           // table.addCell("Email "); //Email
 //            table.addCell("Photo Capture");//photo capture
 //            table.addCell("State "); //State
 //            table.addCell("guide name ");//guide name
@@ -106,8 +106,8 @@ public class PdfCreater {
                 List<String> id = visitors.get(0);
                 List<String> first = visitors.get(1);
                 List<String> last = visitors.get(2);
-                List<String> company = visitors.get(3);
-                List<String> email = visitors.get(4);
+               // List<String> company = visitors.get(3);
+               // List<String> email = visitors.get(4);
 //                List<String> state = visitors.get(5);
 //                List<String> city = visitors.get(6);
 //                List<String> guideName =visitors.get(7);
@@ -132,8 +132,8 @@ public class PdfCreater {
                     table.addCell(id.get(index));
                     table.addCell(first.get(index));
                     table.addCell(last.get(index));
-                    table.addCell(company.get(index));
-                    table.addCell(email.get(index));
+                  //  table.addCell(company.get(index));
+                 //   table.addCell(email.get(index));
 //                    table.addCell(state.get(index));
 //                    table.addCell(city.get(index));
 //                    table.addCell(guideName.get(index));
