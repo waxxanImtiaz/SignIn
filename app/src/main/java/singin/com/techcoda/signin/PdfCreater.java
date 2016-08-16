@@ -73,17 +73,17 @@ public class PdfCreater {
             doc.add(p1);
 
 //            PdfPTable table = new PdfPTable((visitors.si));
-            PdfPTable table = new PdfPTable((6));
+            PdfPTable table = new PdfPTable((5));
 
             table.addCell("ID");
             table.addCell("First Name");
             table.addCell("Last Name");
             table.addCell("City");//city
             table.addCell("Company");//company
-            table.addCell("Comments");//comments
+            //table.addCell("Comments");//comments
 //            table.addCell("Address");//Address
 //            table.addCell("Here To See");//here to see
-//            table.addCell("Email "); //Email
+            table.addCell("Email "); //Email
 //            table.addCell("Photo Capture");//photo capture
 //            table.addCell("State "); //State
 //            table.addCell("guide name ");//guide name
@@ -121,7 +121,7 @@ public class PdfCreater {
 //                List<String> vehicleMakeModel = visitors.get(15);
 //                List<String> vehicleColor = visitors.get(16);
 //                List<String> vehicleLisencePlate =visitors.get(17);
-                List<String> comments = visitors.get(18);
+              //  List<String> comments = visitors.get(18);
 //                List<String> visitorSignInAgreement =visitors.get(19);
 //                List<String> visitorSignOutAgreement = visitors.get(20);
 //                List<String> visitorAgreementText = visitors.get(21);
@@ -147,7 +147,7 @@ public class PdfCreater {
 //                    table.addCell(vehicleMakeModel.get(index));
 //                    table.addCell(vehicleColor.get(index));
                    // table.addCell(vehicleLisencePlate.get(index));
-                    table.addCell(comments.get(index));
+                   // table.addCell(comments.get(index));
 //                    table.addCell(visitorSignInAgreement.get(index));
 //                    table.addCell(visitorSignOutAgreement.get(index));
                    // table.addCell(visitorAgreementText.get(index));

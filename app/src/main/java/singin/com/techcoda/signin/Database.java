@@ -204,6 +204,7 @@ public class Database {
         temp = siginIn.get(22);
         contentValues.put(DatabaseHandler.COL_USER_STATUS, temp);
         long rows = db.insert(DatabaseHandler.TABLE_VISITOR, null, contentValues);
+
         return rows;
     }
 
@@ -237,6 +238,67 @@ public class Database {
 
     }
 
+    public void insertIntoColorsTable(){
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        long rows = 0;
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_one");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#303F9F");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_white");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#FFF");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "current");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_two");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#1D539D");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_three");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#0000FF");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_four");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#BA815A");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_five");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#FFBDBD");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_six");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#5B4B49");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_seven");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#FFD700");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_eight");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#CCBEC7");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_nine");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#201E1F");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+
+        contentValues.put(DatabaseHandler.COL_COLOR_ID, "v_font_color_bar_ten");
+        contentValues.put(DatabaseHandler.COL_COLOR_CODE, "#00FFA4");
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        rows += db.insert(DatabaseHandler.TABLE_COLORS, null, contentValues);
+        //Toast.makeText(context.getApplicationContext(),rows+" effected",Toast.LENGTH_SHORT).show();
+    }
     public long insertIntoSignInSetupFields(){
 
         SQLiteDatabase db = dbh.getWritableDatabase();
@@ -526,7 +588,41 @@ public class Database {
         return name;
     }
 
+    public String getCurrentColor()
+    {
+        String[] selectionArgs = { "current" };
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        String query = "SELECT " + DatabaseHandler.COL_COLOR_CODE + " FROM " + DatabaseHandler.TABLE_COLORS+ " WHERE " + DatabaseHandler.COL_CURRENT_COLOR + "=?";
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+        if(cursor.moveToNext()){
+            return cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_COLOR_CODE));
+        }
+        return null;
+    }
 
+    public long updateFontColor(String id,String option)
+    {
+        ContentValues contentValues;
+        //REMOVE CURRENT COLOR
+        String where = DatabaseHandler.COL_CURRENT_COLOR + "=?";
+        String[] selection = { "current" };
+
+        SQLiteDatabase db = dbh.getWritableDatabase();
+        contentValues = new ContentValues();
+
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, "no");
+        long rows = db.update(DatabaseHandler.DROP_TABLE_COLORS, contentValues, where, selection);
+
+
+        //INSERT NEW COLOR
+        String whereClause = DatabaseHandler.COL_COLOR_ID + "=?";
+        String[] selectionArgs = { id };
+        contentValues = new ContentValues();
+
+        contentValues.put(DatabaseHandler.COL_CURRENT_COLOR, option);
+        rows = db.update(DatabaseHandler.DROP_TABLE_COLORS, contentValues, whereClause, selectionArgs);
+        return rows;
+    }
     public long updateSignInSetupFields(String id,String option){
 
         String whereClause = DatabaseHandler.COL_FIELD_ID + "=?";
@@ -892,6 +988,7 @@ public class Database {
         public static final String TABLE_COLORS ="colors";
         public static final String COL_COLOR_ID ="color_id";
         public static final String COL_COLOR_CODE ="color_code";
+        public static final String COL_CURRENT_COLOR ="current_color";
 //
         //FONT STYLES
         public static final String TABLE_FONT_STYLES="fonts";
@@ -911,7 +1008,7 @@ public class Database {
         public static final String CREATE_TABLE_SIGNIN = "CREATE TABLE " + TABLE_SIGN_IN + "(" + COL_SIGN_IN + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_VISITOR_ID + " INTEGER, " + COL_IN + " VARCHAR(50), " + COL_OUT + " VARCHAR(50), " + COL_STATUS + " VARCHAR(50), " + COL_DATE + " VARCHAR(50));";
         public static final String CREATE_TABLE_FIELD_SETUP="CREATE TABLE "+TABLE_SINGN_IN_SETUP_FIELDS + " ("+COL_FIELD_ID+" VARCHAR(100),"+ COL_FIELD_OPTION+" VARCHAR(30));";
         public static final String CREATE_TABLE_FONT_STYLES="CREATE TABLE " + TABLE_FONT_STYLES +"(" + COL_FONT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + COL_FONT_NAME + " VARCHAR(50), " + COL_FONT_PATH + " VARCHAR(50));";
-        public static final String CREATE_TABLE_COLORS=" CREATE TABLE " + TABLE_COLORS + "("+COL_COLOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ," + COL_COLOR_CODE + " VARCHAR(50));";
+        public static final String CREATE_TABLE_COLORS=" CREATE TABLE " + TABLE_COLORS + "("+COL_COLOR_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"+ COL_CURRENT_COLOR + " VARCHAR(50), " + COL_COLOR_CODE + " VARCHAR(50));";
 
         //DROP TABLE
         public static final String DROP_TABLE_COMPANY = "DROP TABLE IF EXISTS " + TABLE_COMPANY;

@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.android.gms.ComposeActivityGmail;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
@@ -64,7 +63,7 @@ public class SignIn extends Activity implements View.OnClickListener {
     Button btn_signature_capture;
     CheckBox visitorAgreement;
     LinearLayout ll_visitor_agreement;
-    ImageView iv_sign_capture;
+    //ImageView iv_sign_capture;
     Bitmap bitmap;
     Database database;
     private static String message;
@@ -73,11 +72,14 @@ public class SignIn extends Activity implements View.OnClickListener {
     private byte[] sign;
     private final int CAMERA = 0;
     private final int SIGNATURE = 12;
+    boolean flag;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in_activity);
 
+
+        setTheme(R.style.bold_itallic_font);
         database = new Database(this);
 
         Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(),R.drawable.cat);
@@ -93,7 +95,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         company = (EditText)findViewById(R.id.et_company);
         address = (EditText)findViewById(R.id.et_address);
         email = (EditText)findViewById(R.id.et_email);
-        iv_sign_capture = (ImageView)findViewById(R.id.iv_sign_capture);
+       // iv_sign_capture = (ImageView)findViewById(R.id.iv_sign_capture);
         city = (EditText)findViewById(R.id.et_city);
         zipCode = (EditText)findViewById(R.id.et_zipcode);
         state = (EditText)findViewById(R.id.et_state);
@@ -116,7 +118,7 @@ public class SignIn extends Activity implements View.OnClickListener {
 
         btn_signature_capture.setOnClickListener(this);
         btn_image_capture.setOnClickListener(this);
-        iv_sign_capture.setVisibility(View.GONE);
+        //iv_sign_capture.setVisibility(View.GONE);
         checkForFields();
         String currentDate = new SimpleDateFormat("dd MMMM yyyy").format(new Date());
         tv_Date.setText(currentDate);
@@ -170,7 +172,7 @@ public class SignIn extends Activity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-
+        flag = false;
         try {
             if (requestCode == CAMERA) {
                 Bitmap bp = (Bitmap) data.getExtras().get("data");
@@ -180,6 +182,7 @@ public class SignIn extends Activity implements View.OnClickListener {
 
             if(requestCode == SIGNATURE) {
                sign = (byte[]) data.getExtras().get("signature");
+               flag = true;
             }
         }catch(Exception e)
         {
@@ -283,7 +286,7 @@ public class SignIn extends Activity implements View.OnClickListener {
         visitor.add("N/A");
 
         //status
-        visitor.add("in");
+        visitor.add("premises");
 
         //getBytes(iv_sign_capture)
         long rowsVisitor = database.insertVisitor(visitor,getBytes(iv_picture),null);
@@ -300,15 +303,15 @@ public class SignIn extends Activity implements View.OnClickListener {
             if (rowsSignIn > 0){
                 Toast.makeText(this, "Visitor Saved..", Toast.LENGTH_SHORT).show();
 
-                if(isOnline())
-                {
-                    sendEmailToAdmin();
-                    Toast.makeText(this, "Email send to admin successfully..", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    Toast.makeText(this, "Email did not sent to Admin! No internet connection available..", Toast.LENGTH_SHORT).show();
-                }
+//                if(isOnline())
+//                {
+//                    sendEmailToAdmin();
+//                    Toast.makeText(this, "Email send to admin successfully..", Toast.LENGTH_SHORT).show();
+//                }
+//                else
+//                {
+//                    Toast.makeText(this, "Email did not sent to Admin! No internet connection available..", Toast.LENGTH_SHORT).show();
+//                }
 
             }
         }
@@ -463,6 +466,12 @@ public class SignIn extends Activity implements View.OnClickListener {
             ll_visitor_agreement.setVisibility(View.VISIBLE);
         else
             ll_visitor_agreement.setVisibility(View.GONE);
+
+        option = database.isFieldEnabled("signature capture");
+        if(option != null && !option.equals("false"))
+            btn_signature_capture.setVisibility(View.VISIBLE);
+        else
+            btn_signature_capture.setVisibility(View.GONE);
     }//END OF CHECKFORFIELDS METHOD
 
     //CHECK FOR INPUT
@@ -488,8 +497,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                 open(view);
                 return false;
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("company");
@@ -503,8 +510,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                 open(view);
                 return false;
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("address");
@@ -516,8 +521,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                 return false;
             }
 
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
 
@@ -531,10 +534,16 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
+         option = database.isFieldEnabled("signature capture");
+        if(option != null && option.equals("Mandatory")) {
+            if (!flag) {
+                message = "Please Capture Signature before Sign In";
+                open(view);
+                return false;
+            }
+        }
 
         option = database.isFieldEnabled("guide escort");
         if(option != null && option.equals("Mandatory"))
@@ -548,8 +557,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("badge returned");
@@ -564,8 +571,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("badge number");
@@ -580,8 +585,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("comments");
@@ -598,6 +601,7 @@ public class SignIn extends Activity implements View.OnClickListener {
             }
         }
 
+
         option = database.isFieldEnabled("vehicle make/model");
         if(option != null && option.equals("Mandatory"))
         {
@@ -610,8 +614,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("vehicle color");
@@ -626,8 +628,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("vehicle lisence plate");
@@ -642,8 +642,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("here to see");
@@ -658,8 +656,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                 return false;
             }
         }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
         option = database.isFieldEnabled("vehicle color");
         if(option != null && option.equals("Mandatory")) {
@@ -671,8 +667,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
         option = database.isFieldEnabled("vehicle lisence plate");
         if( option != null && option.equals("Mandatory")) {
@@ -684,8 +678,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
         option = database.isFieldEnabled("vehicle make model");
         if(option != null && option.equals("Mandatory")) {
@@ -697,8 +689,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
         option = database.isFieldEnabled("comments");
         if( option != null && option.equals("Mandatory")) {
@@ -711,8 +701,6 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         option = database.isFieldEnabled("signin agreement");
@@ -725,27 +713,25 @@ public class SignIn extends Activity implements View.OnClickListener {
                     return false;
                 }
             }
-        }else  if(option != null && option.equals("Optional"))
-        {
         }
 
         return true;
     }//end of method checkForFields
 
-    public void sendEmailToAdmin(){
-        Intent emailIntent = new Intent();
-        emailIntent.setClassName("com.google.android.gms", "com.google.android.gms.ComposeActivityGmail");// Package Name, Class Name
-        emailIntent.setData(Uri.parse("mailto:"));
-        emailIntent.setType("text/plain");
-        emailIntent.putExtra(Intent.EXTRA_EMAIL, "waxxan.imtiaz.123@gmail.com");
-        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Visitor Signed In");
-        emailIntent.putExtra(Intent.EXTRA_TEXT, "First Name:"+firstName.getText().toString()+",Last Name:"+lastName.getText().toString());
-        try {
-            startActivity(emailIntent);
-        } catch(Exception ex) {
-            Toast.makeText(getApplicationContext(),"Email did not send",Toast.LENGTH_SHORT).show();
-        }
-    }
+//    public void sendEmailToAdmin(){
+//        Intent emailIntent = new Intent();
+//        emailIntent.setClassName("com.google.android.gms", "com.google.android.gms.ComposeActivityGmail");// Package Name, Class Name
+//        emailIntent.setData(Uri.parse("mailto:"));
+//        emailIntent.setType("text/plain");
+//        emailIntent.putExtra(Intent.EXTRA_EMAIL, "waxxan.imtiaz.123@gmail.com");
+//        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Visitor Signed In");
+//        emailIntent.putExtra(Intent.EXTRA_TEXT, "First Name:"+firstName.getText().toString()+",Last Name:"+lastName.getText().toString());
+//        try {
+//            startActivity(emailIntent);
+//        } catch(Exception ex) {
+//            Toast.makeText(getApplicationContext(),"Email did not send",Toast.LENGTH_SHORT).show();
+//        }
+//    }
     public void open(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setMessage(message);
@@ -761,28 +747,28 @@ public class SignIn extends Activity implements View.OnClickListener {
         alertDialog.show();
     }
 
-    public boolean isOnline() {
-        try {
-            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
-
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(), "Error while checking for wifi", Toast.LENGTH_SHORT).show();
-        }
-        return false;
-    }
-    public void showDialog(String message){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage(message);
-
-//        alertDialogBuilder.setItems(path);
-        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface arg0, int arg1) {
-//                        finish();
-            }
-        });
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
-    }
+//    public boolean isOnline() {
+//        try {
+//            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnectedOrConnecting();
+//
+//        } catch (Exception e) {
+//            Toast.makeText(getApplicationContext(), "Error while checking for wifi", Toast.LENGTH_SHORT).show();
+//        }
+//        return false;
+//    }
+//    public void showDialog(String message){
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+//        alertDialogBuilder.setMessage(message);
+//
+////        alertDialogBuilder.setItems(path);
+//        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface arg0, int arg1) {
+////                        finish();
+//            }
+//        });
+//        AlertDialog alertDialog = alertDialogBuilder.create();
+//        alertDialog.show();
+//    }
 }

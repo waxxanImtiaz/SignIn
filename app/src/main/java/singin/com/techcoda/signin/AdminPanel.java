@@ -6,9 +6,12 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -179,7 +182,7 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
             case R.id.btn_print_reports:
                 i.putExtra("clickedOn",state);
                 startActivity(i);
-                finish();
+                //finish();
                 break;
             case R.id.btn_email_report_pdf:
                 pdfCreater = new PdfCreater(getApplicationContext());
@@ -215,12 +218,15 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     {
             if(state.equals("in") && rows>0){
                 counterSignIn.setText("0");
+                showDialog("Data deleted successfully");
             }
-            else if(state.equals("gone") && rows>0){
+            else if(state.equals("gone")){
                 counterSignOut.setText("0");
+                showDialog("Data deleted successfully");
             }
-            else if(state.equals("premises")&& rows>0) {
+            else if(state.equals("premises")) {
                 counterOnPremises.setText("0");
+                showDialog("Data deleted deleted successfully");
             }
              else
                 showDialog("Data not deleted");
@@ -490,12 +496,14 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
     }
     @Override
     public void onBackPressed(){
+        super.onBackPressed();
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/SignInAppReports");
         if(file != null && file.exists() && isPrintReportClicked)
         {
          file.delete();
         }
 
-        super.onBackPressed();
+
     }
 
     public void emailReport(){
@@ -510,7 +518,9 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
             email.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             //need this to prompts email client only
             email.setType("message/rfc822");
-            startActivity(Intent.createChooser(email, "Choose an Email client :"));
+            startActivityForResult(Intent.createChooser(email, "Choose an Email client :"),1);
+
+
         }else{
             showDialog("No Internet Connection Available");
         }
@@ -527,4 +537,16 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         }
         return false;
     }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            if (requestCode == 1) {
+             Toast.makeText(getApplicationContext(),"Email sent successfully.",Toast.LENGTH_SHORT).show();
+            }
+        }catch(Exception e)
+        {
+            Log.d("Exception:",e.getMessage());
+        }
+    }//end of method
 }//end of class
