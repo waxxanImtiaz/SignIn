@@ -23,7 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import com.google.android.gms.ComposeActivityGmail;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
@@ -70,6 +70,9 @@ public class SignIn extends Activity implements View.OnClickListener {
     private static String message;
     private boolean isEmailVisible;
     private List<String> visitor;
+    private byte[] sign;
+    private final int CAMERA = 0;
+    private final int SIGNATURE = 12;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -142,24 +145,14 @@ public class SignIn extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_image_capture:
                 Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(intent, 0);
-                finish();
+                startActivityForResult(intent, CAMERA);
+                //finish();
                 break;
             case R.id.btn_signature_capture:
                 Intent i = new Intent(SignIn.this,Signature.class);
-                startActivity(i);
-                File photo = new File(getAlbumStorageDir("Signatures"), String.format("Signature_one.jpg", System.currentTimeMillis()));
-             //   File dir = new File(photo,"Signature_one.jpg");
-                if(photo != null)
-                {
-
-                    bitmap = BitmapFactory.decodeFile(photo.getAbsolutePath());
-                    if(bitmap != null)
-                    {
-                        iv_sign_capture.setVisibility(View.VISIBLE);
-                    }
-                    iv_sign_capture.setImageBitmap(bitmap);
-                }
+                startActivityForResult(i,SIGNATURE);
+                onPause();
+//                finish();
                 break;
         }
     }
@@ -176,16 +169,27 @@ public class SignIn extends Activity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+
         try {
+            if (requestCode == CAMERA) {
                 Bitmap bp = (Bitmap) data.getExtras().get("data");
                 if (bp != null)
                     iv_picture.setImageBitmap(bp);
+            }
 
+            if(requestCode == SIGNATURE) {
+               sign = (byte[]) data.getExtras().get("signature");
+            }
         }catch(Exception e)
         {
-
+            Log.d("Exception:",e.getMessage());
         }
-        //iv_picture.setImageBitmap(ImageConverter.getRoundedCornerBitmap(bp,100));
+    }//end of method
+    @Override
+    protected void onPause(){
+        super.onPause();
+
     }
     public void insertVisitor(){
 
@@ -298,7 +302,7 @@ public class SignIn extends Activity implements View.OnClickListener {
 
                 if(isOnline())
                 {
-                    //setEmailToAdmin();
+                    sendEmailToAdmin();
                     Toast.makeText(this, "Email send to admin successfully..", Toast.LENGTH_SHORT).show();
                 }
                 else
@@ -728,15 +732,19 @@ public class SignIn extends Activity implements View.OnClickListener {
         return true;
     }//end of method checkForFields
 
-    public void setEmailToAdmin(){
+    public void sendEmailToAdmin(){
         Intent emailIntent = new Intent();
-        emailIntent.setClassName("com.google.android.gm", "com.google.android.gm.ComposeActivityGmail");// Package Name, Class Name
+        emailIntent.setClassName("com.google.android.gms", "com.google.android.gms.ComposeActivityGmail");// Package Name, Class Name
         emailIntent.setData(Uri.parse("mailto:"));
         emailIntent.setType("text/plain");
         emailIntent.putExtra(Intent.EXTRA_EMAIL, "waxxan.imtiaz.123@gmail.com");
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, "New Visitor Signed In");
         emailIntent.putExtra(Intent.EXTRA_TEXT, "First Name:"+firstName.getText().toString()+",Last Name:"+lastName.getText().toString());
-        startActivity(emailIntent);
+        try {
+            startActivity(emailIntent);
+        } catch(Exception ex) {
+            Toast.makeText(getApplicationContext(),"Email did not send",Toast.LENGTH_SHORT).show();
+        }
     }
     public void open(View view){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
