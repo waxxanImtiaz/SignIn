@@ -25,7 +25,7 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
     private int rootWidth = 0;
     private Database database;
     private View container;
-    private QuickAction.OnDismissListener mDismissListener;
+    private OnDismissListener mDismissListener;
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
 
@@ -129,7 +129,7 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
      * Set listener for window dismissed. This listener will only be fired if the quicakction dialog is dismissed
      * by clicking outside the dialog or clicking on sticky item.
      */
-    public void setOnDismissListener(QuickAction.OnDismissListener listener) {
+    public void setOnDismissListener(OnDismissListener listener) {
         setOnDismissListener(this);
 
         mDismissListener = listener;
@@ -269,5 +269,8 @@ public class DropDownReportMenuHandler extends PopupWindows implements PopupWind
 
     public void setmInflater(LayoutInflater mInflater) {
         this.mInflater = mInflater;
+    }
+    public interface OnDismissListener {
+        public abstract void onDismiss();
     }
 }

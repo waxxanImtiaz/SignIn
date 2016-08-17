@@ -76,10 +76,10 @@ public class AdminPanel extends Activity implements View.OnClickListener, Adapte
         ll_out = (LinearLayout) findViewById(R.id.ll_signout);
 
         mDropDownMenu = new DropDownMenus(getApplicationContext());
-        mDropDownMenu.setCurrentDate();;
-        mDropDownMenu.setReportMenu();
+        //mDropDownMenu.setCurrentDate();;
+       // mDropDownMenu.setReportMenu();
        // mDropDownMenu.setSetupMenu();
-        mDropDownMenu.setDesignMenu();
+        //mDropDownMenu.setDesignMenu();
         initComponenets();
         mDoneButton = (Button)findViewById(R.id.btn_done);
         mSetupButton = (Button)findViewById(R.id.btn_setup);

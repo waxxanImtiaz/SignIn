@@ -534,11 +534,11 @@ class DesignMenuFields{
     }
 }
 //FONT FAMILIES
-class FontFamilies{
-    public static int fontFamiliesIndex=0;
-    public static String[] fontFamilies = new String[]{"serif","sans-serif","verdana","serif-monospace","casual"
-            ,"cursive","monospace","sans-serif-thin","sans-serif-condensed","sans-serif-medium","sans-serif-light","sans-serif-smallcaps"};
+//class FontFamilies{
+//    public static int fontFamiliesIndex=0;
+//    public static String[] fontFamilies = new String[]{"serif","sans-serif","verdana","serif-monospace","casual"
+//            ,"cursive","monospace","sans-serif-thin","sans-serif-condensed","sans-serif-medium","sans-serif-light","sans-serif-smallcaps"};
 
 
-}
+//}
 

@@ -27,7 +27,6 @@ public class AdapterSigningOutVisitors extends BaseAdapter {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-
         inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 

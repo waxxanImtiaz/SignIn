@@ -577,6 +577,7 @@ public class Database {
                 id.add(listID.get(i));
                 first.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_FIRST_NAME)));
                 last.add(cursor.getString(cursor.getColumnIndex(DatabaseHandler.COL_LAST_NAME)));
+                Toast.makeText(context,first.get(i),Toast.LENGTH_SHORT).show();
             }
 
         }//end of for loop
